@@ -1,0 +1,55 @@
+
+Epoch: 001, Train Loss: 0.7774
+Epoch: 002, Train Loss: 0.7709
+Epoch: 003, Train Loss: 0.7667
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 40%|████      | 7075/17535 [01:38<02:25, 71.95it/s]
+[34m[1mwandb[39m[22m: [33mWARNING[39m Calling wandb.login() after wandb.init() has no effect.

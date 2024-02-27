@@ -1,0 +1,716 @@
+2024-02-27 01:27:37,970 INFO    StreamThr :84424 [internal.py:wandb_internal():86] W&B internal server running at pid: 84424, started at: 2024-02-27 01:27:37.969666
+2024-02-27 01:27:37,971 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status
+2024-02-27 01:27:37,973 INFO    WriterThread:84424 [datastore.py:open_for_write():87] open: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/run-cj5n1sfq.wandb
+2024-02-27 01:27:37,973 DEBUG   SenderThread:84424 [sender.py:send():382] send: header
+2024-02-27 01:27:37,974 DEBUG   SenderThread:84424 [sender.py:send():382] send: run
+2024-02-27 01:27:38,158 INFO    SenderThread:84424 [dir_watcher.py:__init__():211] watching files in: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files
+2024-02-27 01:27:38,158 INFO    SenderThread:84424 [sender.py:_start_run_threads():1136] run started: cj5n1sfq with start time 1709018856.994379
+2024-02-27 01:27:38,165 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: check_version
+2024-02-27 01:27:38,165 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: check_version
+2024-02-27 01:27:38,228 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: run_start
+2024-02-27 01:27:38,229 DEBUG   HandlerThread:84424 [system_info.py:__init__():27] System info init
+2024-02-27 01:27:38,229 DEBUG   HandlerThread:84424 [system_info.py:__init__():42] System info init done
+2024-02-27 01:27:38,229 INFO    HandlerThread:84424 [system_monitor.py:start():194] Starting system monitor
+2024-02-27 01:27:38,229 INFO    SystemMonitor:84424 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-02-27 01:27:38,230 INFO    HandlerThread:84424 [system_monitor.py:probe():214] Collecting system info
+2024-02-27 01:27:38,231 INFO    SystemMonitor:84424 [interfaces.py:start():190] Started cpu monitoring
+2024-02-27 01:27:38,231 INFO    SystemMonitor:84424 [interfaces.py:start():190] Started disk monitoring
+2024-02-27 01:27:38,231 INFO    SystemMonitor:84424 [interfaces.py:start():190] Started gpu monitoring
+2024-02-27 01:27:38,232 INFO    SystemMonitor:84424 [interfaces.py:start():190] Started memory monitoring
+2024-02-27 01:27:38,233 INFO    SystemMonitor:84424 [interfaces.py:start():190] Started network monitoring
+2024-02-27 01:27:38,273 DEBUG   HandlerThread:84424 [system_info.py:probe():151] Probing system
+2024-02-27 01:27:38,274 DEBUG   HandlerThread:84424 [system_info.py:_probe_git():136] Probing git
+2024-02-27 01:27:38,286 DEBUG   HandlerThread:84424 [system_info.py:_probe_git():144] Probing git done
+2024-02-27 01:27:38,286 DEBUG   HandlerThread:84424 [system_info.py:probe():199] Probing system done
+2024-02-27 01:27:38,286 DEBUG   HandlerThread:84424 [system_monitor.py:probe():223] {'os': 'Linux-4.15.0-213-generic-x86_64-with-glibc2.27', 'python': '3.9.18', 'heartbeatAt': '2024-02-27T07:27:38.273519', 'startedAt': '2024-02-27T07:27:31.439790', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'embedding_model.ipynb', 'codePathLocal': 'embedding_model.ipynb', 'git': {'remote': None, 'commit': None}, 'email': 'blainehill2001@gmail.com', 'root': '/home/blaineh2/ScoreMatchingDiffKG', 'host': 'idealab-01', 'username': 'blaineh2', 'executable': '/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/bin/python', 'cpu_count': 48, 'cpu_count_logical': 96, 'cpu_freq': {'current': 2962.431979166666, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 3333.339, 'min': 0.0, 'max': 0.0}, {'current': 2661.238, 'min': 0.0, 'max': 0.0}, {'current': 3691.625, 'min': 0.0, 'max': 0.0}, {'current': 3261.788, 'min': 0.0, 'max': 0.0}, {'current': 3787.559, 'min': 0.0, 'max': 0.0}, {'current': 2933.209, 'min': 0.0, 'max': 0.0}, {'current': 2760.299, 'min': 0.0, 'max': 0.0}, {'current': 2700.617, 'min': 0.0, 'max': 0.0}, {'current': 2873.068, 'min': 0.0, 'max': 0.0}, {'current': 2686.134, 'min': 0.0, 'max': 0.0}, {'current': 2749.375, 'min': 0.0, 'max': 0.0}, {'current': 2735.909, 'min': 0.0, 'max': 0.0}, {'current': 2738.284, 'min': 0.0, 'max': 0.0}, {'current': 3262.244, 'min': 0.0, 'max': 0.0}, {'current': 2743.405, 'min': 0.0, 'max': 0.0}, {'current': 3849.221, 'min': 0.0, 'max': 0.0}, {'current': 2859.152, 'min': 0.0, 'max': 0.0}, {'current': 3614.26, 'min': 0.0, 'max': 0.0}, {'current': 2748.547, 'min': 0.0, 'max': 0.0}, {'current': 2701.372, 'min': 0.0, 'max': 0.0}, {'current': 2929.187, 'min': 0.0, 'max': 0.0}, {'current': 2739.417, 'min': 0.0, 'max': 0.0}, {'current': 2795.563, 'min': 0.0, 'max': 0.0}, {'current': 2736.527, 'min': 0.0, 'max': 0.0}, {'current': 3640.003, 'min': 0.0, 'max': 0.0}, {'current': 2757.225, 'min': 0.0, 'max': 0.0}, {'current': 2875.67, 'min': 0.0, 'max': 0.0}, {'current': 2739.984, 'min': 0.0, 'max': 0.0}, {'current': 2784.718, 'min': 0.0, 'max': 0.0}, {'current': 3270.026, 'min': 0.0, 'max': 0.0}, {'current': 2827.776, 'min': 0.0, 'max': 0.0}, {'current': 2747.192, 'min': 0.0, 'max': 0.0}, {'current': 2795.085, 'min': 0.0, 'max': 0.0}, {'current': 2715.434, 'min': 0.0, 'max': 0.0}, {'current': 2782.149, 'min': 0.0, 'max': 0.0}, {'current': 2666.65, 'min': 0.0, 'max': 0.0}, {'current': 2757.377, 'min': 0.0, 'max': 0.0}, {'current': 2758.452, 'min': 0.0, 'max': 0.0}, {'current': 2788.267, 'min': 0.0, 'max': 0.0}, {'current': 2789.778, 'min': 0.0, 'max': 0.0}, {'current': 2813.041, 'min': 0.0, 'max': 0.0}, {'current': 2743.189, 'min': 0.0, 'max': 0.0}, {'current': 2799.346, 'min': 0.0, 'max': 0.0}, {'current': 2746.171, 'min': 0.0, 'max': 0.0}, {'current': 2825.295, 'min': 0.0, 'max': 0.0}, {'current': 2790.301, 'min': 0.0, 'max': 0.0}, {'current': 3014.692, 'min': 0.0, 'max': 0.0}, {'current': 3843.42, 'min': 0.0, 'max': 0.0}, {'current': 2871.168, 'min': 0.0, 'max': 0.0}, {'current': 3046.051, 'min': 0.0, 'max': 0.0}, {'current': 3785.19, 'min': 0.0, 'max': 0.0}, {'current': 2739.586, 'min': 0.0, 'max': 0.0}, {'current': 3698.774, 'min': 0.0, 'max': 0.0}, {'current': 3083.715, 'min': 0.0, 'max': 0.0}, {'current': 2771.401, 'min': 0.0, 'max': 0.0}, {'current': 2745.942, 'min': 0.0, 'max': 0.0}, {'current': 2978.188, 'min': 0.0, 'max': 0.0}, {'current': 2722.982, 'min': 0.0, 'max': 0.0}, {'current': 2767.683, 'min': 0.0, 'max': 0.0}, {'current': 2738.992, 'min': 0.0, 'max': 0.0}, {'current': 3443.12, 'min': 0.0, 'max': 0.0}, {'current': 2866.195, 'min': 0.0, 'max': 0.0}, {'current': 2763.676, 'min': 0.0, 'max': 0.0}, {'current': 3536.859, 'min': 0.0, 'max': 0.0}, {'current': 3116.423, 'min': 0.0, 'max': 0.0}, {'current': 2774.989, 'min': 0.0, 'max': 0.0}, {'current': 2787.399, 'min': 0.0, 'max': 0.0}, {'current': 2729.461, 'min': 0.0, 'max': 0.0}, {'current': 3040.213, 'min': 0.0, 'max': 0.0}, {'current': 2775.393, 'min': 0.0, 'max': 0.0}, {'current': 2790.123, 'min': 0.0, 'max': 0.0}, {'current': 3083.807, 'min': 0.0, 'max': 0.0}, {'current': 3656.27, 'min': 0.0, 'max': 0.0}, {'current': 2762.136, 'min': 0.0, 'max': 0.0}, {'current': 3613.922, 'min': 0.0, 'max': 0.0}, {'current': 3101.951, 'min': 0.0, 'max': 0.0}, {'current': 2783.36, 'min': 0.0, 'max': 0.0}, {'current': 3103.985, 'min': 0.0, 'max': 0.0}, {'current': 3574.061, 'min': 0.0, 'max': 0.0}, {'current': 2777.077, 'min': 0.0, 'max': 0.0}, {'current': 2760.04, 'min': 0.0, 'max': 0.0}, {'current': 2760.926, 'min': 0.0, 'max': 0.0}, {'current': 2787.394, 'min': 0.0, 'max': 0.0}, {'current': 3245.713, 'min': 0.0, 'max': 0.0}, {'current': 2764.465, 'min': 0.0, 'max': 0.0}, {'current': 2740.727, 'min': 0.0, 'max': 0.0}, {'current': 2798.118, 'min': 0.0, 'max': 0.0}, {'current': 2789.396, 'min': 0.0, 'max': 0.0}, {'current': 2771.33, 'min': 0.0, 'max': 0.0}, {'current': 2767.224, 'min': 0.0, 'max': 0.0}, {'current': 2816.092, 'min': 0.0, 'max': 0.0}, {'current': 2906.803, 'min': 0.0, 'max': 0.0}, {'current': 2801.494, 'min': 0.0, 'max': 0.0}, {'current': 2788.089, 'min': 0.0, 'max': 0.0}, {'current': 3001.517, 'min': 0.0, 'max': 0.0}, {'current': 3701.47, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 430.9771728515625, 'used': 22.353614807128906}}, 'gpu': 'Tesla V100-SXM2-32GB', 'gpu_count': 4, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}], 'memory': {'total': 1510.5410804748535}}
+2024-02-27 01:27:38,286 INFO    HandlerThread:84424 [system_monitor.py:probe():224] Finished collecting system info
+2024-02-27 01:27:38,286 INFO    HandlerThread:84424 [system_monitor.py:probe():227] Publishing system info
+2024-02-27 01:27:38,286 DEBUG   HandlerThread:84424 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-02-27 01:27:39,160 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/conda-environment.yaml
+2024-02-27 01:27:41,530 DEBUG   HandlerThread:84424 [system_info.py:_save_conda():220] Saving conda packages done
+2024-02-27 01:27:41,531 INFO    HandlerThread:84424 [system_monitor.py:probe():229] Finished publishing system info
+2024-02-27 01:27:41,532 DEBUG   SenderThread:84424 [sender.py:send():382] send: files
+2024-02-27 01:27:41,532 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-02-27 01:27:41,540 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: python_packages
+2024-02-27 01:27:41,540 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: python_packages
+2024-02-27 01:27:41,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:27:41,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:27:41,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:27:41,725 DEBUG   SenderThread:84424 [sender.py:send():382] send: telemetry
+2024-02-27 01:27:41,726 DEBUG   SenderThread:84424 [sender.py:send():382] send: telemetry
+2024-02-27 01:27:41,801 INFO    wandb-upload_0:84424 [upload_job.py:push():131] Uploaded file /tmp/tmpg_udh1avwandb/152m49nl-wandb-metadata.json
+2024-02-27 01:27:42,160 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/conda-environment.yaml
+2024-02-27 01:27:42,160 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-metadata.json
+2024-02-27 01:27:42,161 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/requirements.txt
+2024-02-27 01:27:43,715 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:27:43,718 DEBUG   SenderThread:84424 [sender.py:send():382] send: history
+2024-02-27 01:27:43,718 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:27:43,718 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: summary_record
+2024-02-27 01:27:43,720 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:27:44,161 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:27:44,161 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:46,162 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:48,162 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:48,826 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:27:50,163 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:52,164 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:53,857 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:27:54,164 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:56,165 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:56,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:27:56,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:27:56,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:27:58,165 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:27:58,907 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:00,166 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:02,167 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:03,932 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:04,167 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:06,168 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:08,168 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:09,045 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:09,169 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/config.yaml
+2024-02-27 01:28:10,169 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:11,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:28:11,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:28:11,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:28:12,170 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:14,133 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:14,171 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:16,172 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:18,173 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:19,158 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:20,173 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:22,174 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:24,175 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:24,224 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:26,176 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:26,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:28:26,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:28:26,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:28:28,177 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:29,239 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:30,178 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:32,178 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:34,179 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:34,243 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:36,180 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:38,181 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:38,233 DEBUG   SystemMonitor:84424 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-02-27 01:28:38,236 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:28:39,269 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:40,182 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:41,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:28:41,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:28:41,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:28:42,183 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:44,183 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:44,366 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:46,184 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:48,185 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:49,377 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:50,186 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:52,187 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:54,188 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:54,484 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:28:56,189 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:56,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:28:56,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:28:56,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:28:58,190 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:28:59,593 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:00,191 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:02,192 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:04,192 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:04,623 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:06,193 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:08,194 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:08,237 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:29:09,629 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:10,195 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:11,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:29:11,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:29:11,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:29:12,196 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:14,196 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:15,714 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:18,198 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:20,198 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:20,815 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:22,199 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:24,199 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:25,837 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:26,200 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:26,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:29:26,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:29:26,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:29:28,201 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:30,201 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:30,860 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:32,202 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:34,202 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:35,871 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:36,203 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:38,203 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:38,239 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:29:40,204 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:40,889 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:41,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:29:41,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:29:41,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:29:42,205 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:44,206 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:45,929 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:46,207 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:48,207 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:50,208 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:51,012 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:52,209 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:54,210 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:56,081 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:29:56,210 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:29:56,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:29:56,541 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:29:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:29:58,211 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:00,212 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:01,089 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:02,213 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:04,214 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:06,094 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:06,215 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:08,215 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:08,241 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:30:10,216 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:11,127 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:11,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:30:11,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:30:11,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:30:12,217 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:14,218 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:16,136 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:16,218 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:18,219 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:20,220 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:21,239 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:22,221 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:24,221 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:26,222 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:26,276 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:26,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:30:26,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:30:26,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:30:28,222 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:30,223 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:31,308 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:32,224 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:34,224 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:36,225 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:36,362 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:38,226 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:38,242 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:30:40,226 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:41,414 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:41,541 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:30:41,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:30:41,640 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:30:42,229 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:44,228 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:46,229 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:46,469 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:48,230 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:50,230 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:51,563 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:52,231 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:54,232 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:56,232 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:30:56,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:30:56,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:30:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:30:56,646 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:30:58,233 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:00,234 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:01,679 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:02,235 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:04,235 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:06,236 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:06,783 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:08,237 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:08,247 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:31:10,237 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:11,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:31:11,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:31:11,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:31:11,814 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:12,238 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:14,239 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:16,239 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:16,880 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:18,240 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:20,241 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:21,899 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:22,241 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:24,242 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:26,243 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:26,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:31:26,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:31:26,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:31:26,915 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:28,244 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:30,244 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:31,944 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:32,245 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:34,246 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:36,247 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:36,983 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:38,248 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:31:38,249 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:40,249 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:41,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:31:41,542 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:31:41,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:31:42,022 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:42,249 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:44,250 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:46,251 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:47,080 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:48,252 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:48,954 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:31:48,955 DEBUG   SenderThread:84424 [sender.py:send():382] send: history
+2024-02-27 01:31:48,955 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: summary_record
+2024-02-27 01:31:48,956 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:31:49,252 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:31:50,252 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:50,949 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:31:50,950 DEBUG   SenderThread:84424 [sender.py:send():382] send: history
+2024-02-27 01:31:50,950 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: summary_record
+2024-02-27 01:31:50,951 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:31:51,253 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:31:52,169 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:31:52,171 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:31:52,172 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:31:52,253 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:52,820 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:54,254 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:56,254 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:31:56,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:31:56,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:31:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:31:57,864 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:31:58,255 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:00,256 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:02,257 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:02,903 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:04,257 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:06,258 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:07,931 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:08,249 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:32:08,259 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:10,259 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:11,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:32:11,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:32:11,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:32:12,260 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:13,040 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:14,261 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:16,261 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:18,071 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:18,262 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:20,263 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:22,263 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:23,095 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:24,264 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:26,265 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:26,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:32:26,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:32:26,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:32:28,120 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:28,265 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:30,266 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:32,266 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:33,142 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:34,267 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:36,268 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:38,160 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:38,251 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:32:38,269 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:40,270 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:41,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:32:41,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:32:41,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:32:42,270 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:43,263 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:44,271 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:46,272 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:48,273 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:48,364 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:50,274 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:52,274 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:53,439 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:32:54,275 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:56,275 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:56,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:32:56,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:32:56,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:32:58,276 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:32:58,510 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:00,277 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:02,278 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:03,569 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:04,278 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:06,279 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:08,253 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:33:08,280 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:08,616 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:10,280 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:11,542 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:33:11,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:33:11,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:33:12,281 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:13,671 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:14,282 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:16,282 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:18,283 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:18,724 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:20,283 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:22,284 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:23,787 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:24,285 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:26,285 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:26,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:33:26,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:33:26,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:33:28,286 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:28,844 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:30,286 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:32,287 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:33,890 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:34,288 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:36,288 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:38,254 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:33:38,289 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:38,959 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:40,290 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:41,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:33:41,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:33:41,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:33:42,290 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:44,056 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:44,291 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:46,293 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:48,294 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:49,093 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:50,295 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:52,295 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:54,123 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:33:54,296 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:56,297 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:56,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:33:56,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:33:56,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:33:58,298 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:33:59,185 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:00,299 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:02,299 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:04,267 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:04,300 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:06,301 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:08,256 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:34:08,302 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:09,277 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:10,303 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:11,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:34:11,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:34:11,545 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:34:12,304 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:14,305 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:14,311 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:16,306 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:18,307 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:19,393 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:20,308 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:22,308 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:24,309 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:24,436 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:26,310 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:26,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:34:26,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:34:26,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:34:28,311 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:29,439 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:30,312 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:32,313 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:34,313 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:34,479 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:36,314 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:38,258 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:34:38,315 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:39,562 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:40,315 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:41,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:34:41,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:34:41,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:34:42,316 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:44,317 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:44,646 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:46,317 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:48,318 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:49,696 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:50,318 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:52,319 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:54,320 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:54,763 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:34:56,321 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:56,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:34:56,543 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:34:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:34:58,321 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:34:59,787 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:00,322 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:02,323 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:04,323 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:04,797 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:06,324 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:08,260 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:35:08,325 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:09,822 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:10,325 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:11,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:35:11,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:35:11,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:35:12,326 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:14,327 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:14,831 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:16,328 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:19,329 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:19,843 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:21,329 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:23,330 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:24,882 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:25,331 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:26,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:35:26,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:35:26,547 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:35:27,331 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:29,332 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:29,918 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:31,333 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:33,333 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:34,945 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:35,334 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:37,335 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:38,262 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:35:39,335 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:39,981 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:41,336 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:41,543 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:35:41,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:35:41,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:35:43,337 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:45,062 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:45,337 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:47,338 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:49,338 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:50,132 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:51,339 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:51,615 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:35:51,616 DEBUG   SenderThread:84424 [sender.py:send():382] send: history
+2024-02-27 01:35:51,617 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: summary_record
+2024-02-27 01:35:51,618 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:35:52,339 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:35:52,340 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:53,340 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:53,655 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: partial_history
+2024-02-27 01:35:53,656 DEBUG   SenderThread:84424 [sender.py:send():382] send: history
+2024-02-27 01:35:53,656 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: summary_record
+2024-02-27 01:35:53,657 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:35:54,340 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:35:54,340 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:55,520 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:35:56,341 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:35:56,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:35:56,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:35:57,342 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:35:59,342 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:00,602 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:01,343 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:03,344 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:05,345 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:05,614 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:07,345 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:08,263 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:36:09,346 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:10,628 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:11,347 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:11,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:36:11,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:36:11,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:36:13,348 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:15,349 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:15,718 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:17,349 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:19,350 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:20,765 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:21,351 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:23,352 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:25,353 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:25,782 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:26,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:36:26,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:36:26,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:36:27,354 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:29,354 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:30,887 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:31,355 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:33,356 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:35,357 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:35,981 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:37,357 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:38,265 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:36:39,358 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:41,077 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:41,359 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:41,544 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: stop_status
+2024-02-27 01:36:41,544 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: stop_status
+2024-02-27 01:36:41,546 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:36:43,359 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:45,360 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:46,282 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:48,751 DEBUG   SenderThread:84424 [sender.py:send():382] send: telemetry
+2024-02-27 01:36:48,752 DEBUG   SenderThread:84424 [sender.py:send():382] send: exit
+2024-02-27 01:36:48,752 INFO    SenderThread:84424 [sender.py:send_exit():589] handling exit code: 0
+2024-02-27 01:36:48,752 INFO    SenderThread:84424 [sender.py:send_exit():591] handling runtime: 550
+2024-02-27 01:36:48,752 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:36:48,753 INFO    SenderThread:84424 [sender.py:send_exit():597] send defer
+2024-02-27 01:36:48,753 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:48,753 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 0
+2024-02-27 01:36:48,753 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:48,753 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-02-27 01:36:48,753 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 1
+2024-02-27 01:36:48,753 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:48,753 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 1
+2024-02-27 01:36:48,753 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:48,754 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-02-27 01:36:48,754 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 2
+2024-02-27 01:36:48,754 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:48,754 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 2
+2024-02-27 01:36:48,754 INFO    HandlerThread:84424 [system_monitor.py:finish():203] Stopping system monitor
+2024-02-27 01:36:48,754 DEBUG   SystemMonitor:84424 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-02-27 01:36:48,754 INFO    HandlerThread:84424 [interfaces.py:finish():202] Joined cpu monitor
+2024-02-27 01:36:48,755 DEBUG   SystemMonitor:84424 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-02-27 01:36:48,755 INFO    HandlerThread:84424 [interfaces.py:finish():202] Joined disk monitor
+2024-02-27 01:36:49,279 INFO    HandlerThread:84424 [interfaces.py:finish():202] Joined gpu monitor
+2024-02-27 01:36:49,279 INFO    HandlerThread:84424 [interfaces.py:finish():202] Joined memory monitor
+2024-02-27 01:36:49,280 INFO    HandlerThread:84424 [interfaces.py:finish():202] Joined network monitor
+2024-02-27 01:36:49,280 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,280 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-02-27 01:36:49,280 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 3
+2024-02-27 01:36:49,280 DEBUG   SenderThread:84424 [sender.py:send():382] send: stats
+2024-02-27 01:36:49,280 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:49,281 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 3
+2024-02-27 01:36:49,281 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,281 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-02-27 01:36:49,281 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 4
+2024-02-27 01:36:49,281 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:49,281 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 4
+2024-02-27 01:36:49,281 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,281 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-02-27 01:36:49,281 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 5
+2024-02-27 01:36:49,281 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:49,281 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 5
+2024-02-27 01:36:49,282 DEBUG   SenderThread:84424 [sender.py:send():382] send: summary
+2024-02-27 01:36:49,283 INFO    SenderThread:84424 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-02-27 01:36:49,283 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,283 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-02-27 01:36:49,283 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 6
+2024-02-27 01:36:49,283 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:49,283 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 6
+2024-02-27 01:36:49,283 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,283 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-02-27 01:36:49,287 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: status_report
+2024-02-27 01:36:49,361 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:36:49,657 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 7
+2024-02-27 01:36:49,657 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:49,657 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 7
+2024-02-27 01:36:49,657 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:49,657 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-02-27 01:36:49,752 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: poll_exit
+2024-02-27 01:36:50,362 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/config.yaml
+2024-02-27 01:36:50,439 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 8
+2024-02-27 01:36:50,439 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: poll_exit
+2024-02-27 01:36:50,439 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:50,439 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 8
+2024-02-27 01:36:50,440 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:50,440 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-02-27 01:36:50,440 INFO    SenderThread:84424 [job_builder.py:build():296] Attempting to build job artifact
+2024-02-27 01:36:50,441 INFO    SenderThread:84424 [job_builder.py:_get_source_type():437] no source found
+2024-02-27 01:36:50,441 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 9
+2024-02-27 01:36:50,441 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:50,441 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 9
+2024-02-27 01:36:50,441 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:50,442 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-02-27 01:36:50,442 INFO    SenderThread:84424 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-02-27 01:36:50,752 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: poll_exit
+2024-02-27 01:36:51,362 INFO    Thread-49 :84424 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:51,363 INFO    SenderThread:84424 [dir_watcher.py:finish():388] scan: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files
+2024-02-27 01:36:51,363 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/config.yaml config.yaml
+2024-02-27 01:36:51,363 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/conda-environment.yaml conda-environment.yaml
+2024-02-27 01:36:51,364 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-metadata.json wandb-metadata.json
+2024-02-27 01:36:51,364 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/requirements.txt requirements.txt
+2024-02-27 01:36:51,368 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log output.log
+2024-02-27 01:36:51,368 INFO    SenderThread:84424 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json wandb-summary.json
+2024-02-27 01:36:51,370 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 10
+2024-02-27 01:36:51,370 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: poll_exit
+2024-02-27 01:36:51,371 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:51,374 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 10
+2024-02-27 01:36:51,376 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:51,376 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-02-27 01:36:51,376 INFO    SenderThread:84424 [file_pusher.py:finish():172] shutting down file pusher
+2024-02-27 01:36:51,753 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: poll_exit
+2024-02-27 01:36:51,753 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: poll_exit
+2024-02-27 01:36:51,758 INFO    wandb-upload_1:84424 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/conda-environment.yaml
+2024-02-27 01:36:51,759 INFO    wandb-upload_0:84424 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/config.yaml
+2024-02-27 01:36:51,845 INFO    wandb-upload_2:84424 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/requirements.txt
+2024-02-27 01:36:51,857 INFO    wandb-upload_4:84424 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/wandb-summary.json
+2024-02-27 01:36:51,866 INFO    wandb-upload_3:84424 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/files/output.log
+2024-02-27 01:36:52,066 INFO    Thread-48 :84424 [sender.py:transition_state():617] send defer: 11
+2024-02-27 01:36:52,066 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:52,066 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 11
+2024-02-27 01:36:52,067 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:52,067 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-02-27 01:36:52,067 INFO    SenderThread:84424 [file_pusher.py:join():178] waiting for file pusher
+2024-02-27 01:36:52,067 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 12
+2024-02-27 01:36:52,067 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:52,067 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 12
+2024-02-27 01:36:52,067 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:52,067 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-02-27 01:36:52,067 INFO    SenderThread:84424 [file_stream.py:finish():595] file stream finish called
+2024-02-27 01:36:52,454 INFO    SenderThread:84424 [file_stream.py:finish():599] file stream finish is done
+2024-02-27 01:36:52,454 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 13
+2024-02-27 01:36:52,454 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:52,454 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 13
+2024-02-27 01:36:52,454 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:52,454 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-02-27 01:36:52,454 INFO    SenderThread:84424 [sender.py:transition_state():617] send defer: 14
+2024-02-27 01:36:52,455 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: defer
+2024-02-27 01:36:52,455 DEBUG   SenderThread:84424 [sender.py:send():382] send: final
+2024-02-27 01:36:52,455 INFO    HandlerThread:84424 [handler.py:handle_request_defer():172] handle defer: 14
+2024-02-27 01:36:52,455 DEBUG   SenderThread:84424 [sender.py:send():382] send: footer
+2024-02-27 01:36:52,455 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: defer
+2024-02-27 01:36:52,455 INFO    SenderThread:84424 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-02-27 01:36:52,456 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: poll_exit
+2024-02-27 01:36:52,456 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: poll_exit
+2024-02-27 01:36:52,456 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: internal_messages
+2024-02-27 01:36:52,456 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: server_info
+2024-02-27 01:36:52,456 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: server_info
+2024-02-27 01:36:52,490 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: get_summary
+2024-02-27 01:36:52,490 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: sampled_history
+2024-02-27 01:36:52,491 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: job_info
+2024-02-27 01:36:52,491 DEBUG   SenderThread:84424 [sender.py:send_request():409] send_request: job_info
+2024-02-27 01:36:52,534 DEBUG   HandlerThread:84424 [handler.py:handle_request():146] handle_request: shutdown
+2024-02-27 01:36:52,534 INFO    HandlerThread:84424 [handler.py:finish():869] shutting down handler
+2024-02-27 01:36:53,491 INFO    WriterThread:84424 [datastore.py:close():296] close: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240227_012731-cj5n1sfq/run-cj5n1sfq.wandb
+2024-02-27 01:36:53,492 INFO    SenderThread:84424 [sender.py:finish():1572] shutting down sender
+2024-02-27 01:36:53,492 INFO    SenderThread:84424 [file_pusher.py:finish():172] shutting down file pusher
+2024-02-27 01:36:53,492 INFO    SenderThread:84424 [file_pusher.py:join():178] waiting for file pusher
