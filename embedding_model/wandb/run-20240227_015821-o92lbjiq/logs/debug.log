@@ -46,3 +46,18 @@ config: {'epochs': 3, 'batch_size': 1000, 'lr': 0.001, 'weight_decay': 1e-06, 'k
 2024-02-27 02:07:22,414 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
 2024-02-27 02:07:22,606 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
 2024-02-27 02:07:22,607 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-27 02:40:04,155 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-27 02:40:04,651 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-27 02:40:04,651 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-27 02:41:41,510 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-27 02:41:41,549 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-27 02:41:41,549 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-27 02:42:39,629 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-27 02:42:39,835 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-27 02:42:39,835 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-27 02:43:29,361 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-27 02:43:29,427 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-27 02:43:29,427 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend
+2024-02-27 02:43:41,038 INFO    MainThread:529 [wandb_init.py:_resume_backend():442] resuming backend
+2024-02-27 02:43:41,092 INFO    MainThread:529 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-02-27 02:43:41,092 INFO    MainThread:529 [wandb_init.py:_pause_backend():437] pausing backend

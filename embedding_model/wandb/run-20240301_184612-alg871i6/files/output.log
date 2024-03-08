@@ -1,0 +1,544 @@
+
+Epoch: 001, Train Loss: 0.7774
+Epoch: 002, Train Loss: 0.7709
+Epoch: 003, Train Loss: 0.7668
+Epoch: 004, Train Loss: 0.7635
+Epoch: 005, Train Loss: 0.7608
+Epoch: 006, Train Loss: 0.7584
+Epoch: 007, Train Loss: 0.7562
+Epoch: 008, Train Loss: 0.7543
+Epoch: 009, Train Loss: 0.7524
+Epoch: 010, Train Loss: 0.7507
+Epoch: 011, Train Loss: 0.7492
+Epoch: 012, Train Loss: 0.7477
+Epoch: 013, Train Loss: 0.7462
+Epoch: 014, Train Loss: 0.7449
+Epoch: 015, Train Loss: 0.7436
+Epoch: 016, Train Loss: 0.7423
+Epoch: 017, Train Loss: 0.7411
+Epoch: 018, Train Loss: 0.7400
+Epoch: 019, Train Loss: 0.7389
+Epoch: 020, Train Loss: 0.7378
+Epoch: 021, Train Loss: 0.7368
+Epoch: 022, Train Loss: 0.7357
+Epoch: 023, Train Loss: 0.7347
+Epoch: 024, Train Loss: 0.7338
+Epoch: 025, Train Loss: 0.7329
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|█████████▉| 17526/17535 [03:56<00:00, 57.90it/s]
+
+100%|██████████| 17535/17535 [03:56<00:00, 74.18it/s]
+Epoch: 026, Train Loss: 0.7319
+Epoch: 027, Train Loss: 0.7311
+Epoch: 028, Train Loss: 0.7302
+Epoch: 029, Train Loss: 0.7293
+Epoch: 030, Train Loss: 0.7285
+Epoch: 031, Train Loss: 0.7277
+Epoch: 032, Train Loss: 0.7270
+Epoch: 033, Train Loss: 0.7262
+Epoch: 034, Train Loss: 0.7254
+Epoch: 035, Train Loss: 0.7247
+Epoch: 036, Train Loss: 0.7239
+Epoch: 037, Train Loss: 0.7232
+Epoch: 038, Train Loss: 0.7225
+Epoch: 039, Train Loss: 0.7218
+Epoch: 040, Train Loss: 0.7211
+Epoch: 041, Train Loss: 0.7205
+Epoch: 042, Train Loss: 0.7198
+Epoch: 043, Train Loss: 0.7192
+Epoch: 044, Train Loss: 0.7185
+Epoch: 045, Train Loss: 0.7179
+Epoch: 046, Train Loss: 0.7173
+Epoch: 047, Train Loss: 0.7167
+Epoch: 048, Train Loss: 0.7160
+Epoch: 049, Train Loss: 0.7155
+Epoch: 050, Train Loss: 0.7149
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|█████████▉| 17530/17535 [03:47<00:00, 69.49it/s]
+
+100%|██████████| 17535/17535 [03:47<00:00, 77.08it/s]
+Epoch: 051, Train Loss: 0.7142
+Epoch: 052, Train Loss: 0.7138
+Epoch: 053, Train Loss: 0.7131
+Epoch: 054, Train Loss: 0.7125
+Epoch: 055, Train Loss: 0.7121
+Epoch: 056, Train Loss: 0.7115
+Epoch: 057, Train Loss: 0.7109
+Epoch: 058, Train Loss: 0.7104
+Epoch: 059, Train Loss: 0.7099
+Epoch: 060, Train Loss: 0.7093
+Epoch: 061, Train Loss: 0.7089
+Epoch: 062, Train Loss: 0.7083
+Epoch: 063, Train Loss: 0.7078
+Epoch: 064, Train Loss: 0.7073
+Epoch: 065, Train Loss: 0.7068
+Epoch: 066, Train Loss: 0.7063
+Epoch: 067, Train Loss: 0.7058
+Epoch: 068, Train Loss: 0.7053
+Epoch: 069, Train Loss: 0.7049
+Epoch: 070, Train Loss: 0.7044
+Epoch: 071, Train Loss: 0.7040
+Epoch: 072, Train Loss: 0.7035
+Epoch: 073, Train Loss: 0.7031
+Epoch: 074, Train Loss: 0.7025
+Epoch: 075, Train Loss: 0.7022
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+100%|█████████▉| 17466/17535 [03:57<00:00, 73.64it/s]
+
+100%|██████████| 17535/17535 [03:58<00:00, 73.39it/s]
+Epoch: 076, Train Loss: 0.7018
+Epoch: 077, Train Loss: 0.7012
+Epoch: 078, Train Loss: 0.7008
+Epoch: 079, Train Loss: 0.7004
+Epoch: 080, Train Loss: 0.6999
+Epoch: 081, Train Loss: 0.6996
+Epoch: 082, Train Loss: 0.6991
+Epoch: 083, Train Loss: 0.6987
+Epoch: 084, Train Loss: 0.6982
+Epoch: 085, Train Loss: 0.6979
+Epoch: 086, Train Loss: 0.6974
+Epoch: 087, Train Loss: 0.6971
+Epoch: 088, Train Loss: 0.6966
+Epoch: 089, Train Loss: 0.6962
+Epoch: 090, Train Loss: 0.6958
+Epoch: 091, Train Loss: 0.6954
+Epoch: 092, Train Loss: 0.6951
+Epoch: 093, Train Loss: 0.6948
+Epoch: 094, Train Loss: 0.6943
+Epoch: 095, Train Loss: 0.6939
+Epoch: 096, Train Loss: 0.6936
+Epoch: 097, Train Loss: 0.6931
+Epoch: 098, Train Loss: 0.6927
+Epoch: 099, Train Loss: 0.6925
+Epoch: 100, Train Loss: 0.6921
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
