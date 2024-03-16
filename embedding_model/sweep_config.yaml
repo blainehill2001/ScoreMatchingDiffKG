@@ -1,0 +1,20 @@
+program: embedding_model.ipynb
+method: grid
+metric:
+  name: val_loss
+  goal: minimize
+parameters:
+  hidden_channels:
+    values: [25, 50, 75, 100]
+  epochs:
+    value: [500, 1000, 2000]
+  batch_size:
+    values: [500, 1000, 2000]
+  lr:
+    min: 0.0001
+    max: 0.01
+    distribution: log_uniform
+  weight_decay:
+    values: [1e-6, 1e-5, 1e-4]
+  k:
+    value: 10
