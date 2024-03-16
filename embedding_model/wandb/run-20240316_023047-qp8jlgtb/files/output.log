@@ -1,0 +1,6 @@
+ic| config: None
+ic| wandb.config: {'batch_size': 2000, 'epochs': [500, 1000, 2000], 'hidden_channels': 75, 'k': 10, 'lr': 1.0035316019543143, 'weight_decay': 1e-05}
+Traceback (most recent call last):
+  File "/tmp/ipykernel_8217/1249144633.py", line 12, in main
+    for epoch in range(config.epochs):
+TypeError: 'list' object cannot be interpreted as an integer

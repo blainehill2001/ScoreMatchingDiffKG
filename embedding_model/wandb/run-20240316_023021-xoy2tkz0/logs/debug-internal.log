@@ -1,0 +1,183 @@
+2024-03-16 02:30:21,201 INFO    StreamThr :9660 [internal.py:wandb_internal():86] W&B internal server running at pid: 9660, started at: 2024-03-16 02:30:21.201171
+2024-03-16 02:30:21,203 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: status
+2024-03-16 02:30:21,208 INFO    WriterThread:9660 [datastore.py:open_for_write():87] open: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/run-xoy2tkz0.wandb
+2024-03-16 02:30:21,208 DEBUG   SenderThread:9660 [sender.py:send():382] send: header
+2024-03-16 02:30:21,237 DEBUG   SenderThread:9660 [sender.py:send():382] send: run
+2024-03-16 02:30:21,380 INFO    SenderThread:9660 [dir_watcher.py:__init__():211] watching files in: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files
+2024-03-16 02:30:21,380 INFO    SenderThread:9660 [sender.py:_start_run_threads():1136] run started: xoy2tkz0 with start time 1710574221.19983
+2024-03-16 02:30:21,389 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: check_version
+2024-03-16 02:30:21,389 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: check_version
+2024-03-16 02:30:21,468 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: run_start
+2024-03-16 02:30:21,471 DEBUG   HandlerThread:9660 [system_info.py:__init__():27] System info init
+2024-03-16 02:30:21,471 DEBUG   HandlerThread:9660 [system_info.py:__init__():42] System info init done
+2024-03-16 02:30:21,471 INFO    HandlerThread:9660 [system_monitor.py:start():194] Starting system monitor
+2024-03-16 02:30:21,471 INFO    SystemMonitor:9660 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-16 02:30:21,472 INFO    HandlerThread:9660 [system_monitor.py:probe():214] Collecting system info
+2024-03-16 02:30:21,472 INFO    SystemMonitor:9660 [interfaces.py:start():190] Started cpu monitoring
+2024-03-16 02:30:21,473 INFO    SystemMonitor:9660 [interfaces.py:start():190] Started disk monitoring
+2024-03-16 02:30:21,473 INFO    SystemMonitor:9660 [interfaces.py:start():190] Started gpu monitoring
+2024-03-16 02:30:21,474 INFO    SystemMonitor:9660 [interfaces.py:start():190] Started memory monitoring
+2024-03-16 02:30:21,475 INFO    SystemMonitor:9660 [interfaces.py:start():190] Started network monitoring
+2024-03-16 02:30:21,517 DEBUG   HandlerThread:9660 [system_info.py:probe():151] Probing system
+2024-03-16 02:30:21,523 DEBUG   HandlerThread:9660 [system_info.py:_probe_git():136] Probing git
+2024-03-16 02:30:21,538 DEBUG   HandlerThread:9660 [system_info.py:_probe_git():144] Probing git done
+2024-03-16 02:30:21,538 DEBUG   HandlerThread:9660 [system_info.py:probe():199] Probing system done
+2024-03-16 02:30:21,538 DEBUG   HandlerThread:9660 [system_monitor.py:probe():223] {'os': 'Linux-4.15.0-213-generic-x86_64-with-glibc2.27', 'python': '3.9.18', 'heartbeatAt': '2024-03-16T07:30:21.517996', 'startedAt': '2024-03-16T07:30:21.193887', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'embedding_model.ipynb', 'codePathLocal': 'embedding_model.ipynb', 'git': {'remote': None, 'commit': 'ac715182f70224a6f0170cfcd87d1d061b147196'}, 'email': 'blainehill2001@gmail.com', 'root': '/home/blaineh2/ScoreMatchingDiffKG', 'host': 'idealab-01', 'username': 'blaineh2', 'executable': '/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/bin/python', 'cpu_count': 48, 'cpu_count_logical': 96, 'cpu_freq': {'current': 2597.721593750001, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 2123.916, 'min': 0.0, 'max': 0.0}, {'current': 3612.4, 'min': 0.0, 'max': 0.0}, {'current': 1978.645, 'min': 0.0, 'max': 0.0}, {'current': 2738.404, 'min': 0.0, 'max': 0.0}, {'current': 2045.636, 'min': 0.0, 'max': 0.0}, {'current': 2725.364, 'min': 0.0, 'max': 0.0}, {'current': 2144.957, 'min': 0.0, 'max': 0.0}, {'current': 3123.641, 'min': 0.0, 'max': 0.0}, {'current': 2769.317, 'min': 0.0, 'max': 0.0}, {'current': 2771.45, 'min': 0.0, 'max': 0.0}, {'current': 2789.009, 'min': 0.0, 'max': 0.0}, {'current': 2931.006, 'min': 0.0, 'max': 0.0}, {'current': 2099.391, 'min': 0.0, 'max': 0.0}, {'current': 2908.651, 'min': 0.0, 'max': 0.0}, {'current': 2769.801, 'min': 0.0, 'max': 0.0}, {'current': 2637.971, 'min': 0.0, 'max': 0.0}, {'current': 2763.364, 'min': 0.0, 'max': 0.0}, {'current': 2790.241, 'min': 0.0, 'max': 0.0}, {'current': 2773.335, 'min': 0.0, 'max': 0.0}, {'current': 2787.748, 'min': 0.0, 'max': 0.0}, {'current': 2762.093, 'min': 0.0, 'max': 0.0}, {'current': 2785.786, 'min': 0.0, 'max': 0.0}, {'current': 2768.167, 'min': 0.0, 'max': 0.0}, {'current': 2783.978, 'min': 0.0, 'max': 0.0}, {'current': 2765.239, 'min': 0.0, 'max': 0.0}, {'current': 3675.83, 'min': 0.0, 'max': 0.0}, {'current': 3388.927, 'min': 0.0, 'max': 0.0}, {'current': 3255.696, 'min': 0.0, 'max': 0.0}, {'current': 2425.661, 'min': 0.0, 'max': 0.0}, {'current': 2875.62, 'min': 0.0, 'max': 0.0}, {'current': 1703.106, 'min': 0.0, 'max': 0.0}, {'current': 3409.183, 'min': 0.0, 'max': 0.0}, {'current': 2249.179, 'min': 0.0, 'max': 0.0}, {'current': 2797.475, 'min': 0.0, 'max': 0.0}, {'current': 1217.171, 'min': 0.0, 'max': 0.0}, {'current': 3182.319, 'min': 0.0, 'max': 0.0}, {'current': 1713.019, 'min': 0.0, 'max': 0.0}, {'current': 3701.189, 'min': 0.0, 'max': 0.0}, {'current': 1722.459, 'min': 0.0, 'max': 0.0}, {'current': 2766.541, 'min': 0.0, 'max': 0.0}, {'current': 2405.554, 'min': 0.0, 'max': 0.0}, {'current': 2766.394, 'min': 0.0, 'max': 0.0}, {'current': 1714.198, 'min': 0.0, 'max': 0.0}, {'current': 2790.544, 'min': 0.0, 'max': 0.0}, {'current': 2122.28, 'min': 0.0, 'max': 0.0}, {'current': 2769.093, 'min': 0.0, 'max': 0.0}, {'current': 2710.788, 'min': 0.0, 'max': 0.0}, {'current': 2795.954, 'min': 0.0, 'max': 0.0}, {'current': 1963.797, 'min': 0.0, 'max': 0.0}, {'current': 2692.82, 'min': 0.0, 'max': 0.0}, {'current': 1864.765, 'min': 0.0, 'max': 0.0}, {'current': 2803.829, 'min': 0.0, 'max': 0.0}, {'current': 2701.003, 'min': 0.0, 'max': 0.0}, {'current': 2766.474, 'min': 0.0, 'max': 0.0}, {'current': 2756.544, 'min': 0.0, 'max': 0.0}, {'current': 2777.286, 'min': 0.0, 'max': 0.0}, {'current': 2093.543, 'min': 0.0, 'max': 0.0}, {'current': 2769.968, 'min': 0.0, 'max': 0.0}, {'current': 2250.278, 'min': 0.0, 'max': 0.0}, {'current': 2756.326, 'min': 0.0, 'max': 0.0}, {'current': 2715.282, 'min': 0.0, 'max': 0.0}, {'current': 2638.093, 'min': 0.0, 'max': 0.0}, {'current': 2692.263, 'min': 0.0, 'max': 0.0}, {'current': 2763.0, 'min': 0.0, 'max': 0.0}, {'current': 2750.684, 'min': 0.0, 'max': 0.0}, {'current': 2767.121, 'min': 0.0, 'max': 0.0}, {'current': 2252.128, 'min': 0.0, 'max': 0.0}, {'current': 2795.841, 'min': 0.0, 'max': 0.0}, {'current': 1725.39, 'min': 0.0, 'max': 0.0}, {'current': 2769.176, 'min': 0.0, 'max': 0.0}, {'current': 2253.82, 'min': 0.0, 'max': 0.0}, {'current': 2783.928, 'min': 0.0, 'max': 0.0}, {'current': 2259.415, 'min': 0.0, 'max': 0.0}, {'current': 3683.965, 'min': 0.0, 'max': 0.0}, {'current': 1927.87, 'min': 0.0, 'max': 0.0}, {'current': 3015.946, 'min': 0.0, 'max': 0.0}, {'current': 2405.471, 'min': 0.0, 'max': 0.0}, {'current': 2901.874, 'min': 0.0, 'max': 0.0}, {'current': 2287.346, 'min': 0.0, 'max': 0.0}, {'current': 3905.493, 'min': 0.0, 'max': 0.0}, {'current': 2447.026, 'min': 0.0, 'max': 0.0}, {'current': 2988.574, 'min': 0.0, 'max': 0.0}, {'current': 2063.177, 'min': 0.0, 'max': 0.0}, {'current': 2768.374, 'min': 0.0, 'max': 0.0}, {'current': 2275.224, 'min': 0.0, 'max': 0.0}, {'current': 3858.231, 'min': 0.0, 'max': 0.0}, {'current': 1399.964, 'min': 0.0, 'max': 0.0}, {'current': 2782.853, 'min': 0.0, 'max': 0.0}, {'current': 1772.597, 'min': 0.0, 'max': 0.0}, {'current': 2772.901, 'min': 0.0, 'max': 0.0}, {'current': 1729.422, 'min': 0.0, 'max': 0.0}, {'current': 2778.16, 'min': 0.0, 'max': 0.0}, {'current': 1938.542, 'min': 0.0, 'max': 0.0}, {'current': 2772.102, 'min': 0.0, 'max': 0.0}, {'current': 1444.371, 'min': 0.0, 'max': 0.0}, {'current': 2791.326, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 430.9771728515625, 'used': 22.399494171142578}}, 'gpu': 'Tesla V100-SXM2-32GB', 'gpu_count': 4, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}], 'memory': {'total': 1510.5410804748535}}
+2024-03-16 02:30:21,538 INFO    HandlerThread:9660 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-16 02:30:21,538 INFO    HandlerThread:9660 [system_monitor.py:probe():227] Publishing system info
+2024-03-16 02:30:21,538 DEBUG   HandlerThread:9660 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-16 02:30:22,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/conda-environment.yaml
+2024-03-16 02:30:25,020 DEBUG   HandlerThread:9660 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-16 02:30:25,021 INFO    HandlerThread:9660 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-16 02:30:25,024 DEBUG   SenderThread:9660 [sender.py:send():382] send: files
+2024-03-16 02:30:25,024 INFO    SenderThread:9660 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-16 02:30:25,034 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-16 02:30:25,035 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: python_packages
+2024-03-16 02:30:25,035 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:30:25,036 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:30:25,037 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:30:25,171 DEBUG   SenderThread:9660 [sender.py:send():382] send: telemetry
+2024-03-16 02:30:25,171 DEBUG   SenderThread:9660 [sender.py:send():382] send: telemetry
+2024-03-16 02:30:25,172 DEBUG   SenderThread:9660 [sender.py:send():382] send: telemetry
+2024-03-16 02:30:25,172 DEBUG   SenderThread:9660 [sender.py:send():382] send: exit
+2024-03-16 02:30:25,172 INFO    SenderThread:9660 [sender.py:send_exit():589] handling exit code: 1
+2024-03-16 02:30:25,172 INFO    SenderThread:9660 [sender.py:send_exit():591] handling runtime: 3
+2024-03-16 02:30:25,173 INFO    SenderThread:9660 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:30:25,174 INFO    SenderThread:9660 [sender.py:send_exit():597] send defer
+2024-03-16 02:30:25,174 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,174 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 0
+2024-03-16 02:30:25,174 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,174 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 0
+2024-03-16 02:30:25,174 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 1
+2024-03-16 02:30:25,174 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,174 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 1
+2024-03-16 02:30:25,174 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,174 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 1
+2024-03-16 02:30:25,174 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 2
+2024-03-16 02:30:25,174 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,175 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 2
+2024-03-16 02:30:25,175 INFO    HandlerThread:9660 [system_monitor.py:finish():203] Stopping system monitor
+2024-03-16 02:30:25,175 DEBUG   SystemMonitor:9660 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-16 02:30:25,175 INFO    HandlerThread:9660 [interfaces.py:finish():202] Joined cpu monitor
+2024-03-16 02:30:25,175 DEBUG   SystemMonitor:9660 [system_monitor.py:_start():179] Finished system metrics aggregation loop
+2024-03-16 02:30:25,175 INFO    HandlerThread:9660 [interfaces.py:finish():202] Joined disk monitor
+2024-03-16 02:30:25,175 DEBUG   SystemMonitor:9660 [system_monitor.py:_start():183] Publishing last batch of metrics
+2024-03-16 02:30:25,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/conda-environment.yaml
+2024-03-16 02:30:25,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-metadata.json
+2024-03-16 02:30:25,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/requirements.txt
+2024-03-16 02:30:25,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/output.log
+2024-03-16 02:30:25,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-summary.json
+2024-03-16 02:30:25,675 INFO    HandlerThread:9660 [interfaces.py:finish():202] Joined gpu monitor
+2024-03-16 02:30:25,675 INFO    HandlerThread:9660 [interfaces.py:finish():202] Joined memory monitor
+2024-03-16 02:30:25,675 INFO    HandlerThread:9660 [interfaces.py:finish():202] Joined network monitor
+2024-03-16 02:30:25,675 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,676 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 2
+2024-03-16 02:30:25,676 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 3
+2024-03-16 02:30:25,676 DEBUG   SenderThread:9660 [sender.py:send():382] send: stats
+2024-03-16 02:30:25,676 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,676 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 3
+2024-03-16 02:30:25,676 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,676 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 3
+2024-03-16 02:30:25,676 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 4
+2024-03-16 02:30:25,676 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,676 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 4
+2024-03-16 02:30:25,677 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,677 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 4
+2024-03-16 02:30:25,677 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 5
+2024-03-16 02:30:25,677 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,677 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 5
+2024-03-16 02:30:25,677 DEBUG   SenderThread:9660 [sender.py:send():382] send: summary
+2024-03-16 02:30:25,677 INFO    SenderThread:9660 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:30:25,678 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,678 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 5
+2024-03-16 02:30:25,678 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 6
+2024-03-16 02:30:25,678 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:25,678 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 6
+2024-03-16 02:30:25,678 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:25,678 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 6
+2024-03-16 02:30:25,681 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:30:26,059 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-16 02:30:26,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-summary.json
+2024-03-16 02:30:27,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/output.log
+2024-03-16 02:30:27,501 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 7
+2024-03-16 02:30:27,501 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: poll_exit
+2024-03-16 02:30:27,501 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:27,501 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 7
+2024-03-16 02:30:27,502 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:27,502 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 7
+2024-03-16 02:30:27,560 INFO    wandb-upload_0:9660 [upload_job.py:push():131] Uploaded file /tmp/tmp6arrxwl5wandb/bk10zxyg-wandb-metadata.json
+2024-03-16 02:30:28,060 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-16 02:30:28,382 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/config.yaml
+2024-03-16 02:30:29,177 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 8
+2024-03-16 02:30:29,177 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: poll_exit
+2024-03-16 02:30:29,177 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:29,177 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 8
+2024-03-16 02:30:29,178 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:29,178 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 8
+2024-03-16 02:30:29,178 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 9
+2024-03-16 02:30:29,178 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:29,178 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 9
+2024-03-16 02:30:29,178 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:29,178 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 9
+2024-03-16 02:30:29,178 INFO    SenderThread:9660 [dir_watcher.py:finish():358] shutting down directory watcher
+2024-03-16 02:30:29,383 INFO    Thread-12 :9660 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/output.log
+2024-03-16 02:30:29,383 INFO    SenderThread:9660 [dir_watcher.py:finish():388] scan: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files
+2024-03-16 02:30:29,383 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/config.yaml config.yaml
+2024-03-16 02:30:29,383 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/conda-environment.yaml conda-environment.yaml
+2024-03-16 02:30:29,384 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-metadata.json wandb-metadata.json
+2024-03-16 02:30:29,386 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/requirements.txt requirements.txt
+2024-03-16 02:30:29,388 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/output.log output.log
+2024-03-16 02:30:29,388 INFO    SenderThread:9660 [dir_watcher.py:finish():402] scan save: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-summary.json wandb-summary.json
+2024-03-16 02:30:29,389 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 10
+2024-03-16 02:30:29,390 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:29,391 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 10
+2024-03-16 02:30:29,395 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:29,395 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 10
+2024-03-16 02:30:29,395 INFO    SenderThread:9660 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-16 02:30:29,573 INFO    wandb-upload_1:9660 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/conda-environment.yaml
+2024-03-16 02:30:29,713 INFO    wandb-upload_0:9660 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/config.yaml
+2024-03-16 02:30:29,739 INFO    wandb-upload_4:9660 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/wandb-summary.json
+2024-03-16 02:30:29,789 INFO    wandb-upload_2:9660 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/requirements.txt
+2024-03-16 02:30:29,985 INFO    wandb-upload_3:9660 [upload_job.py:push():131] Uploaded file /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/files/output.log
+2024-03-16 02:30:30,061 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-16 02:30:30,061 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: poll_exit
+2024-03-16 02:30:30,186 INFO    Thread-11 :9660 [sender.py:transition_state():617] send defer: 11
+2024-03-16 02:30:30,186 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:30,186 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 11
+2024-03-16 02:30:30,187 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:30,187 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 11
+2024-03-16 02:30:30,187 INFO    SenderThread:9660 [file_pusher.py:join():178] waiting for file pusher
+2024-03-16 02:30:30,187 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 12
+2024-03-16 02:30:30,187 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:30,187 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 12
+2024-03-16 02:30:30,187 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:30,187 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 12
+2024-03-16 02:30:30,187 INFO    SenderThread:9660 [file_stream.py:finish():595] file stream finish called
+2024-03-16 02:30:30,226 INFO    SenderThread:9660 [file_stream.py:finish():599] file stream finish is done
+2024-03-16 02:30:30,226 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 13
+2024-03-16 02:30:30,227 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:30,227 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 13
+2024-03-16 02:30:30,227 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:30,227 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 13
+2024-03-16 02:30:30,227 INFO    SenderThread:9660 [sender.py:transition_state():617] send defer: 14
+2024-03-16 02:30:30,227 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: defer
+2024-03-16 02:30:30,227 DEBUG   SenderThread:9660 [sender.py:send():382] send: final
+2024-03-16 02:30:30,227 INFO    HandlerThread:9660 [handler.py:handle_request_defer():172] handle defer: 14
+2024-03-16 02:30:30,227 DEBUG   SenderThread:9660 [sender.py:send():382] send: footer
+2024-03-16 02:30:30,228 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: defer
+2024-03-16 02:30:30,228 INFO    SenderThread:9660 [sender.py:send_request_defer():613] handle sender defer: 14
+2024-03-16 02:30:30,228 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: poll_exit
+2024-03-16 02:30:30,228 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: poll_exit
+2024-03-16 02:30:30,229 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:30:30,229 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: server_info
+2024-03-16 02:30:30,229 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: server_info
+2024-03-16 02:30:30,257 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: get_summary
+2024-03-16 02:30:30,257 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: sampled_history
+2024-03-16 02:30:30,257 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: job_info
+2024-03-16 02:30:30,258 DEBUG   SenderThread:9660 [sender.py:send_request():409] send_request: job_info
+2024-03-16 02:30:30,299 DEBUG   HandlerThread:9660 [handler.py:handle_request():146] handle_request: shutdown
+2024-03-16 02:30:30,299 INFO    HandlerThread:9660 [handler.py:finish():869] shutting down handler
+2024-03-16 02:30:31,258 INFO    WriterThread:9660 [datastore.py:close():296] close: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023021-xoy2tkz0/run-xoy2tkz0.wandb
+2024-03-16 02:30:31,258 INFO    SenderThread:9660 [sender.py:finish():1572] shutting down sender
+2024-03-16 02:30:31,258 INFO    SenderThread:9660 [file_pusher.py:finish():172] shutting down file pusher
+2024-03-16 02:30:31,258 INFO    SenderThread:9660 [file_pusher.py:join():178] waiting for file pusher

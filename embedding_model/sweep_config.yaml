@@ -1,5 +1,5 @@
 program: embedding_model.ipynb
-method: grid
+method: random
 metric:
   name: val_loss
   goal: minimize
@@ -7,7 +7,7 @@ parameters:
   hidden_channels:
     values: [25, 50, 75, 100]
   epochs:
-    value: [500, 1000, 2000]
+    values: [500, 1000, 2000]
   batch_size:
     values: [500, 1000, 2000]
   lr:

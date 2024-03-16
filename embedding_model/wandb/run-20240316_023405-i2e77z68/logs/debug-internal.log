@@ -1,0 +1,337 @@
+2024-03-16 02:34:05,821 INFO    StreamThr :11321 [internal.py:wandb_internal():86] W&B internal server running at pid: 11321, started at: 2024-03-16 02:34:05.821455
+2024-03-16 02:34:05,823 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status
+2024-03-16 02:34:05,829 INFO    WriterThread:11321 [datastore.py:open_for_write():87] open: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/run-i2e77z68.wandb
+2024-03-16 02:34:05,830 DEBUG   SenderThread:11321 [sender.py:send():382] send: header
+2024-03-16 02:34:05,873 DEBUG   SenderThread:11321 [sender.py:send():382] send: run
+2024-03-16 02:34:06,023 INFO    SenderThread:11321 [dir_watcher.py:__init__():211] watching files in: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files
+2024-03-16 02:34:06,023 INFO    SenderThread:11321 [sender.py:_start_run_threads():1136] run started: i2e77z68 with start time 1710574445.821553
+2024-03-16 02:34:06,153 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: check_version
+2024-03-16 02:34:06,153 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: check_version
+2024-03-16 02:34:06,235 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: run_start
+2024-03-16 02:34:06,238 DEBUG   HandlerThread:11321 [system_info.py:__init__():27] System info init
+2024-03-16 02:34:06,238 DEBUG   HandlerThread:11321 [system_info.py:__init__():42] System info init done
+2024-03-16 02:34:06,238 INFO    HandlerThread:11321 [system_monitor.py:start():194] Starting system monitor
+2024-03-16 02:34:06,238 INFO    SystemMonitor:11321 [system_monitor.py:_start():158] Starting system asset monitoring threads
+2024-03-16 02:34:06,239 INFO    HandlerThread:11321 [system_monitor.py:probe():214] Collecting system info
+2024-03-16 02:34:06,239 INFO    SystemMonitor:11321 [interfaces.py:start():190] Started cpu monitoring
+2024-03-16 02:34:06,240 INFO    SystemMonitor:11321 [interfaces.py:start():190] Started disk monitoring
+2024-03-16 02:34:06,242 INFO    SystemMonitor:11321 [interfaces.py:start():190] Started gpu monitoring
+2024-03-16 02:34:06,242 INFO    SystemMonitor:11321 [interfaces.py:start():190] Started memory monitoring
+2024-03-16 02:34:06,243 INFO    SystemMonitor:11321 [interfaces.py:start():190] Started network monitoring
+2024-03-16 02:34:06,286 DEBUG   HandlerThread:11321 [system_info.py:probe():151] Probing system
+2024-03-16 02:34:06,293 DEBUG   HandlerThread:11321 [system_info.py:_probe_git():136] Probing git
+2024-03-16 02:34:06,306 DEBUG   HandlerThread:11321 [system_info.py:_probe_git():144] Probing git done
+2024-03-16 02:34:06,306 DEBUG   HandlerThread:11321 [system_info.py:probe():199] Probing system done
+2024-03-16 02:34:06,306 DEBUG   HandlerThread:11321 [system_monitor.py:probe():223] {'os': 'Linux-4.15.0-213-generic-x86_64-with-glibc2.27', 'python': '3.9.18', 'heartbeatAt': '2024-03-16T07:34:06.286389', 'startedAt': '2024-03-16T07:34:05.813945', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': 'embedding_model.ipynb', 'codePathLocal': 'embedding_model.ipynb', 'git': {'remote': None, 'commit': 'ac715182f70224a6f0170cfcd87d1d061b147196'}, 'email': 'blainehill2001@gmail.com', 'root': '/home/blaineh2/ScoreMatchingDiffKG', 'host': 'idealab-01', 'username': 'blaineh2', 'executable': '/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/bin/python', 'cpu_count': 48, 'cpu_count_logical': 96, 'cpu_freq': {'current': 2639.1194166666664, 'min': 0.0, 'max': 0.0}, 'cpu_freq_per_core': [{'current': 2531.852, 'min': 0.0, 'max': 0.0}, {'current': 2783.725, 'min': 0.0, 'max': 0.0}, {'current': 2549.004, 'min': 0.0, 'max': 0.0}, {'current': 2798.122, 'min': 0.0, 'max': 0.0}, {'current': 2762.854, 'min': 0.0, 'max': 0.0}, {'current': 2760.692, 'min': 0.0, 'max': 0.0}, {'current': 2791.597, 'min': 0.0, 'max': 0.0}, {'current': 2789.252, 'min': 0.0, 'max': 0.0}, {'current': 2759.033, 'min': 0.0, 'max': 0.0}, {'current': 2764.255, 'min': 0.0, 'max': 0.0}, {'current': 2789.812, 'min': 0.0, 'max': 0.0}, {'current': 2783.322, 'min': 0.0, 'max': 0.0}, {'current': 2711.653, 'min': 0.0, 'max': 0.0}, {'current': 2894.597, 'min': 0.0, 'max': 0.0}, {'current': 2079.294, 'min': 0.0, 'max': 0.0}, {'current': 2929.875, 'min': 0.0, 'max': 0.0}, {'current': 2891.354, 'min': 0.0, 'max': 0.0}, {'current': 2754.911, 'min': 0.0, 'max': 0.0}, {'current': 2762.162, 'min': 0.0, 'max': 0.0}, {'current': 3688.74, 'min': 0.0, 'max': 0.0}, {'current': 2909.656, 'min': 0.0, 'max': 0.0}, {'current': 2628.63, 'min': 0.0, 'max': 0.0}, {'current': 2754.385, 'min': 0.0, 'max': 0.0}, {'current': 3202.137, 'min': 0.0, 'max': 0.0}, {'current': 2247.134, 'min': 0.0, 'max': 0.0}, {'current': 2753.258, 'min': 0.0, 'max': 0.0}, {'current': 2256.786, 'min': 0.0, 'max': 0.0}, {'current': 2797.113, 'min': 0.0, 'max': 0.0}, {'current': 2251.333, 'min': 0.0, 'max': 0.0}, {'current': 2763.763, 'min': 0.0, 'max': 0.0}, {'current': 2250.198, 'min': 0.0, 'max': 0.0}, {'current': 2778.298, 'min': 0.0, 'max': 0.0}, {'current': 2255.654, 'min': 0.0, 'max': 0.0}, {'current': 2900.226, 'min': 0.0, 'max': 0.0}, {'current': 1696.173, 'min': 0.0, 'max': 0.0}, {'current': 2774.791, 'min': 0.0, 'max': 0.0}, {'current': 2519.723, 'min': 0.0, 'max': 0.0}, {'current': 3883.373, 'min': 0.0, 'max': 0.0}, {'current': 1617.442, 'min': 0.0, 'max': 0.0}, {'current': 2791.971, 'min': 0.0, 'max': 0.0}, {'current': 2870.173, 'min': 0.0, 'max': 0.0}, {'current': 2774.877, 'min': 0.0, 'max': 0.0}, {'current': 3620.378, 'min': 0.0, 'max': 0.0}, {'current': 2796.013, 'min': 0.0, 'max': 0.0}, {'current': 2804.994, 'min': 0.0, 'max': 0.0}, {'current': 2957.218, 'min': 0.0, 'max': 0.0}, {'current': 2825.096, 'min': 0.0, 'max': 0.0}, {'current': 2790.786, 'min': 0.0, 'max': 0.0}, {'current': 2042.192, 'min': 0.0, 'max': 0.0}, {'current': 2743.998, 'min': 0.0, 'max': 0.0}, {'current': 1358.518, 'min': 0.0, 'max': 0.0}, {'current': 2776.132, 'min': 0.0, 'max': 0.0}, {'current': 2749.66, 'min': 0.0, 'max': 0.0}, {'current': 2749.805, 'min': 0.0, 'max': 0.0}, {'current': 2121.107, 'min': 0.0, 'max': 0.0}, {'current': 2794.06, 'min': 0.0, 'max': 0.0}, {'current': 2095.168, 'min': 0.0, 'max': 0.0}, {'current': 2769.7, 'min': 0.0, 'max': 0.0}, {'current': 2107.217, 'min': 0.0, 'max': 0.0}, {'current': 2764.78, 'min': 0.0, 'max': 0.0}, {'current': 2052.23, 'min': 0.0, 'max': 0.0}, {'current': 3521.335, 'min': 0.0, 'max': 0.0}, {'current': 2690.604, 'min': 0.0, 'max': 0.0}, {'current': 3158.572, 'min': 0.0, 'max': 0.0}, {'current': 2025.811, 'min': 0.0, 'max': 0.0}, {'current': 2757.686, 'min': 0.0, 'max': 0.0}, {'current': 2770.232, 'min': 0.0, 'max': 0.0}, {'current': 3683.221, 'min': 0.0, 'max': 0.0}, {'current': 2500.082, 'min': 0.0, 'max': 0.0}, {'current': 3442.472, 'min': 0.0, 'max': 0.0}, {'current': 2757.032, 'min': 0.0, 'max': 0.0}, {'current': 2633.212, 'min': 0.0, 'max': 0.0}, {'current': 2326.459, 'min': 0.0, 'max': 0.0}, {'current': 2754.932, 'min': 0.0, 'max': 0.0}, {'current': 2341.074, 'min': 0.0, 'max': 0.0}, {'current': 2765.457, 'min': 0.0, 'max': 0.0}, {'current': 1888.854, 'min': 0.0, 'max': 0.0}, {'current': 2742.255, 'min': 0.0, 'max': 0.0}, {'current': 1421.867, 'min': 0.0, 'max': 0.0}, {'current': 2776.533, 'min': 0.0, 'max': 0.0}, {'current': 2326.183, 'min': 0.0, 'max': 0.0}, {'current': 3345.976, 'min': 0.0, 'max': 0.0}, {'current': 2289.906, 'min': 0.0, 'max': 0.0}, {'current': 2756.165, 'min': 0.0, 'max': 0.0}, {'current': 2271.345, 'min': 0.0, 'max': 0.0}, {'current': 3699.399, 'min': 0.0, 'max': 0.0}, {'current': 2028.524, 'min': 0.0, 'max': 0.0}, {'current': 2776.046, 'min': 0.0, 'max': 0.0}, {'current': 1507.02, 'min': 0.0, 'max': 0.0}, {'current': 2769.753, 'min': 0.0, 'max': 0.0}, {'current': 1474.424, 'min': 0.0, 'max': 0.0}, {'current': 2783.957, 'min': 0.0, 'max': 0.0}, {'current': 1717.163, 'min': 0.0, 'max': 0.0}, {'current': 2906.646, 'min': 0.0, 'max': 0.0}, {'current': 2805.784, 'min': 0.0, 'max': 0.0}, {'current': 2767.231, 'min': 0.0, 'max': 0.0}], 'disk': {'/': {'total': 430.9771728515625, 'used': 22.399433135986328}}, 'gpu': 'Tesla V100-SXM2-32GB', 'gpu_count': 4, 'gpu_devices': [{'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}, {'name': 'Tesla V100-SXM2-32GB', 'memory_total': 34089730048}], 'memory': {'total': 1510.5410804748535}}
+2024-03-16 02:34:06,306 INFO    HandlerThread:11321 [system_monitor.py:probe():224] Finished collecting system info
+2024-03-16 02:34:06,306 INFO    HandlerThread:11321 [system_monitor.py:probe():227] Publishing system info
+2024-03-16 02:34:06,306 DEBUG   HandlerThread:11321 [system_info.py:_save_conda():208] Saving list of conda packages installed into the current environment
+2024-03-16 02:34:07,025 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/conda-environment.yaml
+2024-03-16 02:34:09,857 DEBUG   HandlerThread:11321 [system_info.py:_save_conda():220] Saving conda packages done
+2024-03-16 02:34:09,858 INFO    HandlerThread:11321 [system_monitor.py:probe():229] Finished publishing system info
+2024-03-16 02:34:09,860 DEBUG   SenderThread:11321 [sender.py:send():382] send: files
+2024-03-16 02:34:09,861 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-metadata.json with policy now
+2024-03-16 02:34:09,872 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: python_packages
+2024-03-16 02:34:09,872 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: python_packages
+2024-03-16 02:34:09,874 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:34:09,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:34:09,876 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:34:10,025 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/conda-environment.yaml
+2024-03-16 02:34:10,025 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/requirements.txt
+2024-03-16 02:34:10,025 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-metadata.json
+2024-03-16 02:34:10,027 DEBUG   SenderThread:11321 [sender.py:send():382] send: telemetry
+2024-03-16 02:34:10,027 DEBUG   SenderThread:11321 [sender.py:send():382] send: telemetry
+2024-03-16 02:34:10,159 INFO    wandb-upload_0:11321 [upload_job.py:push():131] Uploaded file /tmp/tmp4p27z0nawandb/j67x3r2n-wandb-metadata.json
+2024-03-16 02:34:11,028 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:11,336 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:11,338 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:11,338 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:11,340 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:12,025 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:12,714 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:12,715 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:12,715 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:12,716 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:13,026 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:14,189 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:14,190 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:14,190 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:14,193 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:15,026 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:15,601 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:15,602 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:15,602 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:15,603 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:16,027 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:16,603 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:16,931 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:16,932 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:16,932 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:16,934 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:17,027 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:18,425 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:18,426 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:18,426 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:18,427 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:19,028 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:19,958 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:19,959 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:19,959 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:19,961 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:20,028 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:20,544 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:20,547 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:20,549 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:21,555 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:21,556 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:21,557 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:21,558 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:22,029 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:22,558 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:22,798 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:22,799 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:22,799 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:22,801 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:23,029 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:24,170 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:24,170 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:24,171 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:24,171 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:24,873 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:34:24,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:34:24,876 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:34:25,030 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:25,485 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:25,486 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:25,486 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:25,489 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:26,030 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:26,910 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:26,911 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:26,911 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:26,912 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:27,031 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:27,913 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:28,317 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:28,318 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:28,318 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:28,320 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:29,031 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:29,553 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:29,554 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:29,554 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:29,555 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:30,032 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:30,288 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:30,290 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:30,292 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:30,793 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:30,795 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:30,795 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:30,798 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:31,032 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:32,014 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:32,014 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:32,015 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:32,016 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:32,033 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:33,016 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:33,229 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:33,230 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:33,230 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:33,232 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:34,033 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:34,464 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:34,465 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:34,465 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:34,466 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:35,034 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:35,703 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:35,704 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:35,704 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:35,706 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:36,034 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:36,955 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:36,956 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:36,956 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:36,957 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:37,035 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:38,176 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:38,178 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:38,184 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:38,307 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:38,307 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:39,036 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:39,036 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/config.yaml
+2024-03-16 02:34:39,270 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:39,272 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:39,274 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:39,409 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:39,411 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:39,411 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:39,412 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:39,874 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:34:39,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:34:39,877 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:34:40,036 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:40,607 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:40,608 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:40,608 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:40,610 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:41,036 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:41,831 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:41,832 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:41,832 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:41,833 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:42,037 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:43,042 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:43,043 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:43,043 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:43,045 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:44,038 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:44,045 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:45,038 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_created():271] file/dir created: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:47,039 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:49,039 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:49,103 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:51,040 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:53,040 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:54,148 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:54,873 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:34:54,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:34:54,876 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:34:55,041 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:56,371 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:56,372 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:56,372 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:56,373 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:57,042 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:57,042 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:57,897 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:57,898 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:57,898 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:57,899 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:34:58,042 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:34:59,043 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/output.log
+2024-03-16 02:34:59,360 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:34:59,360 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:34:59,361 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:34:59,361 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:34:59,362 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:00,043 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:00,829 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:00,829 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:00,830 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:00,832 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:01,043 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:01,126 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:01,128 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:01,130 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:02,305 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:02,306 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:02,307 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:02,308 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:03,044 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:03,775 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:03,776 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:03,776 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:03,778 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:04,044 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:04,779 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:35:05,265 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:05,266 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:05,266 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:05,267 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:06,045 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:06,243 DEBUG   SystemMonitor:11321 [system_monitor.py:_start():172] Starting system metrics aggregation loop
+2024-03-16 02:35:06,246 DEBUG   SenderThread:11321 [sender.py:send():382] send: stats
+2024-03-16 02:35:06,748 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:06,748 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:06,749 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:06,750 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:07,046 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:08,260 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:08,260 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:08,261 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:08,261 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:09,047 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:09,746 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:09,746 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:09,747 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:09,747 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:09,874 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:35:09,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:35:09,876 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:35:09,980 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:35:10,047 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:11,232 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:11,233 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:11,233 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:11,234 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:11,947 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:11,949 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:11,951 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:12,048 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:12,623 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:12,625 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:12,625 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:12,627 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:13,048 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:13,901 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:13,902 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:13,902 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:13,905 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:14,049 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:15,193 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:15,194 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:15,194 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:15,194 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:35:15,195 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:16,049 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:16,466 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:16,467 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:16,467 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:16,468 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:17,050 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:17,790 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:17,791 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:17,791 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:17,792 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:18,050 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:19,030 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:19,031 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:19,031 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:19,032 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:19,051 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:20,308 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:20,309 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:20,309 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:20,309 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:35:20,310 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:21,051 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:21,315 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:21,319 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:21,321 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:21,590 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:21,593 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:21,593 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:21,594 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:22,052 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:22,854 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:22,855 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:22,855 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:22,856 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:23,052 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:24,116 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:24,117 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:24,117 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:24,119 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
+2024-03-16 02:35:24,874 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: stop_status
+2024-03-16 02:35:24,874 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: stop_status
+2024-03-16 02:35:24,876 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: internal_messages
+2024-03-16 02:35:25,053 INFO    Thread-12 :11321 [dir_watcher.py:_on_file_modified():288] file/dir modified: /home/blaineh2/ScoreMatchingDiffKG/embedding_model/wandb/run-20240316_023405-i2e77z68/files/wandb-summary.json
+2024-03-16 02:35:25,397 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: partial_history
+2024-03-16 02:35:25,398 DEBUG   SenderThread:11321 [sender.py:send():382] send: history
+2024-03-16 02:35:25,399 DEBUG   SenderThread:11321 [sender.py:send_request():409] send_request: summary_record
+2024-03-16 02:35:25,399 DEBUG   HandlerThread:11321 [handler.py:handle_request():146] handle_request: status_report
+2024-03-16 02:35:25,400 INFO    SenderThread:11321 [sender.py:_save_file():1403] saving file wandb-summary.json with policy end
