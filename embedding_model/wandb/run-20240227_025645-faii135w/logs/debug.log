@@ -28,7 +28,7 @@ config: {'epochs': 3, 'batch_size': 1000, 'lr': 0.001, 'weight_decay': 1e-06, 'k
 2024-02-27 02:56:49,734 INFO    MainThread:11880 [wandb_init.py:init():720] updated telemetry
 2024-02-27 02:56:49,765 INFO    MainThread:11880 [wandb_init.py:init():753] communicating run to backend with 90.0 second timeout
 2024-02-27 02:56:50,900 INFO    MainThread:11880 [wandb_run.py:_on_init():2262] communicating current version
-2024-02-27 02:56:50,977 INFO    MainThread:11880 [wandb_run.py:_on_init():2271] got version response 
+2024-02-27 02:56:50,977 INFO    MainThread:11880 [wandb_run.py:_on_init():2271] got version response
 2024-02-27 02:56:50,977 INFO    MainThread:11880 [wandb_init.py:init():804] starting run threads in backend
 2024-02-27 02:56:54,580 INFO    MainThread:11880 [wandb_run.py:_console_start():2241] atexit reg
 2024-02-27 02:56:54,580 INFO    MainThread:11880 [wandb_run.py:_redirect():2096] redirect: wrap_raw

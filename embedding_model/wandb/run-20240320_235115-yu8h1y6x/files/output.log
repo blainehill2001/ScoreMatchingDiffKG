@@ -1,0 +1,16 @@
+
+Epoch: 000, Train Loss: 1.5471
+Epoch: 001, Train Loss: 1.5314
+Epoch: 002, Train Loss: 1.5219
+Traceback (most recent call last):
+  File "/tmp/ipykernel_76239/1257167414.py", line 11, in main
+    loss = train_model(model, optimizer, train_loader)
+  File "/tmp/ipykernel_76239/3805355496.py", line 32, in train_model
+    loss.backward()
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/wandb/wandb_torch.py", line 272, in <lambda>
+    handle = var.register_hook(lambda grad: _callback(grad, log_track))
+KeyboardInterrupt

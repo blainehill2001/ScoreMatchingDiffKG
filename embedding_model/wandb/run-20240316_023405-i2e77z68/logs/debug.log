@@ -29,3 +29,12 @@ config: {}
 2024-03-16 02:34:09,875 INFO    Thread-6  :11097 [wandb_run.py:_redirect():2186] Redirects installed.
 2024-03-16 02:34:09,875 INFO    Thread-6  :11097 [wandb_init.py:init():847] run started, returning control to user process
 2024-03-16 02:34:09,932 INFO    Thread-6  :11097 [wandb_watch.py:watch():51] Watching
+2024-03-16 02:42:20,133 INFO    MainThread:11097 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-16 02:42:20,133 INFO    MainThread:11097 [wandb_init.py:_pause_backend():437] pausing backend
+2024-03-16 02:42:21,292 INFO    Thread-6  :11097 [wandb_run.py:_finish():1970] finishing run bthill1/ScoreMatchingDiffKG_Embedding_Sweep/i2e77z68
+2024-03-16 02:42:21,292 ERROR   Thread-6  :11097 [jupyter.py:save_history():437] Run pip install nbformat to save notebook history
+2024-03-16 02:42:21,292 INFO    Thread-6  :11097 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-16 02:42:21,292 INFO    Thread-6  :11097 [wandb_init.py:_jupyter_teardown():454] cleaning up jupyter logic
+2024-03-16 02:42:21,292 INFO    Thread-6  :11097 [wandb_run.py:_atexit_cleanup():2210] got exitcode: 1
+2024-03-16 02:42:21,292 INFO    Thread-6  :11097 [wandb_run.py:_restore():2193] restore
+2024-03-16 02:42:21,293 INFO    Thread-6  :11097 [wandb_run.py:_restore():2199] restore done

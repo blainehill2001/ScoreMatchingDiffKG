@@ -1,0 +1,54 @@
+
+Epoch: 000, Train Loss: 0.7735
+Epoch: 001, Train Loss: 0.7657
+Epoch: 002, Train Loss: 0.7609
+Epoch: 003, Train Loss: 0.7572
+Epoch: 004, Train Loss: 0.7541
+Epoch: 005, Train Loss: 0.7515
+Epoch: 006, Train Loss: 0.7492
+Epoch: 007, Train Loss: 0.7470
+Epoch: 008, Train Loss: 0.7451
+Epoch: 009, Train Loss: 0.7434
+Epoch: 010, Train Loss: 0.7418
+
+
+ 83%|████████▎ | 446/535 [00:05<00:01, 78.05it/s]
+
+100%|██████████| 535/535 [00:06<00:00, 79.74it/s]
+Epoch: 011, Train Loss: 0.7402
+Epoch: 012, Train Loss: 0.7388
+Epoch: 013, Train Loss: 0.7375
+Epoch: 014, Train Loss: 0.7362
+Epoch: 015, Train Loss: 0.7350
+Epoch: 016, Train Loss: 0.7339
+Epoch: 017, Train Loss: 0.7328
+Epoch: 018, Train Loss: 0.7318
+Epoch: 019, Train Loss: 0.7308
+Epoch: 020, Train Loss: 0.7299
+
+
+ 80%|████████  | 430/535 [00:05<00:01, 82.20it/s]
+
+100%|██████████| 535/535 [00:06<00:00, 80.67it/s]
+Epoch: 021, Train Loss: 0.7290
+Epoch: 022, Train Loss: 0.7281
+Epoch: 023, Train Loss: 0.7273
+Epoch: 024, Train Loss: 0.7265
+Epoch: 025, Train Loss: 0.7257
+Epoch: 026, Train Loss: 0.7250
+Epoch: 027, Train Loss: 0.7242
+Epoch: 028, Train Loss: 0.7236
+Epoch: 029, Train Loss: 0.7229
+Epoch: 030, Train Loss: 0.7223
+
+
+
+100%|██████████| 535/535 [00:06<00:00, 81.64it/s]
+Val Mean Rank: 3638.27, Val Mean Reciprocal Rank: 0.01, Val Hits@10: 0.0299
+Epoch: 031, Train Loss: 0.7216
+Epoch: 032, Train Loss: 0.7210
+Epoch: 033, Train Loss: 0.7203
+Epoch: 034, Train Loss: 0.7198
+Epoch: 035, Train Loss: 0.7192
+Epoch: 036, Train Loss: 0.7187
+Epoch: 037, Train Loss: 0.7182

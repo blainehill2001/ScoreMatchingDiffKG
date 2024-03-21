@@ -1,0 +1,14 @@
+wandb_version: 1
+
+batch_size:
+  value: 1000
+epochs:
+  value: 2000
+hidden_channels:
+  value: 100
+k:
+  value: 10
+lr:
+  value: 1.0055575422556573
+weight_decay:
+  value: 1.0e-05

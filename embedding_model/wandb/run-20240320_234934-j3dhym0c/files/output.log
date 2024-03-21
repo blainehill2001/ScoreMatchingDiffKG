@@ -1,0 +1,45 @@
+
+Epoch: 000, Train Loss: 1.5469
+Epoch: 001, Train Loss: 1.5314
+Epoch: 002, Train Loss: 1.5218
+Epoch: 003, Train Loss: 1.5145
+Epoch: 004, Train Loss: 1.5083
+Epoch: 005, Train Loss: 1.5030
+Epoch: 006, Train Loss: 1.4983
+Epoch: 007, Train Loss: 1.4942
+Epoch: 008, Train Loss: 1.4903
+Epoch: 009, Train Loss: 1.4869
+Epoch: 010, Train Loss: 1.4836
+
+
+
+100%|██████████| 535/535 [00:07<00:00, 73.16it/s]
+Val Mean Rank: 4477.33, Val Mean Reciprocal Rank: 0.00, Val Hits@10: 0.0037
+Epoch: 011, Train Loss: 1.4805
+Epoch: 012, Train Loss: 1.4777
+Epoch: 013, Train Loss: 1.4751
+Epoch: 014, Train Loss: 1.4725
+Epoch: 015, Train Loss: 1.4701
+Epoch: 016, Train Loss: 1.4679
+Traceback (most recent call last):
+  File "/tmp/ipykernel_76239/1257167414.py", line 11, in main
+    loss = train_model(model, optimizer, train_loader)
+  File "/tmp/ipykernel_76239/3390069742.py", line 27, in train_model
+    loss = model.loss(head_index, rel_type, tail_index)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch_geometric/nn/kge/rotate.py", line 91, in loss
+    pos_score = self(head_index, rel_type, tail_index)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch_geometric/nn/kge/rotate.py", line 69, in forward
+    head_re = self.node_emb(head_index)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/modules/sparse.py", line 163, in forward
+    return F.embedding(
+  File "/home/blaineh2/anaconda3/envs/ScoreMatchingDiffKG/lib/python3.9/site-packages/torch/nn/functional.py", line 2237, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+KeyboardInterrupt

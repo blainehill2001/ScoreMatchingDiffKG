@@ -1,6 +1,2 @@
 ic| config: {'epochs': 500, 'batch_size': 1000, 'lr': 0.001, 'weight_decay': 1e-06, 'k': 10, 'hidden_channels': 50}
 ic| config.hidden_channels: 50
-
-
-
-
