@@ -52,3 +52,52 @@ Epoch: 034, Train Loss: 0.7198
 Epoch: 035, Train Loss: 0.7192
 Epoch: 036, Train Loss: 0.7187
 Epoch: 037, Train Loss: 0.7182
+Epoch: 038, Train Loss: 0.7177
+Epoch: 039, Train Loss: 0.7171
+Epoch: 040, Train Loss: 0.7167
+
+
+ 76%|███████▌  | 406/535 [00:05<00:01, 76.81it/s]
+
+100%|██████████| 535/535 [00:06<00:00, 81.07it/s]
+Epoch: 041, Train Loss: 0.7162
+Epoch: 042, Train Loss: 0.7157
+Epoch: 043, Train Loss: 0.7152
+Epoch: 044, Train Loss: 0.7148
+Epoch: 045, Train Loss: 0.7144
+Epoch: 046, Train Loss: 0.7139
+Epoch: 047, Train Loss: 0.7135
+Epoch: 048, Train Loss: 0.7131
+Epoch: 049, Train Loss: 0.7127
+Epoch: 050, Train Loss: 0.7123
+
+
+ 81%|████████▏ | 435/535 [00:05<00:01, 80.87it/s]
+
+100%|██████████| 535/535 [00:06<00:00, 80.13it/s]
+Epoch: 051, Train Loss: 0.7119
+Epoch: 052, Train Loss: 0.7115
+Epoch: 053, Train Loss: 0.7111
+Epoch: 054, Train Loss: 0.7108
+Epoch: 055, Train Loss: 0.7105
+Epoch: 056, Train Loss: 0.7101
+Epoch: 057, Train Loss: 0.7098
+Epoch: 058, Train Loss: 0.7094
+Epoch: 059, Train Loss: 0.7091
+Epoch: 060, Train Loss: 0.7088
+
+
+
+ 89%|████████▉ | 475/535 [00:06<00:00, 79.84it/s]
+
+100%|██████████| 535/535 [00:07<00:00, 74.76it/s]
+Epoch: 061, Train Loss: 0.7085
+Epoch: 062, Train Loss: 0.7082
+Epoch: 063, Train Loss: 0.7079
+Epoch: 064, Train Loss: 0.7076
+Epoch: 065, Train Loss: 0.7072
+Epoch: 066, Train Loss: 0.7070
+Epoch: 067, Train Loss: 0.7067
+Epoch: 068, Train Loss: 0.7064
+Epoch: 069, Train Loss: 0.7062
+Epoch: 070, Train Loss: 0.7060
