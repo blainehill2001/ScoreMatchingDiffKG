@@ -30,7 +30,7 @@ config: {}
 2024-03-21 11:57:33,155 INFO    Thread-29 :5655 [wandb_init.py:init():847] run started, returning control to user process
 2024-03-21 11:57:33,258 INFO    Thread-29 :5655 [wandb_watch.py:watch():51] Watching
 2024-03-21 14:56:25,339 ERROR   Thread-5  :5655 [internal_api.py:execute():373] 502 response executing GraphQL.
-2024-03-21 14:56:25,339 ERROR   Thread-5  :5655 [internal_api.py:execute():374] 
+2024-03-21 14:56:25,339 ERROR   Thread-5  :5655 [internal_api.py:execute():374]
 <html><head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <title>502 Server Error</title>
