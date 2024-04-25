@@ -18,5 +18,3 @@ parameters:
     values: [50, 100, 150, 200]
   similarity_metric:
     values: ['cosine', 'l2']
-  k:
-    value: 10
