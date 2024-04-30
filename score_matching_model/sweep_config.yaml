@@ -4,12 +4,16 @@ metric:
   name: test_loss
   goal: minimize
 parameters:
+  embedding_model_info:
+    values: ["../embedding_model/FB15k_237_RotatE_embedding_model_weights.pth", "Planetoid", "AmazonProducts"]
+  score_model_hidden_dim:
+    values: [32, 64,128, 256, 512]
   lr:
     min: 0.0001
     max: 0.01
     distribution: log_uniform_values
   epochs:
-    values: [100, 200, 300, 400, 500]
+    values: [100, 1000]
   batch_size:
     values: [32, 64, 128, 256, 512]
   num_steps:
@@ -18,3 +22,5 @@ parameters:
     values: [50, 100, 150, 200]
   similarity_metric:
     values: ['cosine', 'l2']
+  verbose:
+    value: False

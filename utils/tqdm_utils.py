@@ -1,11 +1,22 @@
-import tqdm  # type: ignore
+from functools import partialmethod, wraps
+
+from tqdm import tqdm  # type: ignore
 
 
-# TODO: get this to silence any tqdm inside some function
 def silence_tqdm(func):
+    @wraps(func)
     def wrapper(*args, **kwargs):
-        with tqdm.tqdm(disable=True):
-            func_result = func(*args, **kwargs)
-        return func_result
+        # Save the original __init__ method
+        original_init = tqdm.__init__
+
+        # Disable tqdm progress bars
+        tqdm.__init__ = partialmethod(tqdm.__init__, disable=True)
+
+        try:
+            # Call the decorated function
+            return func(*args, **kwargs)
+        finally:
+            # Restore the original __init__ method
+            tqdm.__init__ = original_init
 
     return wrapper

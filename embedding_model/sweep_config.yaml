@@ -4,17 +4,23 @@ metric:
   name: val_loss
   goal: minimize
 parameters:
-  hidden_channels:
-    values: [25, 50, 75, 100, 125,150,175, 200, 225, 250]
+  dataset_name:
+    values: ["FB15k_237", "Planetoid", "AmazonProducts"]
+  model_name:
+    values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   epochs:
-    values: [500, 750, 1000, 1250, 1500, 2000, 2250, 2500]
+    values: [100, 1000]
   batch_size:
     values: [500, 1000, 1500, 2000, 2500]
   lr:
     min: 0.0001
     max: 0.01
-    distribution: log_uniform
+    distribution: log_uniform_values
   weight_decay:
     values: [1e-7, 1e-6, 1e-5, 1e-4]
   k:
     value: 10
+  hidden_channels:
+    values: [32, 64, 128, 256, 512]
+  verbose:
+    value: False
