@@ -1,6 +1,11 @@
 /embedding_model/wandb/
 /score_matching_model/wandb/
-/data/
+# Ignore everything inside the data directory
+data/*
+# But don't ignore the data directory itself
+!data/
+# And don't ignore the README.md file inside the data directory
+!data/README.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
