@@ -5,7 +5,7 @@ metric:
   goal: minimize
 parameters:
   embedding_model_info:
-    values: ["../embedding_model/FB15k_237_RotatE_embedding_model_weights.pth"]
+    values: ["../embedding_model/FB15k_237_RotatE_embedding_model_weights.pth", "../embedding_model/FB15k_237_DistMult_embedding_model_weights.pth", "../embedding_model/FB15k_237_TransE_embedding_model_weights.pth", "../embedding_model/WordNet18RR_RotatE_embedding_model_weights.pth", "../embedding_model/WordNet18RR_ComplEx_embedding_model_weights.pth", "../embedding_model/WordNet18RR_DistMult_embedding_model_weights.pth"]
   score_model_hidden_dim:
     values: [32, 64,128, 256, 512]
   lr:
