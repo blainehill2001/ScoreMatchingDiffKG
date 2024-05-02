@@ -5,7 +5,7 @@ metric:
   goal: minimize
 parameters:
   embedding_model_info:
-    values: ["../embedding_model/FB15k_237_RotatE_embedding_model_weights.pth", "Planetoid", "AmazonProducts"]
+    values: ["../embedding_model/FB15k_237_RotatE_embedding_model_weights.pth"]
   score_model_hidden_dim:
     values: [32, 64,128, 256, 512]
   lr:
@@ -13,9 +13,9 @@ parameters:
     max: 0.01
     distribution: log_uniform_values
   epochs:
-    values: [100, 1000]
+    values: [25, 50, 75, 100]
   batch_size:
-    values: [32, 64, 128, 256, 512]
+    values: [64, 512]
   num_steps:
     values: [10, 20, 30, 40, 50]
   rel_emb_dim:

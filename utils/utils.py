@@ -3,7 +3,10 @@ import os.path as osp
 import sys
 
 import torch
-from torch_geometric.datasets import AmazonProducts, FB15k_237, Planetoid
+import torch_geometric.transforms as T
+from icecream import ic
+from torch_geometric.data import Data
+from torch_geometric.datasets import FB15k_237, PCQM4Mv2, WordNet18RR
 from torch_geometric.nn import ComplEx, DistMult, RotatE, TransE
 
 # Add the path to import modules from the 'freebase' directory
@@ -16,20 +19,38 @@ from wikidata.client import Client
 def load_dataset(dataset_name, parent_dir, device):
     data_path = osp.join(parent_dir, "data", dataset_name)
     if dataset_name == "FB15k_237":
-        dataset = FB15k_237
-    elif dataset_name == "Planetoid":
-        dataset = Planetoid
-    elif dataset_name == "AmazonProducts":
-        dataset = AmazonProducts
-    else:
-        raise ValueError("Dataset not supported")
+        return (
+            FB15k_237(data_path, split="train")[0].to(device),
+            FB15k_237(data_path, split="val")[0].to(device),
+            FB15k_237(data_path, split="test")[0].to(device),
+            data_path,
+        )
+    elif dataset_name == "WordNet18RR":
+        dataset = WordNet18RR(root=data_path)
+        data = dataset[
+            0
+        ]  # Assuming the dataset is loaded and processed correctly
+        train_data = data.clone()
+        val_data = data.clone()
+        test_data = data.clone()
 
-    return (
-        dataset(data_path, split="train")[0].to(device),
-        dataset(data_path, split="val")[0].to(device),
-        dataset(data_path, split="test")[0].to(device),
-        data_path,
-    )
+        # Apply masks to get the respective splits
+        train_data.edge_index = data.edge_index[:, data.train_mask]
+        train_data.edge_type = data.edge_type[data.train_mask]
+
+        val_data.edge_index = data.edge_index[:, data.val_mask]
+        val_data.edge_type = data.edge_type[data.val_mask]
+
+        test_data.edge_index = data.edge_index[:, data.test_mask]
+        test_data.edge_type = data.edge_type[data.test_mask]
+        return (
+            train_data.to(device),
+            val_data.to(device),
+            test_data.to(device),
+            data_path,
+        )
+    else:
+        raise ValueError(f"Dataset {dataset_name} not supported")
 
 
 def get_model_class(model_name):
@@ -42,7 +63,7 @@ def get_model_class(model_name):
     elif model_name == "DistMult":
         return DistMult
     else:
-        raise ValueError("Model not supported")
+        raise ValueError(f"Model: {model_name} not supported")
 
 
 def convert_indices_to_english(
@@ -87,10 +108,12 @@ def get_english_from_freebase_id(freebase_id):
         return (
             item.label
             if item and item.label
-            else "No English found for this Freebase ID"
+            else f"No English found for this Freebase ID: {freebase_id}"
         )
     except AssertionError:
-        return "This Freebase ID has no corresponding Wikidata ID"
+        return (
+            f"This Freebase ID: {freebase_id} has no corresponding Wikidata ID"
+        )
 
 
 def load_dicts(data_path):

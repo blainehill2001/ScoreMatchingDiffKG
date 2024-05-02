@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/tmp/ipykernel_8217/4136085740.py", line 10, in main
-    for epoch in range(config.epochs):
-TypeError: 'list' object cannot be interpreted as an integer

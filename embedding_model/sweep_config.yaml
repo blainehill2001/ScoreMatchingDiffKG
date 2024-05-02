@@ -5,13 +5,13 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237", "Planetoid", "AmazonProducts"]
-  model_name:
+    values: ["FB15k_237", "WordNet18RR"]
+  embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   epochs:
-    values: [100, 1000]
+    values: [25, 50, 75, 100, 200, 500]
   batch_size:
-    values: [500, 1000, 1500, 2000, 2500]
+    values: [64, 512]
   lr:
     min: 0.0001
     max: 0.01

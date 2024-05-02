@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/tmp/ipykernel_95224/1132356114.py", line 21, in <module>
-    model, optimizer, train_loader, val_loader, test_loader = main(config)
-  File "/tmp/ipykernel_95224/1699441947.py", line 2, in main
-    model, optimizer, train_loader, val_loader, test_loader = build_model(config)
-  File "/tmp/ipykernel_95224/2726785985.py", line 3, in build_model
-    model = RotatE(num_nodes=train_data.num_nodes, num_relations=train_data.num_edge_types, hidden_channels=config.hidden_channels).to(device)
-AttributeError: 'dict' object has no attribute 'hidden_channels'

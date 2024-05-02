@@ -1,5 +1,6 @@
 /embedding_model/wandb/
 /score_matching_model/wandb/
+/data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
