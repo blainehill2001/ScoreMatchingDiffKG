@@ -13,7 +13,7 @@ parameters:
     max: 0.01
     distribution: log_uniform_values
   epochs:
-    values: [25, 50, 75, 100]
+    values: [2000]
   batch_size:
     values: [64, 512]
   num_steps:

@@ -9,7 +9,7 @@ parameters:
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   epochs:
-    values: [25, 50, 75, 100, 200, 500]
+    values: [2000]
   batch_size:
     values: [64, 512]
   lr:
