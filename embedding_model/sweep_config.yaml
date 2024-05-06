@@ -5,22 +5,22 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237", "WordNet18RR"]
+    values: ["FB15k_237", "WordNet18RR", "WordNet18"]
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   epochs:
-    values: [2000]
+    values: [10000]
   batch_size:
-    values: [64, 512]
+    values: [512]
   lr:
     min: 0.0001
     max: 0.01
     distribution: log_uniform_values
   weight_decay:
-    values: [1e-7, 1e-6, 1e-5, 1e-4]
+    values: [1e-7, 1e-6, 1e-5]
   k:
     value: 10
   hidden_channels:
-    values: [32, 64, 128, 256, 512]
+    values: [128, 256, 512]
   verbose:
     value: False

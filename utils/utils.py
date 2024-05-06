@@ -5,9 +5,11 @@ import sys
 import torch
 import torch_geometric.transforms as T
 from icecream import ic
-from torch_geometric.data import Data
-from torch_geometric.datasets import FB15k_237, PCQM4Mv2, WordNet18RR
+from torch_geometric.data import Data, InMemoryDataset
+from torch_geometric.datasets import FB15k_237, WordNet18, WordNet18RR
 from torch_geometric.nn import ComplEx, DistMult, RotatE, TransE
+
+from .YAGO3_10 import YAGO3_10
 
 # Add the path to import modules from the 'freebase' directory
 sys.path.append(os.path.join(os.path.dirname(__file__), "freebase"))
@@ -17,14 +19,22 @@ from wikidata.client import Client
 
 
 def load_dataset(dataset_name, parent_dir, device):
-    data_path = osp.join(parent_dir, "data", dataset_name)
+    data_path = os.path.join(parent_dir, "data", dataset_name)
+    raw_dir = os.path.join(data_path, "raw")
+    processed_dir = os.path.join(data_path, "processed")
+
+    if not os.path.exists(data_path):
+        os.makedirs(data_path)
+    if not os.path.exists(raw_dir):
+        os.makedirs(raw_dir)
+    if not os.path.exists(processed_dir):
+        os.makedirs(processed_dir)
+
     if dataset_name == "FB15k_237":
-        return (
-            FB15k_237(data_path, split="train")[0].to(device),
-            FB15k_237(data_path, split="val")[0].to(device),
-            FB15k_237(data_path, split="test")[0].to(device),
-            data_path,
-        )
+        train_data = FB15k_237(data_path, split="train")[0]
+        val_data = FB15k_237(data_path, split="val")[0]
+        test_data = FB15k_237(data_path, split="test")[0]
+
     elif dataset_name == "WordNet18RR":
         dataset = WordNet18RR(root=data_path)
         data = dataset[
@@ -43,14 +53,40 @@ def load_dataset(dataset_name, parent_dir, device):
 
         test_data.edge_index = data.edge_index[:, data.test_mask]
         test_data.edge_type = data.edge_type[data.test_mask]
-        return (
-            train_data.to(device),
-            val_data.to(device),
-            test_data.to(device),
-            data_path,
-        )
+
+    elif dataset_name == "WordNet18":
+        dataset = WordNet18(root=data_path)
+        data = dataset[
+            0
+        ]  # Assuming the dataset is loaded and processed correctly
+        train_data = data.clone()
+        val_data = data.clone()
+        test_data = data.clone()
+
+        # Apply masks to get the respective splits
+        train_data.edge_index = data.edge_index[:, data.train_mask]
+        train_data.edge_type = data.edge_type[data.train_mask]
+
+        val_data.edge_index = data.edge_index[:, data.val_mask]
+        val_data.edge_type = data.edge_type[data.val_mask]
+
+        test_data.edge_index = data.edge_index[:, data.test_mask]
+        test_data.edge_type = data.edge_type[data.test_mask]
+
+    elif dataset_name == "YAGO3-10":
+        train_data = YAGO3_10(data_path, split="train")[0]
+        val_data = YAGO3_10(data_path, split="val")[0]
+        test_data = YAGO3_10(data_path, split="test")[0]
+
     else:
         raise ValueError(f"Dataset {dataset_name} not supported")
+
+    return (
+        train_data.to(device),
+        val_data.to(device),
+        test_data.to(device),
+        data_path,
+    )
 
 
 def get_model_class(model_name):
