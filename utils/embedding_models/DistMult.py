@@ -1,4 +1,8 @@
-from typing import Dict, Optional, Tuple, Union
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import Union
 
 import torch
 import torch.nn as nn
@@ -7,12 +11,10 @@ from torch import Tensor
 from torch.utils.data import DataLoader
 from torch_geometric.nn import DistMult as BaseDistMult
 
-from .utils import (
-    CustomKGTripletLoader,
-    evaluate_classification_task,
-    evaluate_prediction_task,
-    random_sample,
-)
+from .utils import CustomKGTripletLoader
+from .utils import evaluate_classification_task
+from .utils import evaluate_prediction_task
+from .utils import random_sample
 
 
 class CustomDistMult(BaseDistMult):
@@ -196,9 +198,9 @@ class CustomDistMult(BaseDistMult):
         batch_size: int,
         x: Optional[Tensor] = None,
         y: Optional[Tensor] = None,
-        k: int = 10,
-        task: str = "tail_prediction",
-    ) -> Union[float, Tuple[float, float, float]]:
+        k: List[int] = [1, 3, 10],
+        task: str = "relation_prediction",  # default to link prediction
+    ) -> Union[float, Tuple[float, float, Dict[int, float]]]:
         """
         Evaluates the model on a test set with specified parameters.
 
@@ -209,7 +211,7 @@ class CustomDistMult(BaseDistMult):
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
             y (Tensor, optional): Node labels.
-            k (int, optional): The `k` in Hits @ `k`.
+            k (List[int]): The `k` in Hits @ `k`.
             task (str, optional): The task to perform ("relation_prediction", "head_prediction", "tail_prediction", "node_classification").
 
         Returns:
@@ -237,9 +239,9 @@ class CustomDistMult(BaseDistMult):
         tail_index: Tensor,
         batch_size: int,
         x: Optional[Tensor],
-        k: int,
-        task: str,
-    ) -> Tuple[float, float, float]:
+        k: List[int] = [1, 3, 10],
+        task: str = "relation_prediction",
+    ) -> Tuple[float, float, Dict[int, float]]:
         """
         Helper function to evaluate prediction tasks.
 
@@ -249,11 +251,11 @@ class CustomDistMult(BaseDistMult):
             tail_index (Tensor): The tail indices.
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
-            k (int): The `k` in Hits @ `k`.
+            k (Union[int, List[int]]): The `k` in Hits @ `k`.
             task (str): The task to perform.
 
         Returns:
-            Tuple[float, float, float]: A tuple containing evaluation metrics (mean rank, MRR, hits@k).
+            Tuple[float, float, Dict[int, float]]: A tuple containing evaluation metrics (mean rank, MRR, hits@k).
         """
         return evaluate_prediction_task(
             self, head_index, rel_type, tail_index, batch_size, x, k, task

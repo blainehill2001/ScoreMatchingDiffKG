@@ -1,4 +1,8 @@
-from typing import Dict, List, Optional, Tuple
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import Union
 
 import torch
 import torch.nn as nn
@@ -83,9 +87,13 @@ def evaluate_prediction_task(
     tail_index: Tensor,
     batch_size: int,
     x: Optional[Tensor],
-    k: int,
+    k: Union[
+        int, List[int]
+    ],  # Change k to accept a single int or a list of ints
     task: str,
-) -> Tuple[float, float, float]:
+) -> Tuple[
+    float, float, Dict[int, float]
+]:  # Return hits at each k as a dictionary
     """
     Evaluates the prediction task by computing the mean rank, mean reciprocal rank (MRR), and hits at k.
 
@@ -96,7 +104,7 @@ def evaluate_prediction_task(
         tail_index (Tensor): The tail indices.
         batch_size (int): The size of each batch.
         x (Tensor, optional): Additional node features.
-        k (int): The rank threshold for calculating hits@k.
+        k (Union[int, List[int]]): The rank threshold or list of rank thresholds for calculating hits@k.
         task (str): The specific prediction task.
 
     Returns:
@@ -121,7 +129,13 @@ def evaluate_prediction_task(
     ).nonzero(as_tuple=True)[1]
     mean_rank = ranks.float().mean().item()
     mrr = (1.0 / (ranks.float() + 1)).mean().item()
-    hits_at_k = (ranks < k).float().mean().item()
+    hits_at_k = {}
+    if isinstance(k, int):
+        k_values = [k]
+    else:
+        k_values = k
+    for k_val in k_values:
+        hits_at_k[k_val] = (ranks < k_val).float().mean().item()
     return mean_rank, mrr, hits_at_k
 
 

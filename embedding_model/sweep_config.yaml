@@ -9,7 +9,7 @@ parameters:
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   task:
-    values: ["relation_prediction", "head_prediction", "tail_prediction", "knowledge_graph_completion", "node_classification"]
+    values: ["relation_prediction", "head_prediction", "tail_prediction", "node_classification"]
   epochs:
     values: [10000]
   batch_size:

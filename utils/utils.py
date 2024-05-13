@@ -3,14 +3,22 @@ import json
 import os
 import os.path as osp
 import sys
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Tuple
+from typing import Union
 
 import torch
 import yaml  # type: ignore
 from icecream import ic
 from torch import Tensor
-from torch_geometric.data import Data, DataLoader
-from torch_geometric.datasets import FB15k_237, Planetoid, WordNet18RR
+from torch_geometric.data import Data
+from torch_geometric.data import DataLoader
+from torch_geometric.datasets import FB15k_237
+from torch_geometric.datasets import Planetoid
+from torch_geometric.datasets import WordNet18
+from torch_geometric.datasets import WordNet18RR
 from torch_geometric.nn import KGEModel
 
 from .datasets.Planetoid import PlanetoidWithAuxiliaryNodes
@@ -44,7 +52,6 @@ def load_dataset(
     data_path = os.path.join(parent_dir, "data", dataset_name)
     raw_dir = os.path.join(data_path, "raw")
     processed_dir = os.path.join(data_path, "processed")
-
     if not os.path.exists(data_path):
         os.makedirs(data_path)
     if not os.path.exists(raw_dir):
@@ -59,6 +66,22 @@ def load_dataset(
         test_data = FB15k_237(data_path, split="test")[0]
     elif dataset_name == "WordNet18RR":
         dataset = WordNet18RR(root=data_path)
+        data = dataset[
+            0
+        ]  # Assuming the dataset is loaded and processed correctly
+        train_data = data.clone()
+        val_data = data.clone()
+        test_data = data.clone()
+
+        # Apply masks to get the respective splits
+        train_data.edge_index = data.edge_index[:, data.train_mask]
+        train_data.edge_type = data.edge_type[data.train_mask]
+        val_data.edge_index = data.edge_index[:, data.val_mask]
+        val_data.edge_type = data.edge_type[data.val_mask]
+        test_data.edge_index = data.edge_index[:, data.test_mask]
+        test_data.edge_type = data.edge_type[data.test_mask]
+    elif dataset_name == "WordNet18":
+        dataset = WordNet18(root=data_path)
         data = dataset[
             0
         ]  # Assuming the dataset is loaded and processed correctly
@@ -388,18 +411,8 @@ def save_trained_embedding_model_and_config(
         f"{model.config['prefix']}_embedding_model_performance.txt",
     )
 
-    # Save the model state dictionary with additional attributes
-    model_state_dict = model.state_dict()
-    model_state_dict["num_nodes"] = model.train_data.num_nodes
-    model_state_dict["num_relations"] = model.train_data.num_edge_types
-    model_state_dict["hidden_channels"] = model.config["hidden_channels"]
-    model_state_dict["dataset_name"] = model.config["dataset_name"]
-    model_state_dict["embedding_model_name"] = model.config[
-        "embedding_model_name"
-    ]
-
     # Save the model as a .pth file
-    torch.save(model_state_dict, model_weights_path)
+    torch.save(model.state_dict(), model_weights_path)
 
     # Save the number of trained epochs and performance metrics in a single text file
     with open(performance_path, "w") as file:

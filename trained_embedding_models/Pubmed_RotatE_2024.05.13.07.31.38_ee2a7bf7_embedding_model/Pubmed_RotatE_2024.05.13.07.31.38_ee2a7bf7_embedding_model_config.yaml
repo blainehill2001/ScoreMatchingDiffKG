@@ -1,0 +1,13 @@
+batch_size: 512
+dataset_name: Pubmed
+embedding_model_name: RotatE
+epochs: 10000
+hidden_channels: 256
+k: 10
+lr: 0.0026587192625249995
+max_epochs_without_improvement: 10
+prefix: Pubmed_RotatE_2024.05.13.07.31.38_ee2a7bf7
+task: node_classification
+validate_after_this_many_epochs: 10
+verbose: false
+weight_decay: 1.0e-05
