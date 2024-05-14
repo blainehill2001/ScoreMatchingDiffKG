@@ -60,6 +60,30 @@ class CustomComplEx(BaseComplEx):
             else None
         )
 
+    def node_emb(self, index: Tensor, x: Optional[Tensor] = None) -> Tensor:
+        """
+        Computes the entity embeddings for the given indices, considering node features if provided.
+
+        Args:
+            index (Tensor): Indices of entities.
+            x (Tensor, optional): Node features.
+
+        Returns:
+            Tensor: Entity embeddings for the specified indices.
+        """
+        # Obtain entity embeddings using the existing node_emb method
+        entity_emb = self.node_emb(index)
+
+        if x is not None:
+            # Apply feature transformation to node features
+            transformed_x_re = self.feature_transform_re(x)
+            transformed_x_im = self.feature_transform_im(x)
+
+            # Incorporate transformed features into entity embeddings
+            entity_emb += transformed_x_re + transformed_x_im
+
+        return entity_emb
+
     def forward(
         self,
         head_index: Tensor,

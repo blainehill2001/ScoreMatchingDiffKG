@@ -24,7 +24,6 @@ class CustomTransE(BaseTransE):
 
     Attributes:
         feature_transform_re (nn.Module): Linear transformation for real part of node features (if applicable).
-        feature_transform_im (nn.Module): Linear transformation for imaginary part of node features (if applicable).
         task (str): The specific task for which the model is being used.
         aux_dict (dict): Auxiliary dictionary for additional task-specific data.
     """
@@ -47,11 +46,11 @@ class CustomTransE(BaseTransE):
         super().__init__(*args, **kwargs)
         embedding_dim = kwargs.get("hidden_channels", None)
 
-        if feature_dim and embedding_dim:
-            self.feature_transform_re = nn.Linear(feature_dim, embedding_dim)
-            self.feature_transform_im = nn.Linear(feature_dim, embedding_dim)
-        else:
-            self.feature_transform_re, self.feature_transform_im = None, None
+        self.feature_transform_re = (
+            nn.Linear(feature_dim, embedding_dim)
+            if feature_dim and embedding_dim
+            else None
+        )
 
         self.task = task
         self.aux_dict = (

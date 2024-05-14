@@ -47,11 +47,11 @@ class CustomDistMult(BaseDistMult):
         super().__init__(*args, **kwargs)
         embedding_dim = kwargs.get("hidden_channels", None)
 
-        if feature_dim and embedding_dim:
-            self.feature_transform_re = nn.Linear(feature_dim, embedding_dim)
-            self.feature_transform_im = nn.Linear(feature_dim, embedding_dim)
-        else:
-            self.feature_transform_re, self.feature_transform_im = None, None
+        self.feature_transform_re = (
+            nn.Linear(feature_dim, embedding_dim)
+            if feature_dim and embedding_dim
+            else None
+        )
 
         self.task = task
         self.aux_dict = (
