@@ -228,7 +228,7 @@ def save_embedding_model_config(model: KGEModel) -> str:
     return config_path
 
 
-def save_trained_embedding_model_and_config(
+def save_trained_embedding_weights_and_performance(
     model: KGEModel, epochs_trained: int, performance_metrics: Dict[str, float]
 ) -> Tuple[str, str]:
     """

@@ -7,18 +7,18 @@ parameters:
   embedding_model_info:
     values: ["../embedding_model/FB15k_237_TransE_embedding_model_weights.pth", "../embedding_model/FB15k_237_DistMult_embedding_model_weights.pth", "../embedding_model/FB15k_237_TransE_embedding_model_weights.pth", "../embedding_model/WordNet18RR_RotatE_embedding_model_weights.pth", "../embedding_model/WordNet18RR_ComplEx_embedding_model_weights.pth", "../embedding_model/WordNet18RR_DistMult_embedding_model_weights.pth"]
   score_model_hidden_dim:
-    values: [32, 64,128, 256, 512]
+    values: [64, 128, 256, 512, 1024]
   lr:
     min: 0.0001
     max: 0.01
     distribution: log_uniform_values
   k:
     value: [1, 3, 10]
-  epochs:
-    values: [2000]
+  max_epochs:
+    values: [100000]
   batch_size:
     values: [64, 512]
-  num_timesteps:
+  num_sde_timesteps:
     values: [10, 20, 30, 40, 50]
   rel_emb_dim:
     values: [50, 100, 150, 200]

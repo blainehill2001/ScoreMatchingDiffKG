@@ -3,6 +3,7 @@ import json
 import os
 import os.path as osp
 import sys
+from collections import OrderedDict
 from typing import Any
 from typing import Dict
 from typing import List
@@ -42,37 +43,35 @@ def load_config(config_path):
     return config
 
 
-def extract_info_from_string(string):
-    # Extract directory path
-    dir_path = osp.dirname(string)
+def extract_info_from_string(embedding_model_dir_string):
+
+    # Extract the prefix from the directory string
+    prefix = osp.basename(osp.normpath(embedding_model_dir_string))
 
     # Load config.yaml file
-    config_path = osp.join(dir_path, "config.yaml")
+    config_path = osp.join(embedding_model_dir_string, f"{prefix}_config.yaml")
     config = load_config(config_path)
 
     # Extract dataset name, embedding model name, and task
-    dataset_name = config.get("dataset_name", "")
-    embedding_model_name = config.get("embedding_model_name", "")
-    task = config.get("task", "")
+    dataset_name = config.get("dataset_name", None)
+    embedding_model_name = config.get("embedding_model_name", None)
+    task = config.get("task", None)
+    aux_dict = config.get("aux_dict", None)
 
-    return dataset_name, embedding_model_name, task
+    return dataset_name, embedding_model_name, task, aux_dict
 
 
-def initialize_trained_embedding_model(
-    embedding_model_dir,
-):
+def initialize_trained_embedding_model(embedding_model_dir_string, device):
     # Extract the prefix from the directory string
-    prefix = osp.basename(osp.normpath(dir_string))
+    prefix = osp.basename(osp.normpath(embedding_model_dir_string))
 
     # Construct file names using the prefix
-    performance_file = f"{prefix}_performance.txt"
     config_file = f"{prefix}_config.yaml"
     weights_file = f"{prefix}_weights.pth"
 
     # Construct full file paths
-    performance_path = osp.join(dir_string, performance_file)
-    config_path = osp.join(dir_string, config_file)
-    weights_path = osp.join(dir_string, weights_file)
+    config_path = osp.join(embedding_model_dir_string, config_file)
+    weights_path = osp.join(embedding_model_dir_string, weights_file)
 
     # Load configuration from YAML file
     config = load_config(config_path)
@@ -119,10 +118,23 @@ def initialize_trained_embedding_model(
     embedding_model = embedding_model_class(**model_init_params)
 
     # Load the model state dictionary
-    complete_state_dict = torch.load(state_dict_path, map_location=device)
+    loaded_weights = torch.load(weights_path, map_location=device)
+
+    # the weights file has the same information prefixed by both .module and .original_model due to DataParallel
+    new_state_dict = OrderedDict()
+    for k, v in loaded_weights.items():
+        if k.startswith("module."):
+            name = k[7:]  # remove 'module.' prefix
+            new_state_dict[name] = v
+        # discard the "original_model." prefixed information since it is the same as module.
+    if len(new_state_dict) == 0:
+        raise ValueError(
+            f"Weights stored in {weights_path} do not have any keys"
+        )
+    loaded_weights = new_state_dict
 
     # Load the state dictionary into the model
-    embedding_model.load_state_dict(model_state_dict)
+    embedding_model.load_state_dict(loaded_weights)
     embedding_model.to(device)
 
     return embedding_model, embedding_model_name, dataset_name
@@ -203,6 +215,26 @@ def get_english_from_freebase_id(freebase_id: str) -> str:
         )
 
 
+"""
+# Below is an example of how you might use convert_indices_to_english and get_english_from_freebase_id
+if view_english and self.dataset_name == "FB15k_237":
+    # for getting english from freebase ID for FB15k_237 data
+    # show_only_first=True means that only the first entry in the batch will be processed and returned in english
+    ic(
+        convert_indices_to_english(
+            indices10, self.relation_dict, is_entities=False
+        )
+    )
+    ic(
+        convert_indices_to_english(
+            true_r, self.relation_dict, is_entities=False
+        )
+    )
+    ic(convert_indices_to_english(h, self.entity_dict))
+    ic(convert_indices_to_english(t, self.entity_dict))
+"""
+
+
 def load_dicts(
     data_path: str,
 ) -> Tuple[Dict[Any, Any] | None, Dict[Any, Any] | None]:
@@ -230,3 +262,69 @@ def load_dicts(
     )
 
     return entity_dict, relation_dict
+
+
+def save_score_matching_model_config(model) -> str:
+    """
+    Saves the configuration of a score matching model to a YAML file.
+
+    Args:
+        model (KGEModel): The model whose configuration is to be saved.
+
+    Returns:
+        str: Path to the saved configuration file.
+    """
+    config = model.config
+    save_path = model.save_path
+    # Convert wandb.config to a dictionary if it's not already one
+    if not isinstance(config, dict):
+        config = dict(config)
+
+    # Define where we are saving the dumped config
+    config_path = osp.join(
+        save_path, f"{model.config['prefix']}_score_matching_model_config.yaml"
+    )
+
+    # Save the redacted config file
+    with open(config_path, "w") as file:
+        yaml.dump(config, file)
+
+    return config_path
+
+
+def save_trained_score_matching_weights_and_performance(
+    model, epochs_trained: int, performance_metrics: Dict[str, float]
+) -> Tuple[str, str]:
+    """
+    Saves the trained score matching model's weights and performance metrics to disk.
+
+    Args:
+        model (): The trained model instance.
+        epochs_trained (int): The number of epochs the model was trained for.
+        performance_metrics (Dict[str, float]): A dictionary containing performance metrics.
+
+    Returns:
+        Tuple[str, str]: Paths to the saved model weights and performance metrics files.
+    """
+    # Define the file paths for model weights and combined performance and epochs file
+    model_weights_path = osp.join(
+        model.save_path,
+        f"{model.config['prefix']}_score_matching_model_weights.pth",
+    )
+    performance_path = osp.join(
+        model.save_path,
+        f"{model.config['prefix']}_score_matching_model_performance.txt",
+    )
+
+    # Save the model as a .pth file
+    torch.save(model.state_dict(), model_weights_path)
+
+    # Save the number of trained epochs and performance metrics in a single text file
+    with open(performance_path, "w") as file:
+        file.write(f"Trained Epochs: {epochs_trained}\n")
+        file.write("Performance Metrics:\n")
+        for metric, value in performance_metrics.items():
+            file.write(f"{metric}: {value}\n")
+
+    # Optionally return paths if needed
+    return model_weights_path, performance_path

@@ -1,13 +1,18 @@
 import math
 import random
 from datetime import datetime
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import Union
 
 import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import yaml
 from icecream import ic
+from torch import Tensor
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 from torch.utils.data import TensorDataset
@@ -17,53 +22,97 @@ class ScoreModel(nn.Module):
     def __init__(
         self,
         embedding_model,
-        node_emb_dim,
-        rel_emb_dim,
         score_model_hidden_dim=512,
+        num_sde_timesteps=20,
+        similarity_metric="l2",
+        task="relation_prediction",
+        aux_dict=None,
     ):
         super().__init__()
         self.embedding_model = embedding_model
         # Get entity and relation embeddings from embedding model
         with torch.no_grad():
-            entity_embeddings = embedding_model.node_emb.weight.detach()
-            relation_embeddings = embedding_model.rel_emb.weight.detach()
-            feature_transform = (
-                embedding_model.feature_transform_re.weight.detach()
+            entity_embeddings_weights = (
+                embedding_model.node_emb.weight.detach()
+            )
+            relation_embeddings_weights = (
+                embedding_model.rel_emb.weight.detach()
             )
 
             # handle both real and imaginary node and relation embeddings
             if hasattr(embedding_model, "node_emb_im") and hasattr(
                 embedding_model, "feature_transform_im"
             ):  # occurs with RotatE, ComplEx
-                entity_embeddings_im = (
+                entity_embeddings_weights_im = (
                     embedding_model.node_emb_im.weight.detach()
                 )
-                feature_transform_im = (
-                    embedding_model.feature_transform_im.weight.detach()
-                )
-                entity_embeddings = torch.cat(
-                    [entity_embeddings, entity_embeddings_im], dim=-1
-                )
-                feature_transform = torch.cat(
-                    [feature_transform, feature_transform_im], dim=-1
+                entity_embeddings_weights = torch.cat(
+                    [entity_embeddings_weights, entity_embeddings_weights_im],
+                    dim=-1,
                 )
 
             if hasattr(embedding_model, "rel_emb_im"):  # occurs with ComplEx
-                relation_embeddings_im = (
+                relation_embeddings_weights_im = (
                     embedding_model.rel_emb_im.weight.detach()
                 )
-                relation_embeddings = torch.cat(
-                    [relation_embeddings, relation_embeddings_im], dim=-1
+                relation_embeddings_weights = torch.cat(
+                    [
+                        relation_embeddings_weights,
+                        relation_embeddings_weights_im,
+                    ],
+                    dim=-1,
                 )
-        self.entity_embeddings = entity_embeddings
-        self.relation_embeddings = relation_embeddings
+
+            if hasattr(embedding_model, "feature_transform_re") and hasattr(
+                embedding_model, "feature_transform_im"
+            ):
+                in_features_1 = (
+                    embedding_model.feature_transform_re.in_features
+                )
+                out_features_1 = (
+                    embedding_model.feature_transform_re.out_features
+                )
+                in_features_2 = (
+                    embedding_model.feature_transform_im.in_features
+                )
+                out_features_2 = (
+                    embedding_model.feature_transform_im.out_features
+                )
+
+                combined_in_features = in_features_1 + in_features_2
+                combined_out_features = out_features_1 + out_features_2
+
+                feature_transform = nn.Linear(
+                    combined_in_features, combined_out_features
+                )
+
+                # Copy the weights from the original layers to the new combined layer
+                feature_transform.weight.data[
+                    :in_features_1, :out_features_1
+                ] = embedding_model.feature_transform_re.weight.data
+                feature_transform.weight.data[
+                    in_features_1:, out_features_1:
+                ] = embedding_model.feature_transform_im.weight.data
+                feature_transform.bias.data[:out_features_1] = (
+                    embedding_model.feature_transform_re.bias.data
+                )
+                feature_transform.bias.data[out_features_1:] = (
+                    embedding_model.feature_transform_im.bias.data
+                )
+
+            else:
+                feature_transform = embedding_model.feature_transform_re
+
+        self.entity_embeddings_weights = entity_embeddings_weights
+        self.relation_embeddings_weights = relation_embeddings_weights
         self.feature_transform = feature_transform
-        self.node_emb_dim = (self.entity_embeddings.shape[-1],)
-        self.rel_emb_dim = (self.relation_embeddings.shape[-1],)
+
+        self.node_emb_dim = (self.entity_embeddings_weights.shape[-1],)
+        self.rel_emb_dim = (self.relation_embeddings_weights.shape[-1],)
         self.score_net = nn.Sequential(
             nn.Linear(
-                self.entity_embeddings.shape[-1]
-                + self.relation_embeddings.shape[-1],
+                self.entity_embeddings_weights.shape[-1]
+                + self.relation_embeddings_weights.shape[-1],
                 score_model_hidden_dim,
                 dtype=torch.float,
             ),
@@ -76,6 +125,10 @@ class ScoreModel(nn.Module):
             nn.ReLU(),
             nn.Linear(score_model_hidden_dim, 1, dtype=torch.float),
         )
+        self.num_sde_timesteps = num_sde_timesteps
+        self.similarity_metric = similarity_metric
+        self.task = task
+        self.aux_dict = aux_dict
 
     def forward(self, h_emb, r_emb, t_emb, timestep=None):
         # Implement your desired distance measure here (e.g., L2 distance)
@@ -90,7 +143,7 @@ class ScoreModel(nn.Module):
             def sigmoid(x):
                 return 1 / (1 + math.exp(-x))
 
-            weight = sigmoid(timestep / (self.config["num_timesteps"] - 1))
+            weight = sigmoid(timestep / (self.num_sde_timesteps - 1))
         score = weight * distance
         return score
 
@@ -101,22 +154,212 @@ class ScoreModel(nn.Module):
         t: Tensor,
         timestep: int,
         x: Optional[Tensor] = None,
-        y: Optional[Tensor] = None,
         task: Optional[str] = "relation_prediction",
     ) -> Tensor:
         """
         Denoising score-matching loss with noise-conditional score networks.
         """
         h_emb, r_emb, t_emb = (
-            score_model.embedding_model.node_emb(h),
-            score_model.embedding_model.rel_emb(r),
-            score_model.embedding_model.node_emb(t),
+            self.embedding_model.node_emb(h),
+            self.embedding_model.rel_emb(r),
+            self.embedding_model.node_emb(t),
         )
-        if x is not None and self.feature_transform:
-            h_emb += self.feature_transform(x)
+        if isinstance(x, torch.Tensor) and isinstance(
+            self.feature_transform, torch.Tensor
+        ):
+            h_emb += torch.matmul(x, self.feature_transform)
 
-        true_score = score_model(
+        true_score = self(
             h_emb, r_emb, t_emb
         )  # simply do not pass in the timestep
-        noisy_score = score_model(h_emb, r_emb, t_emb, timestep)
+        noisy_score = self(h_emb, r_emb, t_emb, timestep)
         return ((true_score - noisy_score) ** 2).mean()
+
+    def reverse_sde_prediction(self, emb1, emb2):
+        """
+        Refine the embeddings using reverse SDE for better link prediction.
+
+        Args:
+            emb1: Embeddings of the first entity/relation (batch_size, emb_dim).
+            emb2: Embeddings of the second entity/relation (batch_size, emb_dim).
+
+        Returns:
+            Tensor: Refined embeddings (batch_size, emb_dim).
+        """
+        task = self.task
+        device = emb1.device
+
+        # Initialize with random noise
+        if task == "relation_prediction":
+            pred_emb = torch.randn(
+                emb1.size(0), self.rel_emb_dim, device=device
+            )
+        else:
+            pred_emb = torch.randn(
+                emb1.size(0), self.node_emb_dim, device=device
+            )
+
+        # Define the time steps for the reverse SDE process
+        t_steps = torch.linspace(
+            self.num_sde_timesteps - 1, 0, self.num_sde_timesteps
+        ).to(device)
+
+        # Define the SDE function for the reverse process
+        def sde_func(t, pred_emb):
+            with torch.enable_grad():
+                pred_emb.requires_grad_(True)
+                if task == "relation_prediction":
+                    score = self(emb1, pred_emb, emb2, t)
+                elif task == "head_prediction":
+                    score = self(pred_emb, emb1, emb2, t)
+                else:  # task in ["tail_prediction", "node_classification"]
+                    score = self(emb1, emb2, pred_emb, t)
+                grad_pred_emb = torch.autograd.grad(
+                    score.sum(dim=0), pred_emb, create_graph=True
+                )[0]
+                return -grad_pred_emb
+
+        # Reverse direction
+        with torch.no_grad():
+            for t in reversed(t_steps):
+                pred_emb = sde_func(t, pred_emb)
+
+        return pred_emb  # returns predictions for the specified entity type of shape (batch_size, emb_size)
+
+    @torch.no_grad()
+    def test(
+        self,
+        h: Tensor,
+        r: Tensor,
+        t: Tensor,
+        x: Optional[Tensor] = None,
+        k: List[int] = [1, 3, 10],
+        task: str = "relation_prediction",  # default to link prediction
+    ) -> Union[float, Tuple[float, float, Dict[int, float]]]:
+
+        if self.task in [
+            "relation_prediction",
+            "head_prediction",
+            "tail_prediction",
+        ]:
+            return self.evaluate_prediction_task(h, r, t, x, k)
+        elif task == "node_classification":
+            return self.evaluate_classification_task(h, r, t, x)
+        else:
+            raise ValueError(f"Unsupported task type: {task}")
+
+    def evaluate_prediction_task(
+        self,
+        h: Tensor,
+        r: Tensor,
+        t: Tensor,
+        x: Optional[Tensor],
+        k: List[int] = [1, 3, 10],
+    ) -> Tuple[float, float, Dict[int, float]]:
+
+        h_emb = self.embedding_model.node_emb(h)
+        r_emb = self.embedding_model.rel_emb(r)
+        t_emb = self.embedding_model.node_emb(t)
+
+        if self.task == "relation_prediction":
+            refined_emb = self.reverse_sde_prediction(h_emb, t_emb)
+            embedding_weights = self.embedding_model.rel_emb.weight.detach()
+            ground_truth = r
+        elif self.task == "head_prediction":
+            refined_emb = self.reverse_sde_prediction(r_emb, t_emb)
+            embedding_weights = self.embedding_model.node_emb.weight.detach()
+            ground_truth = h
+        elif self.task == "tail_prediction":
+            refined_emb = self.reverse_sde_prediction(h_emb, r_emb)
+            embedding_weights = self.embedding_model.node_emb.weight.detach()
+            ground_truth = t
+
+        sorted_values, sorted_indices = self.calculate_similarity_and_sort(
+            refined_emb, embedding_weights
+        )
+
+        # Calculate mean rank of the ground truth and MRR
+        ranks = (sorted_indices == ground_truth.unsqueeze(1)).nonzero(
+            as_tuple=True
+        )[1] + 1
+        mean_rank = ranks.float().mean().item()
+        mrr = (1.0 / (ranks.float() + 1)).mean().item()
+
+        # Check if true relation is within the top K predictions
+        hits_at_k = {}
+        if isinstance(k, int):
+            k_values = [k]
+        else:
+            k_values = k
+        for k_val in k_values:
+            hits_at_k[k_val] = (ranks < k_val).float().mean().item()
+
+        return mean_rank, mrr, hits_at_k
+
+    def calculate_similarity_and_sort(self, refined_emb, embedding_weights):
+        if self.similarity_metric == "cosine":
+            similarity = F.cosine_similarity(
+                refined_emb.unsqueeze(1),
+                embedding_weights.unsqueeze(0),
+                dim=-1,
+            )
+        elif self.similarity_metric == "l2":
+            dist = torch.norm(
+                refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0),
+                p=2,
+                dim=-1,
+            )
+        else:
+            raise NotImplementedError(
+                f"Haven't implemented a similarity metric yet for {self.similarity_metric}"
+            )
+
+        if self.similarity_metric == "cosine":
+            sorted_values, sorted_indices = torch.sort(
+                similarity, dim=1, descending=True
+            )
+        elif self.similarity_metric == "l2":
+            sorted_values, sorted_indices = torch.sort(dist, dim=1)
+
+        return sorted_values, sorted_indices
+
+    def evaluate_classification_task(
+        self,
+        h: Tensor,
+        r: Tensor,
+        t: Tensor,
+        x: Optional[Tensor],
+    ) -> float:
+        if self.aux_dict is None:
+            raise ValueError("aux_dict isn't provided")
+
+        h_emb, r_emb, t_emb = (
+            self.embedding_model.node_emb(h),
+            self.embedding_model.rel_emb(r),
+            self.embedding_model.node_emb(t),
+        )
+
+        if isinstance(x, torch.Tensor) and isinstance(
+            self.feature_transform, torch.Tensor
+        ):
+            h_emb += torch.matmul(x, self.feature_transform)
+
+        aux_indices_emb = self.embedding_model.node_emb(
+            torch.tensor(
+                list(self.aux_dict.keys()),
+                dtype=torch.long,
+                device=t_emb.device,
+            )
+        )
+        scores = torch.stack(
+            [
+                self(h_emb, r_emb, aux_idx_emb.expand_as(t_emb))
+                for aux_idx_emb in aux_indices_emb
+            ]
+        )
+        aux_keys_tensor = torch.tensor(
+            list(self.aux_dict.keys()), device=scores.device, dtype=torch.long
+        )
+        predicted_labels = aux_keys_tensor[scores.argmax(dim=0)]
+        accuracy = (predicted_labels == t).float().mean().item()
+        return accuracy

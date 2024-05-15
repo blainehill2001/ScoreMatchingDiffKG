@@ -207,7 +207,7 @@ def evaluate_classification_task(
     rel_type: Tensor,
     tail_index: Tensor,
     x: Optional[Tensor],
-    y: Tensor,
+    y: Optional[Tensor],
 ) -> float:
     """
     Evaluates the node classification task by computing the accuracy of the predictions.
@@ -216,15 +216,15 @@ def evaluate_classification_task(
         model (nn.Module): The model to evaluate.
         head_index (Tensor): The head indices.
         rel_type (Tensor): The relation type indices.
-        tail_index (Tensor): The tail indices.
+        tail_index (Tensor): The tail indices - here they will be auxiliary node indices.
         x (Tensor, optional): Additional node features.
-        y (Tensor): The ground truth labels.
+        y (Tensor, optional): The ground truth labels.
 
     Returns:
         float: The accuracy of the classification.
     """
-    if y is None or model.aux_dict is None:
-        return 0.0  # Return a default value or handle the case where y or aux_dict is None
+    if model.aux_dict is None:
+        raise ValueError("aux_dict isn't provided")
 
     scores = compute_classification_scores(
         model, head_index, rel_type, tail_index, x

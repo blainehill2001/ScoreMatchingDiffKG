@@ -5,7 +5,7 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237", "WordNet18RR", "WordNet18", "YAGO3_10", "Cora", "Citeseer", "Pubmed"]
+    values: ["FB15k_237", "WordNet18RR", "WordNet18", "Cora", "Citeseer", "Pubmed"]
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   task:
@@ -27,6 +27,6 @@ parameters:
   verbose:
     value: False
   num_epochs_without_improvement_until_early_finish:
-    value: 10
+    value: 100
   validate_after_this_many_epochs:
-    value: 10
+    value: 50
