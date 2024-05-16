@@ -62,7 +62,7 @@ def extract_info_from_string(
         embedding_model_dir_string (str): Directory string.
 
     Returns:
-        Tuple[str, str, str, Dict[str, Any]]: Dataset name, embedding model name, task, and auxiliary dictionary.
+        Tuple[str | None, str | None, str | None, Dict[str, Any] | None]: Dataset name, embedding model name, task, and auxiliary dictionary.
     """
 
     # Extract the prefix from the directory string
