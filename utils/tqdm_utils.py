@@ -1,4 +1,5 @@
-from functools import partialmethod, wraps
+from functools import partialmethod
+from functools import wraps
 
 from tqdm import tqdm  # type: ignore
 

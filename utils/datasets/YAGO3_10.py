@@ -1,13 +1,13 @@
 import os
 import os.path as osp
 import shutil
-import urllib.request
 import zipfile
-from collections import defaultdict
 from typing import Dict
 
 import torch
-from torch_geometric.data import Data, InMemoryDataset, download_url
+from torch_geometric.data import Data
+from torch_geometric.data import InMemoryDataset
+from torch_geometric.data import download_url
 
 
 class YAGO3_10(InMemoryDataset):

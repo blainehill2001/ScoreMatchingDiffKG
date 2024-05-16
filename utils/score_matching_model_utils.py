@@ -1,5 +1,3 @@
-import hashlib
-import json
 import os
 import os.path as osp
 import sys
@@ -12,22 +10,10 @@ from typing import Union
 
 import torch
 import yaml  # type: ignore
-from icecream import ic
 from torch import Tensor
-from torch_geometric.data import Data
-from torch_geometric.data import DataLoader
-from torch_geometric.datasets import FB15k_237
-from torch_geometric.datasets import Planetoid
-from torch_geometric.datasets import WordNet18
-from torch_geometric.datasets import WordNet18RR
 from torch_geometric.nn import KGEModel
 
-from .datasets.Planetoid import PlanetoidWithAuxiliaryNodes
-from .datasets.YAGO3_10 import YAGO3_10
-from .embedding_models.ComplEx import CustomComplEx
-from .embedding_models.DistMult import CustomDistMult
-from .embedding_models.RotatE import CustomRotatE
-from .embedding_models.TransE import CustomTransE
+from .score_matching_model.ScoreModel import ScoreModel
 from .utils import get_embedding_model_class
 
 # Add the path to import modules from the 'freebase' directory
@@ -37,13 +23,47 @@ from converter import EntityConverter
 from wikidata.client import Client
 
 
-def load_config(config_path):
-    with open(config_path) as file:
-        config = yaml.safe_load(file)
+def load_config(config_path: str) -> Dict[str, Any]:
+    """
+    Load configuration from a YAML file.
+
+    Args:
+        config_path (str): Path to the configuration file.
+
+    Returns:
+        Dict[str, Any]: Loaded configuration.
+
+    Raises:
+        ValueError: If the configuration file path does not exist.
+    """
+    if not os.path.exists(config_path):
+        raise ValueError(
+            f"Configuration file path '{config_path}' does not exist."
+        )
+
+    try:
+        with open(config_path) as file:
+            config = yaml.safe_load(file)
+    except (yaml.YAMLError, OSError) as e:
+        raise ValueError(
+            f"Error reading configuration file '{config_path}': {e}"
+        )
+
     return config
 
 
-def extract_info_from_string(embedding_model_dir_string):
+def extract_info_from_string(
+    embedding_model_dir_string: str,
+) -> Tuple[str | None, str | None, str | None, Dict[str, Any] | None]:
+    """
+    Extract dataset name, embedding model name, task, and auxiliary dictionary from a directory string.
+
+    Args:
+        embedding_model_dir_string (str): Directory string.
+
+    Returns:
+        Tuple[str, str, str, Dict[str, Any]]: Dataset name, embedding model name, task, and auxiliary dictionary.
+    """
 
     # Extract the prefix from the directory string
     prefix = osp.basename(osp.normpath(embedding_model_dir_string))
@@ -61,7 +81,19 @@ def extract_info_from_string(embedding_model_dir_string):
     return dataset_name, embedding_model_name, task, aux_dict
 
 
-def initialize_trained_embedding_model(embedding_model_dir_string, device):
+def initialize_trained_embedding_model(
+    embedding_model_dir_string: str, device
+) -> Tuple[KGEModel, str | None, str | None]:
+    """
+    Initialize a trained embedding model.
+
+    Args:
+        embedding_model_dir_string (str): Directory string.
+        device: Device to load the model.
+
+    Returns:
+        Tuple[KGEModel, str | None, str | None]: Trained embedding model, model name, dataset name.
+    """
     # Extract the prefix from the directory string
     prefix = osp.basename(osp.normpath(embedding_model_dir_string))
 
@@ -83,22 +115,27 @@ def initialize_trained_embedding_model(embedding_model_dir_string, device):
     embedding_model_name = config.get("embedding_model_name")
     dataset_name = config.get("dataset_name")
 
-    if any(
-        x is None
-        for x in [
-            num_nodes,
-            num_relations,
-            hidden_channels,
-            embedding_model_name,
-            dataset_name,
-        ]
+    if (
+        any(
+            x is None
+            for x in [
+                num_nodes,
+                num_relations,
+                hidden_channels,
+                dataset_name,
+            ]
+        )
+        is True
     ):
         raise ValueError(
-            "embedding model num_nodes, num_relations, hidden_channels, embedding_model_name, or dataset_name not found in the config file"
+            "embedding model num_nodes, num_relations, hidden_channels, or dataset_name not found in the config file"
         )
 
-    # Get the model class
-    embedding_model_class = get_embedding_model_class(embedding_model_name)
+    # Get the model class and check manually for None to resolve typing error
+    if embedding_model_name is not None:
+        embedding_model_class = get_embedding_model_class(embedding_model_name)
+    else:
+        raise ValueError("embedding_model_name not found in the config file")
 
     # Initialize the actual embedding model with config parameters
     model_init_params = {
@@ -147,7 +184,7 @@ def convert_indices_to_english(
     show_only_first: bool = True,
 ) -> Union[str, List[str]]:
     """
-    Converts indices in a tensor to English labels using a dictionary mapping.
+    Convert indices in a tensor to English labels using a dictionary mapping.
 
     Args:
         tensor (Tensor): Tensor containing indices to convert.
@@ -192,13 +229,13 @@ def convert_indices_to_english(
 
 def get_english_from_freebase_id(freebase_id: str) -> str:
     """
-    Retrieves the English label for a given Freebase ID using Wikidata.
+    Retrieve the English label for a given Freebase ID using Wikidata.
 
     Args:
-        freebase_id (str): The Freebase ID to convert.
+        freebase_id (str): Freebase ID to convert.
 
     Returns:
-        str: The English label or an error message if not found.
+        str: English label or an error message if not found.
     """
     try:
         entity_converter = EntityConverter("https://query.wikidata.org/sparql")
@@ -239,7 +276,7 @@ def load_dicts(
     data_path: str,
 ) -> Tuple[Dict[Any, Any] | None, Dict[Any, Any] | None]:
     """
-    Loads entity and relation dictionaries from a specified path.
+    Load entity and relation dictionaries from a specified path.
 
     Args:
         data_path (str): Path to the directory containing the dictionaries.
@@ -264,12 +301,12 @@ def load_dicts(
     return entity_dict, relation_dict
 
 
-def save_score_matching_model_config(model) -> str:
+def save_score_matching_model_config(model: ScoreModel) -> str:
     """
-    Saves the configuration of a score matching model to a YAML file.
+    Save the configuration of a score matching model to a YAML file.
 
     Args:
-        model (KGEModel): The model whose configuration is to be saved.
+        model (ScoreModel): The model whose configuration is to be saved.
 
     Returns:
         str: Path to the saved configuration file.
@@ -293,15 +330,17 @@ def save_score_matching_model_config(model) -> str:
 
 
 def save_trained_score_matching_weights_and_performance(
-    model, epochs_trained: int, performance_metrics: Dict[str, float]
+    model: ScoreModel,
+    epochs_trained: int,
+    performance_metrics: Dict[str, float],
 ) -> Tuple[str, str]:
     """
-    Saves the trained score matching model's weights and performance metrics to disk.
+    Save the trained model's weights and performance metrics to disk.
 
     Args:
-        model (): The trained model instance.
-        epochs_trained (int): The number of epochs the model was trained for.
-        performance_metrics (Dict[str, float]): A dictionary containing performance metrics.
+        model (ScoreModel): The trained model instance.
+        epochs_trained (int): Number of epochs the model was trained for.
+        performance_metrics (Dict[str, float]): Performance metrics.
 
     Returns:
         Tuple[str, str]: Paths to the saved model weights and performance metrics files.

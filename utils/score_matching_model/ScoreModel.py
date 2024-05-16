@@ -1,33 +1,37 @@
 import math
-import random
-from datetime import datetime
 from typing import Dict
 from typing import List
 from typing import Optional
 from typing import Tuple
 from typing import Union
 
-import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from icecream import ic
 from torch import Tensor
-from torch.optim import Adam
-from torch.utils.data import DataLoader
-from torch.utils.data import TensorDataset
 
 
 class ScoreModel(nn.Module):
     def __init__(
         self,
         embedding_model,
-        score_model_hidden_dim=512,
-        num_sde_timesteps=20,
-        similarity_metric="l2",
-        task="relation_prediction",
-        aux_dict=None,
+        score_model_hidden_dim: int = 512,
+        num_sde_timesteps: int = 20,
+        similarity_metric: str = "l2",
+        task: str = "relation_prediction",
+        aux_dict: Optional[Dict] = None,
     ):
+        """
+        Initialize the ScoreModel.
+
+        Args:
+            embedding_model: The embedding model used for scoring.
+            score_model_hidden_dim: The hidden dimension of the score model.
+            num_sde_timesteps: Number of SDE timesteps.
+            similarity_metric: The similarity metric used for evaluation.
+            task: The task type for the model.
+            aux_dict: Auxiliary dictionary for additional information.
+        """
         super().__init__()
         self.embedding_model = embedding_model
         # Get entity and relation embeddings from embedding model
@@ -130,7 +134,25 @@ class ScoreModel(nn.Module):
         self.task = task
         self.aux_dict = aux_dict
 
-    def forward(self, h_emb, r_emb, t_emb, timestep=None):
+    def forward(
+        self,
+        h_emb: Tensor,
+        r_emb: Tensor,
+        t_emb: Tensor,
+        timestep: Optional[int] = None,
+    ) -> Tensor:
+        """
+        Forward pass of the model.
+
+        Args:
+            h_emb: Embedding of the head entity.
+            r_emb: Embedding of the relation.
+            t_emb: Embedding of the tail entity.
+            timestep: Current timestep for SDE.
+
+        Returns:
+            Tensor: The calculated score.
+        """
         # Implement your desired distance measure here (e.g., L2 distance)
         distance = torch.linalg.norm(
             h_emb + r_emb - t_emb, dim=-1
@@ -157,7 +179,18 @@ class ScoreModel(nn.Module):
         task: Optional[str] = "relation_prediction",
     ) -> Tensor:
         """
-        Denoising score-matching loss with noise-conditional score networks.
+        Calculate the denoising score-matching loss.
+
+        Args:
+            h: Head entity tensor.
+            r: Relation tensor.
+            t: Tail entity tensor.
+            timestep: Current timestep.
+            x: Additional tensor for transformation.
+            task: Type of prediction task.
+
+        Returns:
+            Tensor: The calculated loss.
         """
         h_emb, r_emb, t_emb = (
             self.embedding_model.node_emb(h),
@@ -175,16 +208,16 @@ class ScoreModel(nn.Module):
         noisy_score = self(h_emb, r_emb, t_emb, timestep)
         return ((true_score - noisy_score) ** 2).mean()
 
-    def reverse_sde_prediction(self, emb1, emb2):
+    def reverse_sde_prediction(self, emb1: Tensor, emb2: Tensor) -> Tensor:
         """
         Refine the embeddings using reverse SDE for better link prediction.
 
         Args:
-            emb1: Embeddings of the first entity/relation (batch_size, emb_dim).
-            emb2: Embeddings of the second entity/relation (batch_size, emb_dim).
+            emb1: Embeddings of the first entity/relation.
+            emb2: Embeddings of the second entity/relation.
 
         Returns:
-            Tensor: Refined embeddings (batch_size, emb_dim).
+            Tensor: Refined embeddings.
         """
         task = self.task
         device = emb1.device
@@ -234,8 +267,22 @@ class ScoreModel(nn.Module):
         t: Tensor,
         x: Optional[Tensor] = None,
         k: List[int] = [1, 3, 10],
-        task: str = "relation_prediction",  # default to link prediction
+        task: str = "relation_prediction",
     ) -> Union[float, Tuple[float, float, Dict[int, float]]]:
+        """
+        Test the model on a given task.
+
+        Args:
+            h: Head entity tensor.
+            r: Relation tensor.
+            t: Tail entity tensor.
+            x: Additional tensor for transformation.
+            k: List of top-k values.
+            task: Type of prediction task.
+
+        Returns:
+            Union[float, Tuple[float, float, Dict[int, float]]]: Evaluation results.
+        """
 
         if self.task in [
             "relation_prediction",
@@ -256,6 +303,19 @@ class ScoreModel(nn.Module):
         x: Optional[Tensor],
         k: List[int] = [1, 3, 10],
     ) -> Tuple[float, float, Dict[int, float]]:
+        """
+        Evaluate the model on a prediction task.
+
+        Args:
+            h: Head entity tensor.
+            r: Relation tensor.
+            t: Tail entity tensor.
+            x: Additional tensor for transformation.
+            k: List of top-k values.
+
+        Returns:
+            Tuple[float, float, Dict[int, float]]: Evaluation metrics.
+        """
 
         h_emb = self.embedding_model.node_emb(h)
         r_emb = self.embedding_model.rel_emb(r)
@@ -296,7 +356,19 @@ class ScoreModel(nn.Module):
 
         return mean_rank, mrr, hits_at_k
 
-    def calculate_similarity_and_sort(self, refined_emb, embedding_weights):
+    def calculate_similarity_and_sort(
+        self, refined_emb: Tensor, embedding_weights: Tensor
+    ) -> Tuple[Tensor, Tensor]:
+        """
+        Calculate similarity and sort the embeddings.
+
+        Args:
+            refined_emb: Refined embeddings.
+            embedding_weights: Embedding weights.
+
+        Returns:
+            Tuple[Tensor, Tensor]: Sorted values and indices.
+        """
         if self.similarity_metric == "cosine":
             similarity = F.cosine_similarity(
                 refined_emb.unsqueeze(1),
@@ -330,6 +402,18 @@ class ScoreModel(nn.Module):
         t: Tensor,
         x: Optional[Tensor],
     ) -> float:
+        """
+        Evaluate the model on a classification task.
+
+        Args:
+            h: Head entity tensor.
+            r: Relation tensor.
+            t: Tail entity tensor.
+            x: Additional tensor for transformation.
+
+        Returns:
+            float: Accuracy of the classification task.
+        """
         if self.aux_dict is None:
             raise ValueError("aux_dict isn't provided")
 

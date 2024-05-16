@@ -6,10 +6,7 @@ from typing import Union
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from icecream import ic
 from torch import Tensor
-from torch_geometric.nn import RotatE as BaseRotatE
 from torch_geometric.nn.kge.loader import KGTripletLoader
 
 

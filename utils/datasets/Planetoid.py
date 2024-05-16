@@ -1,14 +1,17 @@
 import json
 import os.path as osp
 import typing
-from typing import Dict, List, Optional, Tuple, Type
+from typing import Dict
+from typing import Optional
+from typing import Tuple
+from typing import Type
 
 import numpy as np
 import torch
-from icecream import ic
 from torch_geometric.data import Data
 from torch_geometric.datasets.planetoid import Planetoid
-from torch_geometric.io import fs, read_planetoid_data
+from torch_geometric.io import fs
+from torch_geometric.io import read_planetoid_data
 
 
 class PlanetoidWithAuxiliaryNodes(Planetoid):

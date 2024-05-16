@@ -1,48 +1,29 @@
 import hashlib
 import json
 import os
-import os.path as osp
 import random
 import sys
 from typing import Any
 from typing import Dict
-from typing import List
-from typing import Tuple
-from typing import Union
 
 import numpy as np
 import torch
-import yaml  # type: ignore
-from icecream import ic
-from torch import Tensor
-from torch_geometric.data import Data
-from torch_geometric.data import DataLoader
-from torch_geometric.datasets import FB15k_237
-from torch_geometric.datasets import Planetoid
-from torch_geometric.datasets import WordNet18
-from torch_geometric.datasets import WordNet18RR
 from torch_geometric.nn import KGEModel
 
-from .datasets.Planetoid import PlanetoidWithAuxiliaryNodes
-from .datasets.YAGO3_10 import YAGO3_10
 from .embedding_models.ComplEx import CustomComplEx
 from .embedding_models.DistMult import CustomDistMult
 from .embedding_models.RotatE import CustomRotatE
 from .embedding_models.TransE import CustomTransE
 
-# Add the path to import modules from the 'freebase' directory
 sys.path.append(os.path.join(os.path.dirname(__file__), "freebase"))
 
-from converter import EntityConverter
-from wikidata.client import Client
 
-
-def set_seed(seed_value=123):
+def set_seed(seed_value: int = 123) -> None:
     """Set the seed for reproducibility."""
     random.seed(seed_value)
     np.random.seed(seed_value)
     torch.manual_seed(seed_value)
-    torch.cuda.manual_seed_all(seed_value)  # if you are using multi-GPU.
+    torch.cuda.manual_seed_all(seed_value)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
@@ -55,22 +36,19 @@ def generate_prefix(
 
     Args:
         config (Dict[str, Any]): Configuration dictionary.
+        run_timestamp (str): Timestamp of the run.
         first_x_characters (int): Number of characters to use from the hash.
 
     Returns:
-        str: A prefix that describes the run
+        str: A prefix that describes the run.
     """
-    # Ensure config is a dictionary
     if not isinstance(config, dict):
         config = dict(config)
 
-    # Convert config to a sorted JSON string to ensure consistent ordering
     config_str = json.dumps(config, sort_keys=True)
-
-    # Create a hash of the configuration
     config_hash = hashlib.sha256(config_str.encode()).hexdigest()[
         :first_x_characters
-    ]  # Use only the first first_x_characters characters for brevity
+    ]
 
     return f'{config["dataset_name"]}_{config["embedding_model_name"]}_{config["task"]}_{run_timestamp}_{config_hash}'
 

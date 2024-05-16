@@ -1,38 +1,25 @@
-import hashlib
-import json
 import os
 import os.path as osp
 import sys
-from typing import Any
 from typing import Dict
-from typing import List
 from typing import Tuple
 from typing import Union
 
 import torch
 import yaml  # type: ignore
-from icecream import ic
 from torch import Tensor
 from torch_geometric.data import Data
 from torch_geometric.data import DataLoader
 from torch_geometric.datasets import FB15k_237
-from torch_geometric.datasets import Planetoid
 from torch_geometric.datasets import WordNet18
 from torch_geometric.datasets import WordNet18RR
 from torch_geometric.nn import KGEModel
 
 from .datasets.Planetoid import PlanetoidWithAuxiliaryNodes
 from .datasets.YAGO3_10 import YAGO3_10
-from .embedding_models.ComplEx import CustomComplEx
-from .embedding_models.DistMult import CustomDistMult
-from .embedding_models.RotatE import CustomRotatE
-from .embedding_models.TransE import CustomTransE
 
 # Add the path to import modules from the 'freebase' directory
 sys.path.append(os.path.join(os.path.dirname(__file__), "freebase"))
-
-from converter import EntityConverter
-from wikidata.client import Client
 
 
 def load_dataset(

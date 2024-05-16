@@ -2,7 +2,8 @@
 Entity converter converts between Freebase and Wikidata entity IDs.
 """
 
-from SPARQLWrapper import JSON, SPARQLWrapper  # type: ignore
+from SPARQLWrapper import JSON  # type: ignore
+from SPARQLWrapper import SPARQLWrapper
 
 
 class EntityConverter:
