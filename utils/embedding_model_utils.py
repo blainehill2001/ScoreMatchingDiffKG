@@ -23,7 +23,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "freebase"))
 
 
 def load_dataset(
-    dataset_name: str, parent_dir: str, device: torch.device
+    dataset_name: str, parent_dir: str
 ) -> Tuple[Data, Data, Data, str]:
     """
     Loads the specified dataset and returns train, validation, and test splits along with the data path.
@@ -31,7 +31,6 @@ def load_dataset(
     Args:
         dataset_name (str): Name of the dataset to load.
         parent_dir (str): Parent directory where datasets are stored.
-        device (torch.device): Device to which the data will be moved.
 
     Returns:
         Tuple[Data, Data, Data, str]: Train, validation, and test data splits and the path to the dataset.
@@ -144,9 +143,9 @@ def load_dataset(
         raise ValueError(f"Dataset {dataset_name} not supported")
 
     return (
-        train_data.to(device),
-        val_data.to(device),
-        test_data.to(device),
+        train_data,
+        val_data,
+        test_data,
         data_path,
     )
 

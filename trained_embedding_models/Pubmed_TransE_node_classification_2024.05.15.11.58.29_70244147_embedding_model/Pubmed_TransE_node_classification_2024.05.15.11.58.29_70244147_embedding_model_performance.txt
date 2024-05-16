@@ -1,4 +1,0 @@
-Trained Epochs: 1551
-Performance Metrics:
-loss: 0.9961429238319397
-accuracy: 0.2919999957084656
