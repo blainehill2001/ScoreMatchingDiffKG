@@ -1,0 +1,18 @@
+batch_size: 512
+dataset_name: FB15k_237
+embedding_model_name: RotatE
+hidden_channels: 128
+k:
+- 1
+- 3
+- 10
+lr: 0.005007167332305275
+max_epochs: 1000000
+num_epochs_without_improvement_until_early_finish: 100
+num_nodes: 14541
+num_relations: 237
+prefix: FB15k_237_RotatE_tail_prediction_2024.05.16.02.43.42_1fd240cd
+task: tail_prediction
+validate_after_this_many_epochs: 20
+verbose: false
+weight_decay: 1.0e-05

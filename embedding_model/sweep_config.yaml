@@ -5,13 +5,13 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237", "WordNet18RR", "WordNet18", "Cora", "Citeseer", "Pubmed"]
+    values: ["FB15k_237","Cora"]
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   task:
     values: ["relation_prediction", "head_prediction", "tail_prediction", "node_classification"]
   max_epochs:
-    values: [100000]
+    values: [1000000]
   batch_size:
     values: [512]
   lr:
@@ -29,4 +29,4 @@ parameters:
   num_epochs_without_improvement_until_early_finish:
     value: 100
   validate_after_this_many_epochs:
-    value: 50
+    value: 20
