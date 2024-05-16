@@ -1,6 +1,6 @@
 
 ## Project: Link Prediction via Score Matching
-### Authors: Blaine Hill, Ruizhong Qiu, Hanghang Tong
+### Authors: Blaine Hill, Ruizhong Qiu, Lihui Liu, Hanghang Tong
 ### Spring 2024
 
 ## Comments and Asides

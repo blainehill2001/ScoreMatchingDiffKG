@@ -5,7 +5,7 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237","Cora"]
+    values: ["FB15k_237", "WordNet18RR", "WordNet18", "Cora", "Citeseer", "Pubmed"]
   embedding_model_name:
     values: ["RotatE", "TransE", "ComplEx", "DistMult"]
   task:
@@ -16,14 +16,14 @@ parameters:
     values: [512]
   lr:
     min: 0.0001
-    max: 0.01
+    max: 0.1
     distribution: log_uniform_values
   weight_decay:
     values: [1e-7, 1e-6, 1e-5]
   k:
     value: [1, 3, 10]
   hidden_channels:
-    values: [128, 256, 512, 1024]
+    values: [128, 256, 512, 1024, 2048]
   verbose:
     value: False
   num_epochs_without_improvement_until_early_finish:
