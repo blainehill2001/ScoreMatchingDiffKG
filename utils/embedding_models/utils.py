@@ -17,118 +17,234 @@ def evaluate_prediction_task(
     tail_index: Tensor,
     batch_size: int,
     x: Optional[Tensor],
-    k: Union[
-        int, List[int]
-    ],  # Change k to accept a single int or a list of ints
-    task: str,
-) -> Tuple[
-    float, float, Dict[int, float]
-]:  # Return hits at each k as a dictionary
+    k: List[int],
+    only_relation_prediction: bool,
+) -> Union[
+    Tuple[float, float, Dict[int, float]],
+    Tuple[
+        float,
+        float,
+        float,
+        float,
+        float,
+        float,
+        Dict[int, float],
+        Dict[int, float],
+        Dict[int, float],
+    ],
+]:
     """
-    Evaluates the prediction task by computing the mean rank, mean reciprocal rank (MRR), and hits at k.
+    Evaluate the prediction task for a given model, head, relation, and tail indices.
 
     Args:
         model (nn.Module): The model to evaluate.
-        head_index (Tensor): The head indices.
-        rel_type (Tensor): The relation type indices.
-        tail_index (Tensor): The tail indices.
-        batch_size (int): The size of each batch.
-        x (Tensor, optional): Additional node features.
-        k (Union[int, List[int]]): The rank threshold or list of rank thresholds for calculating hits@k.
-        task (str): The specific prediction task.
+        head_index (Tensor): The tensor containing the head indices.
+        rel_type (Tensor): The tensor containing the relation types.
+        tail_index (Tensor): The tensor containing the tail indices.
+        batch_size (int): The batch size to use for evaluation.
+        x (Optional[Tensor]): Optional additional input tensor.
+        k (List[int]): The values of k to compute hits@k for.
+        only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
     Returns:
-        Tuple[float, float, float]: The mean rank, MRR, and hits@k metrics.
+        Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]:
+            A tuple containing the either of the following values:
+            - relation_mean_rank: The mean rank for relation predictions.
+            - relation_mrr: The mean reciprocal rank for relation predictions.
+            - relation_hits_at_k: A dictionary containing hits@k for relation predictions.
+            or
+            - head_mean_rank: The mean rank for head predictions.
+            - relation_mean_rank: The mean rank for relation predictions.
+            - tail_mean_rank: The mean rank for tail predictions.
+            - head_mrr: The mean reciprocal rank for head predictions.
+            - relation_mrr: The mean reciprocal rank for relation predictions.
+            - tail_mrr: The mean reciprocal rank for tail predictions.
+            - head_hits_at_k: A dictionary containing hits@k for head predictions.
+            - relation_hits_at_k: A dictionary containing hits@k for relation predictions.
+            - tail_hits_at_k: A dictionary containing hits@k for tail predictions.
     """
-    indices = (
-        torch.arange(model.num_nodes, device=tail_index.device)
-        if task in ["tail_prediction", "head_prediction"]
-        else torch.arange(model.num_relations, device=rel_type.device)
-    )
-    target_index = (
-        tail_index
-        if task == "tail_prediction"
-        else head_index if task == "head_prediction" else rel_type
-    )
+    if only_relation_prediction:
+        relation_prediction_scores = compute_prediction_scores_vectorized(
+            model,
+            head_index,
+            rel_type,
+            tail_index,
+            batch_size,
+            x,
+            only_relation_prediction,
+        )
 
-    scores = compute_scores_vectorized(
-        model, head_index, rel_type, tail_index, indices, task, batch_size, x
-    )
-    ranks = (
-        scores.argsort(descending=True, dim=1) == target_index.unsqueeze(1)
-    ).nonzero(as_tuple=True)[1]
-    mean_rank = ranks.float().mean().item()
-    mrr = (1.0 / (ranks.float() + 1)).mean().item()
-    hits_at_k = {}
-    if isinstance(k, int):
-        k_values = [k]
+        relation_ranks = (
+            relation_prediction_scores.argsort(descending=True, dim=1)  # type: ignore
+            == rel_type.unsqueeze(1)
+        ).nonzero(as_tuple=True)[1]
+
+        relation_mean_rank = relation_ranks.float().mean().item()
+
+        relation_mrr = (1.0 / (relation_ranks.float() + 1)).mean().item()
+
+        relation_hits_at_k = {}
+
+        for k_val in k:
+            relation_hits_at_k[k_val] = (
+                (relation_ranks < k_val).float().mean().item()
+            )
+        return (
+            relation_mean_rank,
+            relation_mrr,
+            relation_hits_at_k,
+        )
     else:
-        k_values = k
-    for k_val in k_values:
-        hits_at_k[k_val] = (ranks < k_val).float().mean().item()
-    return mean_rank, mrr, hits_at_k
+        (
+            tail_prediction_scores,
+            head_prediction_scores,
+            relation_prediction_scores,
+        ) = compute_prediction_scores_vectorized(
+            model,
+            head_index,
+            rel_type,
+            tail_index,
+            batch_size,
+            x,
+            only_relation_prediction,
+        )
+
+        head_ranks = (
+            head_prediction_scores.argsort(descending=True, dim=1)
+            == head_index.unsqueeze(1)
+        ).nonzero(as_tuple=True)[1]
+        relation_ranks = (
+            relation_prediction_scores.argsort(descending=True, dim=1)
+            == rel_type.unsqueeze(1)
+        ).nonzero(as_tuple=True)[1]
+        tail_ranks = (
+            tail_prediction_scores.argsort(descending=True, dim=1)
+            == tail_index.unsqueeze(1)
+        ).nonzero(as_tuple=True)[1]
+
+        head_mean_rank = head_ranks.float().mean().item()
+        relation_mean_rank = relation_ranks.float().mean().item()
+        tail_mean_rank = tail_ranks.float().mean().item()
+
+        head_mrr = (1.0 / (head_ranks.float() + 1)).mean().item()
+        relation_mrr = (1.0 / (relation_ranks.float() + 1)).mean().item()
+        tail_mrr = (1.0 / (tail_ranks.float() + 1)).mean().item()
+
+        head_hits_at_k = {}
+        relation_hits_at_k = {}
+        tail_hits_at_k = {}
+
+        for k_val in k:
+            head_hits_at_k[k_val] = (head_ranks < k_val).float().mean().item()
+            relation_hits_at_k[k_val] = (
+                (relation_ranks < k_val).float().mean().item()
+            )
+            tail_hits_at_k[k_val] = (tail_ranks < k_val).float().mean().item()
+
+        return (
+            head_mean_rank,
+            relation_mean_rank,
+            tail_mean_rank,
+            head_mrr,
+            relation_mrr,
+            tail_mrr,
+            head_hits_at_k,
+            relation_hits_at_k,
+            tail_hits_at_k,
+        )
 
 
-def compute_scores_vectorized(
+def compute_prediction_scores_vectorized(
     model: nn.Module,
     head_index: Tensor,
     rel_type: Tensor,
     tail_index: Tensor,
-    indices: Tensor,
-    task: str,
     batch_size: int,
     x: Optional[Tensor],
-) -> Tensor:
+    only_relation_prediction: bool,
+) -> Union[Tensor, Tuple[Tensor, Tensor, Tensor]]:
     """
-    Computes scores for all possible combinations of triplets in a vectorized manner.
+    Compute the prediction scores for the given model, head, relation, and tail indices.
 
     Args:
-        model (nn.Module): The model used for scoring.
-        head_index (Tensor): The head indices.
-        rel_type (Tensor): The relation type indices.
-        tail_index (Tensor): The tail indices.
-        indices (Tensor): The indices of nodes or relations to be evaluated.
-        task (str): The specific prediction task.
-        batch_size (int): The size of each batch.
-        x (Tensor, optional): Additional node features.
+        model (nn.Module): The model to use for prediction.
+        head_index (Tensor): The tensor containing the head indices.
+        rel_type (Tensor): The tensor containing the relation types.
+        tail_index (Tensor): The tensor containing the tail indices.
+        batch_size (int): The batch size to use for computation.
+        x (Optional[Tensor]): Optional additional input tensor.
+        only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
     Returns:
-        Tensor: A tensor containing the scores for all combinations.
+        Tuple[Tensor, Tensor, Tensor]:
+            A tuple containing the following tensors:
+            - tail_prediction_scores: The scores for tail predictions.
+            - head_prediction_scores: The scores for head predictions.
+            - relation_prediction_scores: The scores for relation predictions.
     """
-    all_scores = []
-    for idx_batch in indices.split(batch_size):
-        if task == "tail_prediction":
-            head_index_broadcasted = head_index.unsqueeze(1).repeat(
-                1, idx_batch.size(0)
-            )
-            rel_type_broadcasted = rel_type.unsqueeze(1).repeat(
-                1, idx_batch.size(0)
-            )
-            scores = model(
-                head_index_broadcasted, rel_type_broadcasted, idx_batch, x
-            )
-        elif task == "head_prediction":
-            rel_type_broadcasted = rel_type.unsqueeze(1).repeat(
-                1, idx_batch.size(0)
-            )
-            tail_index_broadcasted = tail_index.unsqueeze(1).repeat(
-                1, idx_batch.size(0)
-            )
-            scores = model(
-                idx_batch, rel_type_broadcasted, tail_index_broadcasted, x
-            )
-        elif task == "relation_prediction":
+    if only_relation_prediction:
+
+        all_scores_relation_prediction = []
+        indices = torch.arange(model.num_relations, device=rel_type.device)
+        for idx_batch in indices.split(batch_size):
             head_index_broadcasted = head_index.unsqueeze(1).repeat(
                 1, idx_batch.size(0)
             )
             tail_index_broadcasted = tail_index.unsqueeze(1).repeat(
                 1, idx_batch.size(0)
             )
-            scores = model(
+            scores_relation_prediction = model(
                 head_index_broadcasted, idx_batch, tail_index_broadcasted, x
             )
-        all_scores.append(scores)
-    return torch.cat(all_scores, dim=1)
+            all_scores_relation_prediction.append(scores_relation_prediction)
+
+        return torch.cat(all_scores_relation_prediction, dim=1)
+
+    else:
+        all_scores_tail_prediction = []
+        all_scores_head_prediction = []
+        all_scores_relation_prediction = []
+        indices = torch.arange(model.num_nodes, device=head_index.device)
+        for idx_batch in indices.split(batch_size):
+            rel_type_broadcasted = rel_type.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            tail_index_broadcasted = tail_index.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            scores_head_prediction = model(
+                idx_batch, rel_type_broadcasted, tail_index_broadcasted, x
+            )
+            all_scores_head_prediction.append(scores_head_prediction)
+        for idx_batch in indices.split(batch_size):
+            head_index_broadcasted = head_index.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            rel_type_broadcasted = rel_type.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            scores_tail_prediction = model(
+                head_index_broadcasted, rel_type_broadcasted, idx_batch, x
+            )
+            all_scores_tail_prediction.append(scores_tail_prediction)
+        indices = torch.arange(model.num_relations, device=rel_type.device)
+        for idx_batch in indices.split(batch_size):
+            head_index_broadcasted = head_index.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            tail_index_broadcasted = tail_index.unsqueeze(1).repeat(
+                1, idx_batch.size(0)
+            )
+            scores_relation_prediction = model(
+                head_index_broadcasted, idx_batch, tail_index_broadcasted, x
+            )
+            all_scores_relation_prediction.append(scores_relation_prediction)
+
+        return (
+            torch.cat(all_scores_tail_prediction, dim=1),
+            torch.cat(all_scores_head_prediction, dim=1),
+            torch.cat(all_scores_relation_prediction, dim=1),
+        )
 
 
 def evaluate_classification_task(

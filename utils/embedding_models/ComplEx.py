@@ -59,30 +59,6 @@ class CustomComplEx(BaseComplEx):
             else None
         )
 
-    def node_emb(self, index: Tensor, x: Optional[Tensor] = None) -> Tensor:
-        """
-        Computes the entity embeddings for the given indices, considering node features if provided.
-
-        Args:
-            index (Tensor): Indices of entities.
-            x (Tensor, optional): Node features.
-
-        Returns:
-            Tensor: Entity embeddings for the specified indices.
-        """
-        # Obtain entity embeddings using the existing node_emb method
-        entity_emb = self.node_emb(index)
-
-        if x is not None:
-            # Apply feature transformation to node features
-            transformed_x_re = self.feature_transform_re(x)
-            transformed_x_im = self.feature_transform_im(x)
-
-            # Incorporate transformed features into entity embeddings
-            entity_emb += transformed_x_re + transformed_x_im
-
-        return entity_emb
-
     def forward(
         self,
         head_index: Tensor,
@@ -154,9 +130,7 @@ class CustomComplEx(BaseComplEx):
         """
         pos_score = self(head_index, rel_type, tail_index, x, y)
         neg_score = self(
-            *self.random_sample(
-                head_index, rel_type, tail_index, task, aux_dict
-            ),
+            *self.random_sample(head_index, rel_type, tail_index),
             x,
             y,
         )
@@ -204,8 +178,25 @@ class CustomComplEx(BaseComplEx):
         x: Optional[Tensor] = None,
         y: Optional[Tensor] = None,
         k: List[int] = [1, 3, 10],
-        task: str = "relation_prediction",  # default to link prediction
-    ) -> Union[float, Tuple[float, float, Dict[int, float]]]:
+        task: str = "kg_completion",
+        only_relation_prediction: bool = False,
+    ) -> Union[
+        float,
+        Union[
+            Tuple[float, float, Dict[int, float]],
+            Tuple[
+                float,
+                float,
+                float,
+                float,
+                float,
+                float,
+                Dict[int, float],
+                Dict[int, float],
+                Dict[int, float],
+            ],
+        ],
+    ]:
         """
         Evaluates the model on a test set with specified parameters.
 
@@ -216,19 +207,23 @@ class CustomComplEx(BaseComplEx):
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
             y (Tensor, optional): Node labels.
-            k (List[int]): The `k` in Hits @ `k`.
+            k (Union[int, List[int]], optional): The `k` in Hits @ `k`.
             task (str, optional): The task to perform ("relation_prediction", "head_prediction", "tail_prediction", "node_classification").
+            only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
         Returns:
-            Union[float, Tuple[float, float, float]]: Either a single float or a tuple of floats representing evaluation metrics.
+            Union[float, Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]]:
+            Either a single float or a tuple of floats and dict(s) representing evaluation metrics.
         """
-        if task in [
-            "relation_prediction",
-            "head_prediction",
-            "tail_prediction",
-        ]:
+        if task == "kg_completion":
             return self.evaluate_prediction_task(
-                head_index, rel_type, tail_index, batch_size, x, k, task
+                head_index,
+                rel_type,
+                tail_index,
+                batch_size,
+                x,
+                k,
+                only_relation_prediction,
             )
         elif task == "node_classification":
             return self.evaluate_classification_task(
@@ -245,8 +240,21 @@ class CustomComplEx(BaseComplEx):
         batch_size: int,
         x: Optional[Tensor],
         k: List[int] = [1, 3, 10],
-        task: str = "relation_prediction",
-    ) -> Tuple[float, float, Dict[int, float]]:
+        only_relation_prediction: bool = False,
+    ) -> Union[
+        Tuple[float, float, Dict[int, float]],
+        Tuple[
+            float,
+            float,
+            float,
+            float,
+            float,
+            float,
+            Dict[int, float],
+            Dict[int, float],
+            Dict[int, float],
+        ],
+    ]:
         """
         Helper function to evaluate prediction tasks.
 
@@ -256,14 +264,36 @@ class CustomComplEx(BaseComplEx):
             tail_index (Tensor): The tail indices.
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
-            k (Union[int, List[int]]): The `k` in Hits @ `k`.
+            k (List[int]): The `k` in Hits @ `k`.
             task (str): The task to perform.
+            only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
         Returns:
-            Tuple[float, float, Dict[int, float]]: A tuple containing evaluation metrics (mean rank, MRR, hits@k).
+            Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]:
+                A tuple containing the either of the following values:
+                - relation_mean_rank: The mean rank for relation predictions.
+                - relation_mrr: The mean reciprocal rank for relation predictions.
+                - relation_hits_at_k: A dictionary containing hits@k for relation predictions.
+                or
+                - head_mean_rank: The mean rank for head predictions.
+                - relation_mean_rank: The mean rank for relation predictions.
+                - tail_mean_rank: The mean rank for tail predictions.
+                - head_mrr: The mean reciprocal rank for head predictions.
+                - relation_mrr: The mean reciprocal rank for relation predictions.
+                - tail_mrr: The mean reciprocal rank for tail predictions.
+                - head_hits_at_k: A dictionary containing hits@k for head predictions.
+                - relation_hits_at_k: A dictionary containing hits@k for relation predictions.
+                - tail_hits_at_k: A dictionary containing hits@k for tail predictions.
         """
         return evaluate_prediction_task(
-            self, head_index, rel_type, tail_index, batch_size, x, k, task
+            self,
+            head_index,
+            rel_type,
+            tail_index,
+            batch_size,
+            x,
+            k,
+            only_relation_prediction,
         )
 
     def evaluate_classification_task(
