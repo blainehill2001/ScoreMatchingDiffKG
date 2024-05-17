@@ -10,73 +10,6 @@ from torch import Tensor
 from torch_geometric.nn.kge.loader import KGTripletLoader
 
 
-@torch.no_grad()
-def random_sample(
-    model: nn.Module,
-    head_index: Tensor,
-    rel_type: Tensor,
-    tail_index: Tensor,
-    task: str,
-    aux_dict: Optional[Dict] = None,
-) -> Tuple[Tensor, Tensor, Tensor]:
-    """
-    Randomly samples negative triplets by either replacing the head or the tail (but not both),
-    depending on the task specified.
-
-    Args:
-        model (nn.Module): The model being used which contains the number of nodes.
-        head_index (Tensor): The head indices.
-        rel_type (Tensor): The relation type indices.
-        tail_index (Tensor): The tail indices.
-        task (str): The task for which the model is being trained.
-        aux_dict (Dict, optional): Additional auxiliary data used for node classification.
-
-    Returns:
-        Tuple[Tensor, Tensor, Tensor]: The modified head_index, rel_type, and tail_index with negative sampling applied.
-    """
-    num_negatives = head_index.numel() // 2
-    rnd_index = torch.randint(
-        model.num_nodes, head_index.size(), device=head_index.device
-    )
-
-    head_index = head_index.clone()
-    tail_index = tail_index.clone()
-
-    if task == "relation_prediction":
-        selector = torch.rand(head_index.size(0)) < 0.5
-        head_index[selector] = rnd_index[selector]
-        tail_index[~selector] = rnd_index[~selector]
-    elif task == "head_prediction":
-        head_index[:num_negatives] = rnd_index[:num_negatives]
-    elif task == "tail_prediction":
-        tail_index[num_negatives:] = rnd_index[num_negatives:]
-    elif task == "node_classification":
-        if aux_dict is not None:
-            aux_indices = torch.tensor(
-                [int(k) for k in aux_dict.keys()],
-                dtype=torch.long,
-                device=tail_index.device,
-            )
-            rnd_aux_index = aux_indices[
-                torch.randint(
-                    len(aux_indices),
-                    (num_negatives,),
-                    device=tail_index.device,
-                )
-            ]
-            tail_index[num_negatives:] = rnd_aux_index
-        else:
-            raise ValueError(
-                "Non-None aux_dict is required for task 'node_classification'"
-            )
-    else:
-        raise NotImplementedError(
-            f"Task {task} not supported in random_sample"
-        )
-
-    return head_index, rel_type, tail_index
-
-
 def evaluate_prediction_task(
     model: nn.Module,
     head_index: Tensor,
@@ -289,7 +222,6 @@ class CustomKGTripletLoader(KGTripletLoader):
         # Store the additional data
         self.x = kwargs.pop("x", None)
         self.y = kwargs.pop("y", None)
-
         # Initialize the superclass with the remaining kwargs
         super().__init__(head_index, rel_type, tail_index, **kwargs)
 

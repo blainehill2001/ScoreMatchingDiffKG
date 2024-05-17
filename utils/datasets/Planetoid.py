@@ -194,93 +194,157 @@ class PlanetoidWithAuxiliaryNodes(Planetoid):
     def create_train_val_test_data(self, data: Data) -> Data:
         """
         Modifies the dataset to include auxiliary nodes and updates masks for training, validation, and testing.
+        Additionally, adds triplets representing nonexistent edges between the training node with a label and other auxiliary nodes.
 
         Args:
             data (Data): The original data object.
 
         Returns:
-            Data: The modified data object with additional auxiliary nodes and updated masks.
+            Data: The modified data object with additional auxiliary nodes, updated masks, added triplets, and edge types.
         """
         # Generate auxiliary edges based on the masks
-        train_aux_edges, train_aux_count = self.create_aux_node_edges(
-            data, data.train_mask
+        train_aux_edges, train_aux_edge_types, train_aux_x, train_aux_y = (
+            self.create_aux_node_edges(data, data.train_mask, is_training=True)
         )
-        val_aux_edges, val_aux_count = self.create_aux_node_edges(
-            data, data.val_mask
+        val_aux_edges, val_aux_edge_types, val_aux_x, val_aux_y = (
+            self.create_aux_node_edges(data, data.val_mask)
         )
-        test_aux_edges, test_aux_count = self.create_aux_node_edges(
-            data, data.test_mask
+        test_aux_edges, test_aux_edge_types, test_aux_x, test_aux_y = (
+            self.create_aux_node_edges(data, data.test_mask)
         )
 
-        original_num_nodes = data.x.size(0)
         original_num_edges = data.edge_index.size(1)
 
-        new_mask_size = original_num_edges + original_num_nodes
+        # Calculate the total number of auxiliary edges created
+        total_aux_edges = (
+            train_aux_edges.size(1)
+            + val_aux_edges.size(1)
+            + test_aux_edges.size(1)
+        )
+
+        # Update new_mask_size to include the total number of edges
+        new_mask_size = original_num_edges + total_aux_edges
 
         # Initialize new_edge_index with original edges and space for potential new edges
         new_edge_index = torch.full((2, new_mask_size), -1, dtype=torch.long)
         new_edge_index[:, :original_num_edges] = (
             data.edge_index
         )  # Fill in original edges
+        new_edge_index[
+            :,
+            original_num_edges : original_num_edges + train_aux_edges.size(1),
+        ] = train_aux_edges
+        new_edge_index[
+            :,
+            original_num_edges
+            + train_aux_edges.size(1) : original_num_edges
+            + train_aux_edges.size(1)
+            + val_aux_edges.size(1),
+        ] = val_aux_edges
+        new_edge_index[
+            :,
+            original_num_edges
+            + train_aux_edges.size(1)
+            + val_aux_edges.size(1) :,
+        ] = test_aux_edges
 
-        # Iterate over each node to potentially add new edges
-        for node_idx in range(original_num_nodes):
-            if (
-                data.train_mask[node_idx]
-                or data.val_mask[node_idx]
-                or data.test_mask[node_idx]
-            ):
-                aux_node_idx = self.label_to_aux_node[int(data.y[node_idx])]
-                new_edge_index[0, original_num_edges + node_idx] = node_idx
-                new_edge_index[1, original_num_edges + node_idx] = aux_node_idx
+        # Initialize new edge types
+        new_edge_types = torch.cat(
+            [
+                torch.ones(original_num_edges, dtype=torch.long),
+                train_aux_edge_types,
+                val_aux_edge_types,
+                test_aux_edge_types,
+            ]
+        )
 
-        # Initialize new masks
-        new_x = torch.zeros((new_mask_size, data.x.size(1)))
-        new_y = torch.zeros(new_mask_size, dtype=torch.long)
-
+        # Create new masks without duplicating triplets
         new_train_mask = torch.zeros(new_mask_size, dtype=torch.bool)
         new_val_mask = torch.zeros(new_mask_size, dtype=torch.bool)
         new_test_mask = torch.zeros(new_mask_size, dtype=torch.bool)
 
-        # Copy original features and labels and update masks
-        new_x[original_num_edges:] = data.x
-        new_y[original_num_edges:] = data.y
+        # assign proper values in new x, y and masks
+        new_x = torch.zeros((new_mask_size, data.x.size(1)))
+        new_y = torch.zeros(new_mask_size, dtype=torch.long)
+        new_x[original_num_edges:] = torch.cat(
+            [train_aux_x, val_aux_x, test_aux_x], dim=0
+        )
+        new_y[original_num_edges:] = torch.cat(
+            [train_aux_y, val_aux_y, test_aux_y], dim=0
+        )
         new_train_mask[:original_num_edges] = True
-        new_train_mask[original_num_edges:] = data.train_mask
-        new_val_mask[original_num_edges:] = data.val_mask
-        new_test_mask[original_num_edges:] = data.test_mask
+        new_train_mask[
+            original_num_edges : original_num_edges + train_aux_edges.size(1)
+        ] = True
+        new_val_mask[
+            original_num_edges
+            + train_aux_edges.size(1) : original_num_edges
+            + train_aux_edges.size(1)
+            + val_aux_edges.size(1)
+        ] = True
+        new_test_mask[
+            original_num_edges
+            + train_aux_edges.size(1)
+            + val_aux_edges.size(1) :
+        ] = True
 
         # Update the data object
         data.x = new_x
         data.y = new_y
         data.edge_index = new_edge_index
+        data.edge_type = new_edge_types
         data.train_mask = new_train_mask
         data.val_mask = new_val_mask
         data.test_mask = new_test_mask
+
         return data
 
     def create_aux_node_edges(
-        self, data: Data, mask: torch.Tensor
-    ) -> Tuple[torch.Tensor, int]:
+        self, data: Data, mask: torch.Tensor, is_training: bool = False
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """
         Creates edges between nodes and their corresponding auxiliary nodes based on the given mask.
+        Additionally, adds edge types to indicate the existence of edges.
 
         Args:
             data (Data): The data object containing node features and labels.
             mask (torch.Tensor): A mask indicating which nodes to connect to auxiliary nodes.
+            is_training (bool): Indicates if the edges are being created for training.
 
         Returns:
-            Tuple[torch.Tensor, int]: A tuple containing the tensor of new edges and the count of these edges.
+            Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]: Tensors containing the new edges, their corresponding edge types, updated node features, and updated labels.
         """
         aux_node_edges = []
+        edge_types = []
+        aux_x = []
+        aux_y = []
+
         for node_idx in mask.nonzero().view(-1):
             if node_idx < data.y.size(
                 0
             ):  # Ensure the node index is valid for labels
-                aux_node_idx = self.label_to_aux_node[int(data.y[node_idx])]
-                aux_node_edges.append([node_idx, aux_node_idx])
+                for aux_node_idx in range(len(self.aux_node_to_label)):
+                    if is_training and aux_node_idx != int(data.y[node_idx]):
+                        aux_node_edges.append([node_idx, aux_node_idx])
+                        edge_types.append(0)  # Nonexistent edge
+                        aux_x.append(data.x[node_idx])
+                        aux_y.append(data.y[node_idx])
+                    elif aux_node_idx == int(data.y[node_idx]):
+                        aux_node_edges.append([node_idx, aux_node_idx])
+                        edge_types.append(1)  # Existing edge
+                        aux_x.append(data.x[node_idx])
+                        aux_y.append(data.y[node_idx])
 
         aux_node_edges_tensor = torch.tensor(
             aux_node_edges, dtype=torch.long
         ).t()
-        return aux_node_edges_tensor, len(aux_node_edges)
+        edge_types_tensor = torch.tensor(edge_types, dtype=torch.long)
+        aux_x_tensor = torch.stack(aux_x)
+        aux_y_tensor = torch.tensor(aux_y, dtype=torch.long)
+
+        return (
+            aux_node_edges_tensor,
+            edge_types_tensor,
+            aux_x_tensor,
+            aux_y_tensor,
+        )

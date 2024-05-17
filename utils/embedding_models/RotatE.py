@@ -14,7 +14,6 @@ from torch_geometric.nn import RotatE as BaseRotatE
 from .utils import CustomKGTripletLoader
 from .utils import evaluate_classification_task
 from .utils import evaluate_prediction_task
-from .utils import random_sample
 
 
 class CustomRotatE(BaseRotatE):
@@ -171,36 +170,6 @@ class CustomRotatE(BaseRotatE):
         """
         return CustomKGTripletLoader(
             head_index, rel_type, tail_index, **kwargs
-        )
-
-    def random_sample(
-        self,
-        head_index: Tensor,
-        rel_type: Tensor,
-        tail_index: Tensor,
-        task: Optional[str],
-        aux_dict: Optional[Dict] = None,
-    ) -> Tuple[Tensor, Tensor, Tensor]:
-        """
-        Generates a random negative sample for training.
-
-        Args:
-            head_index (Tensor): Indices of head entities.
-            rel_type (Tensor): Indices of relation types.
-            tail_index (Tensor): Indices of tail entities.
-            task (str, optional): The specific task for which the model is being used.
-            aux_dict (dict, optional): Auxiliary dictionary for additional data.
-
-        Returns:
-            Tuple[Tensor, Tensor, Tensor]: Indices of head, relation, and tail for the negative sample.
-        """
-        return random_sample(
-            model=self,
-            head_index=head_index,
-            rel_type=rel_type,
-            tail_index=tail_index,
-            task=task,
-            aux_dict=aux_dict,
         )
 
     @torch.no_grad()

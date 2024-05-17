@@ -107,13 +107,13 @@ def load_dataset(
         test_labels = data.y[test_mask]
 
         train_edge_index = data.edge_index[:, train_mask]
-        train_edge_type = torch.ones(
-            train_edge_index.size(1), dtype=torch.int64
-        )
+        train_edge_type = data.edge_type[
+            data.train_mask
+        ]  # Use the edge types here
         val_edge_index = data.edge_index[:, val_mask]
-        val_edge_type = torch.ones(val_edge_index.size(1), dtype=torch.int64)
+        val_edge_type = data.edge_type[data.val_mask]
         test_edge_index = data.edge_index[:, test_mask]
-        test_edge_type = torch.ones(test_edge_index.size(1), dtype=torch.int64)
+        test_edge_type = data.edge_type[data.test_mask]
 
         train_data = Data(
             x=train_features,
