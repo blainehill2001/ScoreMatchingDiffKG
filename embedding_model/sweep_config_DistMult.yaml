@@ -5,7 +5,7 @@ metric:
   goal: minimize
 parameters:
   dataset_name:
-    values: ["FB15k_237"]
+    values: ["FB15k_237", "WordNet18RR", "WordNet18"]
   embedding_model_name:
     values: ["DistMult"]
   task:
@@ -15,8 +15,8 @@ parameters:
   batch_size:
     values: [512]
   lr:
-    min: 0.00999
-    max: 0.01
+    min: 0.00015
+    max: 0.015
     distribution: log_uniform_values
   weight_decay:
     values: [1e-7, 1e-6, 1e-5]
@@ -29,6 +29,6 @@ parameters:
   verbose:
     value: False
   num_epochs_without_improvement_until_early_finish:
-    value: 50
+    value: 3
   validate_after_this_many_epochs:
     value: 10
