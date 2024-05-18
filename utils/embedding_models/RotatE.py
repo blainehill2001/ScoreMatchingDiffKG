@@ -1,7 +1,6 @@
 from typing import Dict
 from typing import List
 from typing import Optional
-from typing import Tuple
 from typing import Union
 
 import torch
@@ -11,6 +10,7 @@ from torch import Tensor
 from torch.utils.data import DataLoader
 from torch_geometric.nn import RotatE as BaseRotatE
 
+from ..typing_utils import KG_Completion_Metrics
 from .utils import CustomKGTripletLoader
 from .utils import evaluate_classification_task
 from .utils import evaluate_prediction_task
@@ -179,26 +179,10 @@ class CustomRotatE(BaseRotatE):
         batch_size: int,
         x: Optional[Tensor] = None,
         y: Optional[Tensor] = None,
-        k: List[int] = [1, 3, 10],
-        task: str = "kg_completion",
-        only_relation_prediction: bool = False,
-    ) -> Union[
-        float,
-        Union[
-            Tuple[float, float, Dict[int, float]],
-            Tuple[
-                float,
-                float,
-                float,
-                float,
-                float,
-                float,
-                Dict[int, float],
-                Dict[int, float],
-                Dict[int, float],
-            ],
-        ],
-    ]:
+        k: Optional[List[int]] = [1, 3, 10],
+        task: Optional[str] = "kg_completion",
+        only_relation_prediction: Optional[bool] = False,
+    ) -> Union[KG_Completion_Metrics, float]:
         """
         Evaluates the model on a test set with specified parameters.
 
@@ -209,12 +193,12 @@ class CustomRotatE(BaseRotatE):
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
             y (Tensor, optional): Node labels.
-            k (Union[int, List[int]], optional): The `k` in Hits @ `k`.
+            k (List[int], optional): The `k` in Hits @ `k`.
             task (str, optional): The task to perform ("relation_prediction", "head_prediction", "tail_prediction", "node_classification").
-            only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
+            only_relation_prediction (bool, optional): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
         Returns:
-            Union[float, Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]]:
+            Union[KG_Completion_Metrics, float]:
             Either a single float or a tuple of floats and dict(s) representing evaluation metrics.
         """
         if task == "kg_completion":
@@ -241,22 +225,9 @@ class CustomRotatE(BaseRotatE):
         tail_index: Tensor,
         batch_size: int,
         x: Optional[Tensor],
-        k: List[int] = [1, 3, 10],
-        only_relation_prediction: bool = False,
-    ) -> Union[
-        Tuple[float, float, Dict[int, float]],
-        Tuple[
-            float,
-            float,
-            float,
-            float,
-            float,
-            float,
-            Dict[int, float],
-            Dict[int, float],
-            Dict[int, float],
-        ],
-    ]:
+        k: Optional[List[int]] = [1, 3, 10],
+        only_relation_prediction: Optional[bool] = False,
+    ) -> KG_Completion_Metrics:
         """
         Helper function to evaluate prediction tasks.
 
@@ -266,12 +237,11 @@ class CustomRotatE(BaseRotatE):
             tail_index (Tensor): The tail indices.
             batch_size (int): The batch size to use for evaluating.
             x (Tensor, optional): Node features.
-            k (List[int]): The `k` in Hits @ `k`.
-            task (str): The task to perform.
-            only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
+            k (List[int], optional): The `k` in Hits @ `k`.
+            only_relation_prediction (bool, optional): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
         Returns:
-            Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]:
+            KG_Completion_Metrics:
                 A tuple containing the either of the following values:
                 - relation_mean_rank: The mean rank for relation predictions.
                 - relation_mrr: The mean reciprocal rank for relation predictions.

@@ -52,7 +52,7 @@ def load_config(config_path: str) -> Dict[str, Any]:
     return config
 
 
-def extract_info_from_string(
+def extract_info_from_embedding_model_dir(
     embedding_model_dir_string: str,
 ) -> Tuple[str | None, str | None, str | None, Dict[str, Any] | None]:
     """

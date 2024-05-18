@@ -10,6 +10,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import Tensor
 
+from ..typing_utils import KG_Completion_Metrics
+
 
 class ScoreModel(nn.Module):
     def __init__(
@@ -153,10 +155,41 @@ class ScoreModel(nn.Module):
         Returns:
             Tensor: The calculated score.
         """
-        # Implement your desired distance measure here (e.g., L2 distance)
-        distance = torch.linalg.norm(
-            h_emb + r_emb - t_emb, dim=-1
-        )  # semantic meaning only (no graph structural information was used to calculate distance)
+        if self.similarity_metric == "l2":
+            distance = torch.linalg.norm(h_emb + r_emb - t_emb, dim=-1)
+        elif self.similarity_metric == "cosine":
+            distance = -F.cosine_similarity(h_emb + r_emb, t_emb, dim=-1)
+        elif self.similarity_metric == "metric_tensor":
+            score_grad_h, score_grad_r, score_grad_t = self.score_function(
+                h_emb, r_emb, t_emb
+            )
+            (
+                local_metric_tensor_h,
+                local_metric_tensor_r,
+                local_metric_tensor_t,
+            ) = self.local_metric_tensor(
+                score_grad_h, score_grad_r, score_grad_t
+            )
+            local_metric_tensor = (
+                local_metric_tensor_h
+                + local_metric_tensor_r
+                + local_metric_tensor_t
+            ) / 3
+            avg_metric_tensor = (
+                local_metric_tensor
+                + torch.eye(
+                    local_metric_tensor.shape[-1],
+                    device=local_metric_tensor.device,
+                )
+            ) / 2
+            distance = torch.sum(
+                (h_emb + r_emb - t_emb) ** 2 * avg_metric_tensor, dim=-1
+            )
+        else:
+            raise ValueError(
+                f"Invalid similarity metric: {self.similarity_metric}. "
+                "Supported metrics are 'l2', 'cosine', and 'metric_tensor'."
+            )
 
         # Gradually increase the weight of the distance term during SDE steps
         weight = 0.0  # No weight increase if timestep is None
@@ -210,7 +243,7 @@ class ScoreModel(nn.Module):
 
     def reverse_sde_prediction(self, emb1: Tensor, emb2: Tensor) -> Tensor:
         """
-        Refine the embeddings using reverse SDE for better link prediction.
+        Refine the embeddings using reverse SDE for better KG Completion.
 
         Args:
             emb1: Embeddings of the first entity/relation.
@@ -267,8 +300,9 @@ class ScoreModel(nn.Module):
         t: Tensor,
         x: Optional[Tensor] = None,
         k: List[int] = [1, 3, 10],
-        task: str = "relation_prediction",
-    ) -> Union[float, Tuple[float, float, Dict[int, float]]]:
+        task: str = "kg_completion",
+        only_relation_prediction: bool = False,
+    ) -> Union[KG_Completion_Metrics, float]:
         """
         Test the model on a given task.
 
@@ -279,21 +313,38 @@ class ScoreModel(nn.Module):
             x: Additional tensor for transformation.
             k: List of top-k values.
             task: Type of prediction task.
+            only_relation_prediction: Bool to determine whether to compute all metrics or just relation prediction metrics for prediction task
 
         Returns:
-            Union[float, Tuple[float, float, Dict[int, float]]]: Evaluation results.
+            KG_Completion_Metrics: Evaluation results.
         """
 
-        if self.task in [
-            "relation_prediction",
-            "head_prediction",
-            "tail_prediction",
-        ]:
+        if self.task == "kg_completion":
             return self.evaluate_prediction_task(h, r, t, x, k)
         elif task == "node_classification":
             return self.evaluate_classification_task(h, r, t, x)
         else:
             raise ValueError(f"Unsupported task type: {task}")
+
+    def compute_prediction_metrics(
+        self, ranks: Tensor, k: List[int]
+    ) -> Tuple[float, float, Dict[int, float]]:
+        """
+        Compute evaluation metrics from ranks.
+
+        Args:
+            ranks: Tensor of ranks.
+            k: List of top-k values.
+
+        Returns:
+            Tuple[float, float, Dict[int, float]]: Mean rank, MRR, and Hits@k.
+        """
+        mean_rank = ranks.float().mean().item()
+        mrr = (1.0 / (ranks.float() + 1)).mean().item()
+        hits_at_k = {
+            k_val: (ranks < k_val).float().mean().item() for k_val in k
+        }
+        return mean_rank, mrr, hits_at_k
 
     def evaluate_prediction_task(
         self,
@@ -302,7 +353,8 @@ class ScoreModel(nn.Module):
         t: Tensor,
         x: Optional[Tensor],
         k: List[int] = [1, 3, 10],
-    ) -> Tuple[float, float, Dict[int, float]]:
+        only_relation_prediction: bool = False,
+    ) -> KG_Completion_Metrics:
         """
         Evaluate the model on a prediction task.
 
@@ -312,88 +364,70 @@ class ScoreModel(nn.Module):
             t: Tail entity tensor.
             x: Additional tensor for transformation.
             k: List of top-k values.
+            only_relation_prediction: Bool to determine whether to compute all metrics or just relation prediction metrics.
 
         Returns:
-            Tuple[float, float, Dict[int, float]]: Evaluation metrics.
+            KG_Completion_Metrics: Evaluation metrics.
         """
-
         h_emb = self.embedding_model.node_emb(h)
         r_emb = self.embedding_model.rel_emb(r)
         t_emb = self.embedding_model.node_emb(t)
+        embedding_weights_r = self.embedding_model.rel_emb.weight.detach()
+        embedding_weights_h_t = self.embedding_model.node_emb.weight.detach()
 
-        if self.task == "relation_prediction":
-            refined_emb = self.reverse_sde_prediction(h_emb, t_emb)
-            embedding_weights = self.embedding_model.rel_emb.weight.detach()
-            ground_truth = r
-        elif self.task == "head_prediction":
-            refined_emb = self.reverse_sde_prediction(r_emb, t_emb)
-            embedding_weights = self.embedding_model.node_emb.weight.detach()
-            ground_truth = h
-        elif self.task == "tail_prediction":
-            refined_emb = self.reverse_sde_prediction(h_emb, r_emb)
-            embedding_weights = self.embedding_model.node_emb.weight.detach()
-            ground_truth = t
+        if only_relation_prediction:
+            sorted_values_r, sorted_indices_r = (
+                self.calculate_similarity_and_sort(
+                    h_emb,
+                    r_emb,
+                    t_emb,
+                    embedding_weights_r,
+                    "relation_prediction",
+                )
+            )
+            ranks_r = (sorted_values_r == r.unsqueeze(1)).nonzero(
+                as_tuple=True
+            )[1]
+            mean_rank_r, mrr_r, hits_at_k_r = self.compute_prediction_metrics(
+                ranks_r, k
+            )
+            return mean_rank_r, mrr_r, hits_at_k_r
 
-        sorted_values, sorted_indices = self.calculate_similarity_and_sort(
-            refined_emb, embedding_weights
+        sorted_values_h, sorted_indices_h = self.calculate_similarity_and_sort(
+            h_emb, r_emb, t_emb, embedding_weights_h_t, "head_prediction"
+        )
+        sorted_values_r, sorted_indices_r = self.calculate_similarity_and_sort(
+            h_emb, r_emb, t_emb, embedding_weights_r, "relation_prediction"
+        )
+        sorted_values_t, sorted_indices_t = self.calculate_similarity_and_sort(
+            h_emb, r_emb, t_emb, embedding_weights_h_t, "tail_prediction"
         )
 
-        # Calculate mean rank of the ground truth and MRR
-        ranks = (sorted_indices == ground_truth.unsqueeze(1)).nonzero(
-            as_tuple=True
-        )[1] + 1
-        mean_rank = ranks.float().mean().item()
-        mrr = (1.0 / (ranks.float() + 1)).mean().item()
+        ranks_h = (sorted_values_h == h.unsqueeze(1)).nonzero(as_tuple=True)[1]
+        ranks_r = (sorted_values_r == r.unsqueeze(1)).nonzero(as_tuple=True)[1]
+        ranks_t = (sorted_values_t == t.unsqueeze(1)).nonzero(as_tuple=True)[1]
 
-        # Check if true relation is within the top K predictions
-        hits_at_k = {}
-        if isinstance(k, int):
-            k_values = [k]
-        else:
-            k_values = k
-        for k_val in k_values:
-            hits_at_k[k_val] = (ranks < k_val).float().mean().item()
+        mean_rank_h, mrr_h, hits_at_k_h = self.compute_prediction_metrics(
+            ranks_h, k
+        )
+        mean_rank_r, mrr_r, hits_at_k_r = self.compute_prediction_metrics(
+            ranks_r, k
+        )
+        mean_rank_t, mrr_t, hits_at_k_t = self.compute_prediction_metrics(
+            ranks_t, k
+        )
 
-        return mean_rank, mrr, hits_at_k
-
-    def calculate_similarity_and_sort(
-        self, refined_emb: Tensor, embedding_weights: Tensor
-    ) -> Tuple[Tensor, Tensor]:
-        """
-        Calculate similarity and sort the embeddings.
-
-        Args:
-            refined_emb: Refined embeddings.
-            embedding_weights: Embedding weights.
-
-        Returns:
-            Tuple[Tensor, Tensor]: Sorted values and indices.
-        """
-        if self.similarity_metric == "cosine":
-            similarity = F.cosine_similarity(
-                refined_emb.unsqueeze(1),
-                embedding_weights.unsqueeze(0),
-                dim=-1,
-            )
-        elif self.similarity_metric == "l2":
-            dist = torch.norm(
-                refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0),
-                p=2,
-                dim=-1,
-            )
-        else:
-            raise NotImplementedError(
-                f"Haven't implemented a similarity metric yet for {self.similarity_metric}"
-            )
-
-        if self.similarity_metric == "cosine":
-            sorted_values, sorted_indices = torch.sort(
-                similarity, dim=1, descending=True
-            )
-        elif self.similarity_metric == "l2":
-            sorted_values, sorted_indices = torch.sort(dist, dim=1)
-
-        return sorted_values, sorted_indices
+        return (
+            mean_rank_h,
+            mean_rank_r,
+            mean_rank_t,
+            mrr_h,
+            mrr_r,
+            mrr_t,
+            hits_at_k_h,
+            hits_at_k_r,
+            hits_at_k_t,
+        )
 
     def evaluate_classification_task(
         self,
@@ -447,3 +481,79 @@ class ScoreModel(nn.Module):
         predicted_labels = aux_keys_tensor[scores.argmax(dim=0)]
         accuracy = (predicted_labels == t).float().mean().item()
         return accuracy
+
+    def calculate_similarity_and_sort(
+        self, h_emb, r_emb, t_emb, embedding_weights, task
+    ):
+        if self.similarity_metric == "l2":
+            if task == "relation_prediction":
+                refined_emb = self.reverse_sde_prediction(h_emb, t_emb)
+            elif task == "head_prediction":
+                refined_emb = self.reverse_sde_prediction(r_emb, t_emb)
+            else:  # tail_prediction
+                refined_emb = self.reverse_sde_prediction(h_emb, r_emb)
+            dist = torch.norm(
+                refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0),
+                p=2,
+                dim=-1,
+            )
+            sorted_values, sorted_indices = torch.sort(dist, dim=1)
+        elif self.similarity_metric == "cosine":
+            if task == "relation_prediction":
+                refined_emb = self.reverse_sde_prediction(h_emb, t_emb)
+            elif task == "head_prediction":
+                refined_emb = self.reverse_sde_prediction(r_emb, t_emb)
+            else:  # tail_prediction
+                refined_emb = self.reverse_sde_prediction(h_emb, r_emb)
+            similarity = F.cosine_similarity(
+                refined_emb.unsqueeze(1),
+                embedding_weights.unsqueeze(0),
+                dim=-1,
+            )
+            sorted_values, sorted_indices = torch.sort(
+                similarity, dim=1, descending=True
+            )
+        elif self.similarity_metric == "metric_tensor":
+            score_grad_h, score_grad_r, score_grad_t = self.score_function(
+                h_emb, r_emb, t_emb
+            )
+            (
+                local_metric_tensor_h,
+                local_metric_tensor_r,
+                local_metric_tensor_t,
+            ) = self.local_metric_tensor(
+                score_grad_h, score_grad_r, score_grad_t
+            )
+            if task == "relation_prediction":
+                refined_emb = self.reverse_sde_prediction(h_emb, t_emb)
+                embedding_weights = self.relation_embeddings_weights
+                local_metric_tensor = local_metric_tensor_r
+            elif task == "head_prediction":
+                refined_emb = self.reverse_sde_prediction(r_emb, t_emb)
+                embedding_weights = self.entity_embeddings_weights
+                local_metric_tensor = local_metric_tensor_h
+            else:  # tail_prediction
+                refined_emb = self.reverse_sde_prediction(h_emb, r_emb)
+                embedding_weights = self.entity_embeddings_weights
+                local_metric_tensor = local_metric_tensor_t
+            avg_metric_tensor = (
+                local_metric_tensor
+                + torch.eye(
+                    local_metric_tensor.shape[-1],
+                    device=local_metric_tensor.device,
+                )
+            ) / 2
+            dist = torch.sum(
+                (refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0))
+                ** 2
+                * avg_metric_tensor,
+                dim=-1,
+            )
+            sorted_values, sorted_indices = torch.sort(dist, dim=1)
+        else:
+            raise ValueError(
+                f"Invalid similarity metric: {self.similarity_metric}. "
+                "Supported metrics are 'l2', 'cosine', and 'metric_tensor'."
+            )
+
+        return sorted_values, sorted_indices

@@ -9,6 +9,8 @@ import torch.nn as nn
 from torch import Tensor
 from torch_geometric.nn.kge.loader import KGTripletLoader
 
+from ..typing_utils import KG_Completion_Metrics
+
 
 def evaluate_prediction_task(
     model: nn.Module,
@@ -17,22 +19,9 @@ def evaluate_prediction_task(
     tail_index: Tensor,
     batch_size: int,
     x: Optional[Tensor],
-    k: List[int],
-    only_relation_prediction: bool,
-) -> Union[
-    Tuple[float, float, Dict[int, float]],
-    Tuple[
-        float,
-        float,
-        float,
-        float,
-        float,
-        float,
-        Dict[int, float],
-        Dict[int, float],
-        Dict[int, float],
-    ],
-]:
+    k: Optional[List[int]] = [1, 3, 10],
+    only_relation_prediction: Optional[bool] = False,
+) -> KG_Completion_Metrics:
     """
     Evaluate the prediction task for a given model, head, relation, and tail indices.
 
@@ -43,11 +32,11 @@ def evaluate_prediction_task(
         tail_index (Tensor): The tensor containing the tail indices.
         batch_size (int): The batch size to use for evaluation.
         x (Optional[Tensor]): Optional additional input tensor.
-        k (List[int]): The values of k to compute hits@k for.
-        only_relation_prediction (bool): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
+        k (List[int], optional): The `k` in Hits @ `k`.
+        only_relation_prediction (bool, optional): A bool to decide whether to perform head, relation, and tail prediction or just relation prediction only.
 
     Returns:
-        Union[Tuple[float, float, Dict[int, float]], Tuple[float, float, float, float, float, float, Dict[int, float], Dict[int, float], Dict[int, float]]]:
+        KG_Completion_Metrics:
             A tuple containing the either of the following values:
             - relation_mean_rank: The mean rank for relation predictions.
             - relation_mrr: The mean reciprocal rank for relation predictions.
@@ -85,10 +74,13 @@ def evaluate_prediction_task(
 
         relation_hits_at_k = {}
 
-        for k_val in k:
-            relation_hits_at_k[k_val] = (
-                (relation_ranks < k_val).float().mean().item()
-            )
+        if k:
+            for k_val in k:
+                relation_hits_at_k[k_val] = (
+                    (relation_ranks < k_val).float().mean().item()
+                )
+        else:
+            raise ValueError(f"bad k value: {k}")
         return (
             relation_mean_rank,
             relation_mrr,
@@ -134,12 +126,19 @@ def evaluate_prediction_task(
         relation_hits_at_k = {}
         tail_hits_at_k = {}
 
-        for k_val in k:
-            head_hits_at_k[k_val] = (head_ranks < k_val).float().mean().item()
-            relation_hits_at_k[k_val] = (
-                (relation_ranks < k_val).float().mean().item()
-            )
-            tail_hits_at_k[k_val] = (tail_ranks < k_val).float().mean().item()
+        if k:
+            for k_val in k:
+                head_hits_at_k[k_val] = (
+                    (head_ranks < k_val).float().mean().item()
+                )
+                relation_hits_at_k[k_val] = (
+                    (relation_ranks < k_val).float().mean().item()
+                )
+                tail_hits_at_k[k_val] = (
+                    (tail_ranks < k_val).float().mean().item()
+                )
+        else:
+            raise ValueError(f"bad k value: {k}")
 
         return (
             head_mean_rank,
@@ -161,7 +160,7 @@ def compute_prediction_scores_vectorized(
     tail_index: Tensor,
     batch_size: int,
     x: Optional[Tensor],
-    only_relation_prediction: bool,
+    only_relation_prediction: Optional[bool],
 ) -> Union[Tensor, Tuple[Tensor, Tensor, Tensor]]:
     """
     Compute the prediction scores for the given model, head, relation, and tail indices.

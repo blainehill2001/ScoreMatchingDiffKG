@@ -1,21 +1,21 @@
 import hashlib
 import json
-import os
 import random
-import sys
+from datetime import datetime
 from typing import Any
+from typing import Callable
 from typing import Dict
+from typing import Optional
 
 import numpy as np
 import torch
+import wandb
 from torch_geometric.nn import KGEModel
 
 from .embedding_models.ComplEx import CustomComplEx
 from .embedding_models.DistMult import CustomDistMult
 from .embedding_models.RotatE import CustomRotatE
 from .embedding_models.TransE import CustomTransE
-
-sys.path.append(os.path.join(os.path.dirname(__file__), "freebase"))
 
 
 def set_seed(seed_value: int = 123) -> None:
@@ -78,3 +78,31 @@ def get_embedding_model_class(model_name: str) -> KGEModel:
 
     base_model_class = get_embedding_class(model_name)
     return lambda *args, **kwargs: base_model_class(*args, **kwargs)
+
+
+def run_sweep_or_main(
+    run_sweep: bool,
+    project_name: str,
+    main: Callable,
+    config: Optional[dict] = None,
+) -> None:
+    """
+    Runs a hyperparameter sweep or the main training process based on the provided flag.
+
+    Args:
+        run_sweep (bool): Flag indicating whether to run a hyperparameter sweep.
+        config (Optional[dict]): Configuration dictionary for the main training process.
+
+    Returns:
+        None
+    """
+    if run_sweep:
+        run_timestamp = datetime.now().strftime("%Y.%m.%d.%H.%M.%S")
+        sweep_id = wandb.sweep(
+            project=f"{project_name}_{run_timestamp}",
+            sweep=config,
+        )
+
+        wandb.agent(sweep_id, function=main)
+    else:
+        main(config=config)
