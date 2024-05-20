@@ -19,18 +19,15 @@ class ScoreModel(nn.Module):
         embedding_model,
         score_model_hidden_dim: int = 512,
         num_sde_timesteps: int = 20,
-        similarity_metric: str = "l2",
         task: str = "relation_prediction",
         aux_dict: Optional[Dict] = None,
     ):
         """
         Initialize the ScoreModel.
-
         Args:
             embedding_model: The embedding model used for scoring.
             score_model_hidden_dim: The hidden dimension of the score model.
             num_sde_timesteps: Number of SDE timesteps.
-            similarity_metric: The similarity metric used for evaluation.
             task: The task type for the model.
             aux_dict: Auxiliary dictionary for additional information.
         """
@@ -115,10 +112,12 @@ class ScoreModel(nn.Module):
 
         self.node_emb_dim = self.entity_embeddings_weights.shape[-1]
         self.rel_emb_dim = self.relation_embeddings_weights.shape[-1]
+        total_input_dim = (
+            self.node_emb_dim * 2 + self.rel_emb_dim
+        )  # h_emb + t_emb + r_emb
         self.score_net = nn.Sequential(
             nn.Linear(
-                self.entity_embeddings_weights.shape[-1]
-                + self.relation_embeddings_weights.shape[-1],
+                total_input_dim,
                 score_model_hidden_dim,
                 dtype=torch.float,
             ),
@@ -132,7 +131,6 @@ class ScoreModel(nn.Module):
             nn.Linear(score_model_hidden_dim, 1, dtype=torch.float),
         )
         self.num_sde_timesteps = num_sde_timesteps
-        self.similarity_metric = similarity_metric
         self.task = task
         self.aux_dict = aux_dict
 
@@ -155,51 +153,20 @@ class ScoreModel(nn.Module):
         Returns:
             Tensor: The calculated score.
         """
-        if self.similarity_metric == "l2":
-            distance = torch.linalg.norm(h_emb + r_emb - t_emb, dim=-1)
-        elif self.similarity_metric == "cosine":
-            distance = -F.cosine_similarity(h_emb + r_emb, t_emb, dim=-1)
-        elif self.similarity_metric == "metric_tensor":
-            score_grad_h, score_grad_r, score_grad_t = self.score_function(
-                h_emb, r_emb, t_emb
-            )
-            (
-                local_metric_tensor_h,
-                local_metric_tensor_r,
-                local_metric_tensor_t,
-            ) = self.local_metric_tensor(
-                score_grad_h, score_grad_r, score_grad_t
-            )
-            local_metric_tensor = (
-                local_metric_tensor_h
-                + local_metric_tensor_r
-                + local_metric_tensor_t
-            ) / 3
-            avg_metric_tensor = (
-                local_metric_tensor
-                + torch.eye(
-                    local_metric_tensor.shape[-1],
-                    device=local_metric_tensor.device,
-                )
-            ) / 2
-            distance = torch.sum(
-                (h_emb + r_emb - t_emb) ** 2 * avg_metric_tensor, dim=-1
-            )
-        else:
-            raise ValueError(
-                f"Invalid similarity metric: {self.similarity_metric}. "
-                "Supported metrics are 'l2', 'cosine', and 'metric_tensor'."
-            )
+        combined_emb = torch.cat([h_emb, r_emb, t_emb], dim=-1)
+        score = self.score_net(
+            combined_emb
+        )  # Compute score using the neural network
 
-        # Gradually increase the weight of the distance term during SDE steps
-        weight = 0.0  # No weight increase if timestep is None
+        # Optionally weight the score by a function of the timestep
         if timestep is not None:
 
             def sigmoid(x):
                 return 1 / (1 + math.exp(-x))
 
             weight = sigmoid(timestep / (self.num_sde_timesteps - 1))
-        score = weight * distance
+            score = weight * score
+
         return score
 
     def loss(
@@ -230,16 +197,13 @@ class ScoreModel(nn.Module):
             self.embedding_model.rel_emb(r),
             self.embedding_model.node_emb(t),
         )
-        if isinstance(x, torch.Tensor) and isinstance(
-            self.feature_transform, torch.Tensor
-        ):
-            h_emb += torch.matmul(x, self.feature_transform)
+        if x is not None and isinstance(self.feature_transform, nn.Module):
+            h_emb += self.feature_transform(x)
 
-        true_score = self(
-            h_emb, r_emb, t_emb
-        )  # simply do not pass in the timestep
-        noisy_score = self(h_emb, r_emb, t_emb, timestep)
-        return ((true_score - noisy_score) ** 2).mean()
+        true_score = self.forward(h_emb, r_emb, t_emb)
+        noisy_score = self.forward(h_emb, r_emb, t_emb, timestep)
+
+        return F.mse_loss(true_score, noisy_score)
 
     def reverse_sde_prediction(
         self, emb1: Tensor, emb2: Tensor, task: str
@@ -503,12 +467,10 @@ class ScoreModel(nn.Module):
     ) -> Tuple[Tensor, Tensor]:
         """
         Calculate the similarity between refined embeddings and the embedding weights, then sort the results.
-
-        This method supports different similarity metrics ('l2', 'cosine', 'metric_tensor') and tasks
-        ('relation_prediction', 'head_prediction', 'tail_prediction'). Depending on the task, it refines
-        the appropriate embeddings using reverse SDE prediction and then calculates the similarity
-        based on the specified metric. The results are sorted in ascending order for distances or
-        descending order for similarities.
+        This method supports different tasks ('relation_prediction', 'head_prediction', 'tail_prediction').
+        Depending on the task, it refines the appropriate embeddings using reverse SDE prediction and then
+        calculates the similarity using the Riemannian metric tensor induced by the score_net.
+        The results are sorted in ascending order for distances.
 
         Args:
             h_emb (Tensor): Embedding of the head entity.
@@ -520,75 +482,31 @@ class ScoreModel(nn.Module):
         Returns:
             Tuple[Tensor, Tensor]: A tuple containing the sorted values and their corresponding indices.
         """
-        if self.similarity_metric == "l2":
-            if task == "relation_prediction":
-                refined_emb = self.reverse_sde_prediction(h_emb, t_emb, task)
-            elif task == "head_prediction":
-                refined_emb = self.reverse_sde_prediction(r_emb, t_emb, task)
-            else:  # tail_prediction
-                refined_emb = self.reverse_sde_prediction(h_emb, r_emb, task)
-            dist = torch.norm(
-                refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0),
-                p=2,
-                dim=-1,
-            )
-            sorted_values, sorted_indices = torch.sort(dist, dim=1)
-        elif self.similarity_metric == "cosine":
-            if task == "relation_prediction":
-                refined_emb = self.reverse_sde_prediction(h_emb, t_emb, task)
-            elif task == "head_prediction":
-                refined_emb = self.reverse_sde_prediction(r_emb, t_emb, task)
-            else:  # tail_prediction
-                refined_emb = self.reverse_sde_prediction(h_emb, r_emb, task)
-            similarity = F.cosine_similarity(
-                refined_emb.unsqueeze(1),
-                embedding_weights.unsqueeze(0),
-                dim=-1,
-            )
-            sorted_values, sorted_indices = torch.sort(
-                similarity, dim=1, descending=True
-            )
-        elif self.similarity_metric == "metric_tensor":
-            score_grad_h, score_grad_r, score_grad_t = self.score_function(
-                h_emb, r_emb, t_emb
-            )
-            (
-                local_metric_tensor_h,
-                local_metric_tensor_r,
-                local_metric_tensor_t,
-            ) = self.local_metric_tensor(
-                score_grad_h, score_grad_r, score_grad_t
-            )
-            if task == "relation_prediction":
-                refined_emb = self.reverse_sde_prediction(h_emb, t_emb, task)
-                embedding_weights = self.relation_embeddings_weights
-                local_metric_tensor = local_metric_tensor_r
-            elif task == "head_prediction":
-                refined_emb = self.reverse_sde_prediction(r_emb, t_emb, task)
-                embedding_weights = self.entity_embeddings_weights
-                local_metric_tensor = local_metric_tensor_h
-            else:  # tail_prediction
-                refined_emb = self.reverse_sde_prediction(h_emb, r_emb, task)
-                embedding_weights = self.entity_embeddings_weights
-                local_metric_tensor = local_metric_tensor_t
-            avg_metric_tensor = (
-                local_metric_tensor
-                + torch.eye(
-                    local_metric_tensor.shape[-1],
-                    device=local_metric_tensor.device,
-                )
-            ) / 2
-            dist = torch.sum(
-                (refined_emb.unsqueeze(1) - embedding_weights.unsqueeze(0))
-                ** 2
-                * avg_metric_tensor,
-                dim=-1,
-            )
-            sorted_values, sorted_indices = torch.sort(dist, dim=1)
+        if task == "relation_prediction":
+            pred_emb = self.reverse_sde_prediction(h_emb, t_emb, task)
+        elif task == "head_prediction":
+            pred_emb = self.reverse_sde_prediction(r_emb, t_emb, task)
+        elif task == "tail_prediction":
+            pred_emb = self.reverse_sde_prediction(h_emb, r_emb, task)
         else:
-            raise ValueError(
-                f"Invalid similarity metric: {self.similarity_metric}. "
-                "Supported metrics are 'l2', 'cosine', and 'metric_tensor'."
+            raise ValueError(f"Unsupported task type: {task}")
+
+        # Calculate the Riemannian metric tensor induced by the score_net
+        with torch.enable_grad():
+            pred_emb.requires_grad_(True)
+            score = self.score_net(torch.cat([h_emb, r_emb, pred_emb], dim=-1))
+            metric_tensor = torch.einsum(
+                "bn,bm->bnm", score.squeeze(-1).grad, score.squeeze(-1).grad
             )
+
+        # Calculate distances using the metric tensor
+        distances = torch.einsum(
+            "bnm,nm->bn",
+            metric_tensor,
+            (embedding_weights - pred_emb).unsqueeze(1) ** 2,
+        )
+
+        # Sort the distances
+        sorted_values, sorted_indices = torch.sort(distances, dim=1)
 
         return sorted_values, sorted_indices

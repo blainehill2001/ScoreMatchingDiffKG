@@ -1,0 +1,20 @@
+batch_size: 512
+dataset_name: FB15k_237
+embedding_model_name: TransE
+hidden_channels: 64
+k:
+- 1
+- 3
+- 10
+lr: 0.09998636045153796
+margin: 0.5
+max_epochs: 2500
+num_epochs_without_improvement_until_early_finish: 5
+num_nodes: 14541
+num_relations: 237
+p_norm: 2
+prefix: FB15k_237_TransE_kg_completion_2024.05.17.19.12.56_6134bf01
+task: kg_completion
+validate_after_this_many_epochs: 10
+verbose: false
+weight_decay: 1.0e-05

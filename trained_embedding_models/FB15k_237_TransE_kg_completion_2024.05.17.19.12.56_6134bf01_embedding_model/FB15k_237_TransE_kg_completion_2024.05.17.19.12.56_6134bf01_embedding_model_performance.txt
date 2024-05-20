@@ -1,0 +1,8 @@
+Trained Epochs: 31
+Performance Metrics:
+loss: 0.05491798081402599
+relation_mean_rank: 7.938676548004151
+relation_mrr: 0.7363698244094848
+relation_hits_at_1: 0.658427631855011
+relation_hits_at_10: 0.8715818643569946
+relation_hits_at_3: 0.7866117238998414

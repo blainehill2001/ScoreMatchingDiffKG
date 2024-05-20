@@ -22,7 +22,5 @@ parameters:
     values: [10, 20, 30, 40, 50]
   rel_emb_dim:
     values: [50, 100, 150, 200]
-  similarity_metric:
-    values: ['cosine', 'l2']
   verbose:
     value: False
