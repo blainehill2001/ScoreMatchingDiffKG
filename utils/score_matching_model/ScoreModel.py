@@ -259,7 +259,7 @@ class ScoreModel(nn.Module):
 
         return pred_emb  # returns predictions for the specified entity type of shape (batch_size, emb_size)
 
-    @torch.no_grad()
+    # @torch.no_grad()
     def test(
         self,
         h: Tensor,
@@ -491,13 +491,32 @@ class ScoreModel(nn.Module):
         else:
             raise ValueError(f"Unsupported task type: {task}")
 
-        # Calculate the Riemannian metric tensor induced by the score_net
-        with torch.enable_grad():
-            pred_emb.requires_grad_(True)
-            score = self.score_net(torch.cat([h_emb, r_emb, pred_emb], dim=-1))
-            metric_tensor = torch.einsum(
-                "bn,bm->bnm", score.squeeze(-1).grad, score.squeeze(-1).grad
-            )
+        # Enable gradient computation for the prediction embedding
+        pred_emb.requires_grad_(True)
+
+        # Compute the score
+        score = self.score_net(torch.cat([h_emb, r_emb, pred_emb], dim=-1))
+        print("score requires grad:", score.requires_grad)  # Should be True
+        score.retain_grad()
+        print("score grad fn:", score.grad_fn)  # Should not be None
+        score.sum().backward()  # Perform a dummy backward pass to populate gradients
+        print(
+            "score grad after backward:", score.grad
+        )  # Check if gradients are populated
+
+        # Retain gradients on the score tensor
+        score.retain_grad()
+
+        print("Shape of score before squeeze:", score.shape)
+        print("Shape of score after squeeze:", score.squeeze(-1).shape)
+        squeezed_score = score.squeeze(-1)
+        print("Gradient of squeezed score before einsum:", squeezed_score.grad)
+        print("Shape of squeezed score gradient:", squeezed_score.grad.shape)
+
+        # Compute the metric tensor using the retained gradients
+        metric_tensor = torch.einsum(
+            "bn,bm->bnm", score.squeeze(-1).grad, score.squeeze(-1).grad
+        )
 
         # Calculate distances using the metric tensor
         distances = torch.einsum(
